@@ -1,5 +1,12 @@
 .env
 .htaccess
+.gitignore
+.buildpath
+composer.json
+composer.lock
+install.lock
+LICENSE
+/app/update.sh
 /config/
 /runtime/
 /upload/
