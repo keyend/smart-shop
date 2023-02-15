@@ -1,13 +1,17 @@
-# 升级更新多门店为多商户 可自行添加商品
+# 更新为多商户变动
+### 升级更新多门店为多商户 可自行添加商品
 ```
 ALTER TABLE `xls_store`
 ADD COLUMN `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '商户类型' AFTER `store_name`,
 ADD COLUMN `is_custom` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否自行添加商品' AFTER `is_pickup`,
 ADD COLUMN `is_recomment` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否启用推荐' AFTER `is_custom`,
 ADD COLUMN `extra` mediumtext NULL COMMENT '商户类型' AFTER `uid`;
+
+ALTER TABLE `xls_goods`
+ADD COLUMN `goods_owner` tinyint(1) NOT NULL DEFAULT 0 COMMENT '商品类型' AFTER `goods_state`;
 ```
 
-# 商户申请审核列表
+### 商户申请审核列表
 ```
 INSERT INTO `xls_menu` (`id`, `app_module`, `addon`, `title`, `name`, `parent`, `level`, `url`, `is_show`, `sort`, `desc`, `is_icon`, `picture`, `picture_select`, `is_control`) VALUES ('577', 'shop', 'store', '入驻申请', 'STORE_APPVORD_LIST', 'STORE_ROOT', '2', 'store://admin/apply/lists', '1', '2', '', '0', 'app/shop/view/public/img/icon/store.png', '', '1');
 INSERT INTO `xls_menu` (`id`, `app_module`, `addon`, `title`, `name`, `parent`, `level`, `url`, `is_show`, `sort`, `desc`, `is_icon`, `picture`, `picture_select`, `is_control`) VALUES ('578', 'shop', 'store', '审核通过', 'STORE_APPVORD_RESOLVE', 'STORE_LIST', '3', 'store://admin/apoly/resolve', '0', '1', '', '0', '', '', '1');
@@ -19,11 +23,11 @@ INSERT INTO `xls_menu` (`id`, `app_module`, `addon`, `title`, `name`, `parent`, 
 INSERT INTO `xls_menu` (`id`, `app_module`, `addon`, `title`, `name`, `parent`, `level`, `url`, `is_show`, `sort`, `desc`, `is_icon`, `picture`, `picture_select`, `is_control`) VALUES ('584', 'shop', 'store', '商户设置', 'STORE_CONFIG', 'STORE_ROOT', '2', 'store://admin/config/index', '1', '2', '', '0', '', '', '1');
 ```
 
-# 商品类型
+### 商品类型 goods_owner
 
-# | 商品所属 | 发货人
--- | ---- | --------
-1. | 平台商品 | 平台发货
-2. | 平台商品 | 到店提货
-3. | 平台商品 | 商户发货
-4. | 商户商品 | 商户发货
+| 序 | 商品所属 | 发货人
+| -- | ---- | --------
+| 0 | 平台商品 | 平台发货
+| 1 | 平台商品 | 到店提货
+| 2 | 平台商品 | 商户发货
+| 3 | 商户商品 | 商户发货
