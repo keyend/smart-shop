@@ -123,8 +123,6 @@
 <div id="order_operation"></div>
 {/block}
 {block name="script"}
-{include file="order/order_common_action" /}
-{include file="order/order_address_update" /}
 <script src="STORE_JS/order_list.js"></script>
 <script>
     var laypage,element, form, hash_url;
@@ -243,7 +241,6 @@
             location.href = ns.url("store://store/order/exportOrderGoods",data.field);
             return false;
         });
-
 
         //监听Tab切换，以改变地址hash值
         element.on('tab(order_tab)', function(){
