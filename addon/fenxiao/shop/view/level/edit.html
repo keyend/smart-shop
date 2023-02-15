@@ -1,0 +1,400 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-form {margin-top: 0;}
+	.layui-btn+.layui-btn {margin-left: 0;}
+	.layui-btn {margin-right: 10px; margin-bottom: 15px;}
+	.weight-list span{display: inline-block;width: 60px;line-height: 30px;border:1px solid #eee;border-radius: 4px;text-align: center;font-size: 12px;cursor: pointer;}
+	.weight-list span.active{border-color: #2d8cf0; }
+	.weight-list span.disabled{background:#f1f1f1;cursor: not-allowed; }
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">等级佣金比例</h2>
+	</div>
+</div>
+<div class="layui-form ns-form">
+    <!-- 基础上传 -->
+    <div class="layui-card ns-card-common ns-card-brief">		
+		<div class="layui-card-body">
+			{if $info.is_default eq 0}
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required">*</span>等级权重：</label>
+				<div class="layui-input-block weight-list">
+					<span value="1" class="{if $info.level_num eq 1}active{/if} {if in_array(1, $level_weight)}disabled{/if}">一级</span>
+					<span value="2" class="{if $info.level_num eq 2}active{/if} {if in_array(2, $level_weight)}disabled{/if}">二级</span>
+					<span value="3" class="{if $info.level_num eq 3}active{/if} {if in_array(3, $level_weight)}disabled{/if}">三级</span>
+					<span value="4" class="{if $info.level_num eq 4}active{/if} {if in_array(4, $level_weight)}disabled{/if}">四级</span>
+					<span value="5" class="{if $info.level_num eq 5}active{/if} {if in_array(5, $level_weight)}disabled{/if}">五级</span>
+					<span value="6" class="{if $info.level_num eq 6}active{/if} {if in_array(6, $level_weight)}disabled{/if}">六级</span>
+					<span value="7" class="{if $info.level_num eq 7}active{/if} {if in_array(7, $level_weight)}disabled{/if}">七级</span>
+					<span value="8" class="{if $info.level_num eq 8}active{/if} {if in_array(8, $level_weight)}disabled{/if}">八级</span>
+					<span value="9" class="{if $info.level_num eq 9}active{/if} {if in_array(9, $level_weight)}disabled{/if}">九级</span>
+					<span value="10" class="{if $info.level_num eq 10}active{/if} {if in_array(10, $level_weight)}disabled{/if}">十级</span>
+				</div>
+				<div class="ns-word-aux">
+					<p>等级权重越大等级越高</p>
+				</div>
+			</div>
+			{/if}
+
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required">*</span>分销等级名称：</label>
+				<div class="layui-input-block">
+					<input type="text" name="level_name" value="{$info.level_name}" lay-verify="required"  autocomplete="off" class="layui-input ns-len-mid">
+				</div>
+			</div>
+
+        {if $basics_info.level == 1}
+        <div class="layui-form-item">
+					<label class="layui-form-label"><span class="required">*</span>一级佣金比例：</label>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="one_rate" value="{$info.one_rate}" lay-verify="required|money"  autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+					<div class="layui-form-mid">非会员</div>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="one_rate_full" lay-verify="required|money" value="{$info.one_rate_full}" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+        </div>
+        {elseif $basics_info.level == 2 /}
+        <div class="layui-form-item">
+					<label class="layui-form-label"><span class="required">*</span>一级佣金比例：</label>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="one_rate" lay-verify="required|money" value="{$info.one_rate}"  autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+					<div class="layui-form-mid">非会员</div>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="one_rate_full" lay-verify="required|money" value="{$info.one_rate_full}" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+        </div>
+		
+        <div class="layui-form-item">
+					<label class="layui-form-label"><span class="required">*</span>二级佣金比例：</label>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="two_rate" value="{$info.two_rate}" lay-verify="required|money"  autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+					<div class="layui-form-mid">非会员</div>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="two_rate_full" lay-verify="required|money" value="{$info.two_rate_full}" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+        </div>
+        {elseif $basics_info.level == 3 /}
+        <div class="layui-form-item">
+					<label class="layui-form-label"><span class="required">*</span>一级佣金比例：</label>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="one_rate" value="{$info.one_rate}" lay-verify="required|money" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+					<div class="layui-form-mid">非会员</div>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="one_rate_full" lay-verify="required|money" value="{$info.one_rate_full}" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+        </div>
+		
+        <div class="layui-form-item">
+					<label class="layui-form-label"><span class="required">*</span>二级佣金比例：</label>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="two_rate" value="{$info.two_rate}" lay-verify="required|money" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+					<div class="layui-form-mid">非会员</div>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="two_rate_full" lay-verify="required|money" value="{$info.two_rate_full}" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+        </div>
+		
+        <div class="layui-form-item">
+					<label class="layui-form-label"><span class="required">*</span>三级佣金比例：</label>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="three_rate" value="{$info.three_rate}" lay-verify="required|money"  autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+					<div class="layui-form-mid">非会员</div>
+					<div class="layui-input-inline">
+						<input type="number" min="0" name="three_rate_full" lay-verify="required|money" value="{$info.three_rate_full}" autocomplete="off" class="layui-input ns-len-short">
+					</div>
+					<div class="layui-form-mid">%</div>
+        </div>
+        {/if}
+    </div>
+
+    {if $info.is_default eq 0}
+    <div class="layui-card ns-card-common ns-card-brief">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">升级条件</h2>
+		</div>	
+        <div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label">升级方式：</label>
+                <div class="layui-input-block">
+					<input type="radio" name="upgrade_type" value="1" lay-filter="withdraw_type" title="满足以下任意条件" checked />
+					<input type="radio" name="upgrade_type" value="2" lay-filter="withdraw_type" {if $info.upgrade_type == 2} checked {/if} title="满足以下全部条件" />
+                </div>
+            </div>
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label"></label>
+			    <div class="layui-input-block">
+				<!-- 	<button class="layui-btn layui-btn-primary ns-level-btn {if $info.fenxiao_order_num > 0}ns-border-color{/if}">分销订单总数<input type="hidden" value="1" /></button>
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.fenxiao_order_meney > 0}ns-border-color{/if}">分销订单总额<input type="hidden" value="2" /></button> -->
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.one_fenxiao_order_num > 0}ns-border-color{/if}">一级分销订单总数<input type="hidden" value="1" /></button>
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.one_fenxiao_order_money > 0}ns-border-color{/if}">一级分销订单总额<input type="hidden" value="2" /></button>
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.order_num > 0}ns-border-color{/if}">自购订单总数<input type="hidden" value="1" /></button>
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.order_money > 0}ns-border-color{/if}">自购订单总额<input type="hidden" value="2" /></button>
+					<!-- <button class="layui-btn layui-btn-primary ns-level-btn {if $info.child_num > 0}ns-border-color{/if}">下线人数<input type="hidden" value="1" /></button>
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.child_fenxiao_num > 0}ns-border-color{/if}">下线分销商人数<input type="hidden" value="1" /></button> -->
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.one_child_num > 0}ns-border-color{/if}">一级下线人数<input type="hidden" value="1" /></button>
+					<button class="layui-btn layui-btn-primary ns-level-btn {if $info.one_child_fenxiao_num > 0}ns-border-color{/if}">一级下线分销商<input type="hidden" value="1" /></button>
+			    </div>
+			</div>
+		</div>
+	</div>
+		
+	<div class="layui-card ns-card-common ns-card-brief">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">升级条件限制</h2>
+		</div>
+		<div class="layui-card-body ns-level-term">
+			
+           <!--  <div class="layui-form-item {if $info.fenxiao_order_num <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>分销订单总数：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="fenxiao_order_num" value="{$info.fenxiao_order_num}" {if $info.fenxiao_order_num > 0}lay-verify="required|num"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">个</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+            <div class="layui-form-item {if $info.fenxiao_order_meney <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>分销订单总额：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="fenxiao_order_meney" value="{$info.fenxiao_order_meney}" {if $info.fenxiao_order_meney > 0}lay-verify="required|money"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">元</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div> -->
+			
+            <div class="layui-form-item {if $info.one_fenxiao_order_num <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>一级分销订单总数：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="one_fenxiao_order_num" value="{$info.one_fenxiao_order_num}" {if $info.one_fenxiao_order_num > 0}lay-verify="required|num"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">个</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+            <div class="layui-form-item {if $info.one_fenxiao_order_money <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>一级分销订单总额：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="one_fenxiao_order_money" value="{$info.one_fenxiao_order_money}" {if $info.one_fenxiao_order_money >0}lay-verify="required|money"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">元</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+            <div class="layui-form-item {if $info.order_num <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>自购订单总数：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="order_num" value="{$info.order_num}" {if $info.order_num > 0}lay-verify="required|num"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">个</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+            <div class="layui-form-item {if $info.order_money <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>自购订单总额：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="order_money" value="{$info.order_money}" {if $info.order_money > 0}lay-verify="required|money"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">元</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+            <!-- <div class="layui-form-item {if $info.child_num <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>下线人数：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="child_num" value="{$info.child_num}" {if $info.child_num > 0}lay-verify="required|num"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">人</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+            <div class="layui-form-item {if $info.child_fenxiao_num <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>下线分销商人数：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="child_fenxiao_num" value="{$info.child_fenxiao_num}" {if $info.child_fenxiao_num > 0}lay-verify="required|num"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">人</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div> -->
+			
+            <div class="layui-form-item {if $info.one_child_num <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>一级下线人数：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="one_child_num" value="{$info.one_child_num}" {if $info.one_child_num > 0}lay-verify="required|num"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">人</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+            <div class="layui-form-item {if $info.one_child_fenxiao_num <= 0}layui-hide{/if}">
+                <label class="layui-form-label"><span class="required">*</span>一级下线分销商：</label>
+				<div class="layui-input-inline">
+					<input type="number" min="0" name="one_child_fenxiao_num" value="{$info.one_child_fenxiao_num}" {if $info.one_child_fenxiao_num > 0}lay-verify="required|num"{/if} autocomplete="off" class="layui-input ns-len-short">
+				</div>
+				<div class="layui-form-mid">人</div>
+				<a href="#" class="ns-text-color layui-form-mid" onclick="delDiv(this)">删除</a>
+            </div>
+			
+			<div class="ns-form-row">
+				<input type="hidden" name="level_id" value="{$info.level_id}">
+				<button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+				<button class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+			</div>
+        </div>
+    </div>
+    {else/}
+    <div class="ns-form-row">
+		<input type="hidden" name="level_id" value="{$info.level_id}">
+		<button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+		<button class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+	</div>
+    {/if}
+
+</div>
+{/block}
+{block name="script"}
+<script>
+	{empty name="$level_weight"}
+	$(function(){
+		$('.weight-list span').not('.disabled').eq(0).addClass("active");
+	})
+	{/empty}
+
+    layui.use(['form'], function() {
+        var form = layui.form,
+            repeat_flag = false; //防重复标识
+		form.render();
+		
+		$(".weight-list span").click(function() {
+			if (!$(this).hasClass("disabled")) {
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+			}
+		});
+
+		$(".ns-level-btn").click(function() {
+			var _index = $(this).index();
+			
+			if (!$(this).hasClass("ns-border-color")) {
+				$(this).addClass("ns-border-color");
+				$(".ns-level-term>div").eq(_index).removeClass("layui-hide");
+				if ($(this).find("input").val() == 1) {
+					$(".ns-level-term>div").eq(_index).find("input").attr("lay-verify", "required|num");
+				} else {
+					$(".ns-level-term>div").eq(_index).find("input").attr("lay-verify", "required|money");
+				}
+			}
+		});
+
+        form.on('submit(save)', function(data) {
+        	{if $info.is_default eq 0}
+        	data.field.level_num = $(".weight-list span.active").attr('value');
+        	let arr = $(".layui-card-body").eq(2).children('.layui-form-item').length;
+			let arr1 = $(".layui-card-body").eq(2).children('.layui-form-item.layui-hide').length;	
+			if (data.field.level_num == undefined){
+				layer.msg('请选择等级权重');
+				return;
+			}	
+			if(arr==arr1){
+				layer.msg('请选择升级条件');
+				return;
+			}
+			{/if}
+			
+            if (repeat_flag) return;
+            repeat_flag = true;
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                url: ns.url("fenxiao://shop/level/edit"),
+                data: data.field,
+                success: function(res) {
+                    repeat_flag = false;
+
+                    if (res.code == 0) {
+                        layer.confirm('编辑成功', {
+                            title:'操作提示',
+                            btn: ['返回列表', '继续操作'],
+                            yes: function(){
+                                location.href = ns.url("fenxiao://shop/level/lists");
+                            },
+                            btn2: function() {
+                                location.reload();
+                            }
+                        });
+                    }else{
+                        layer.msg(res.message);
+                    }
+                }
+            });
+        });
+		
+		/**
+		 * 表单验证
+		 */
+		form.verify({
+			num: function(value, item) {
+				var str = $(item).parents(".layui-form-item").find("label").text().split("*").join("");
+				str = str.substring(0, str.length - 1);
+				
+				if (value <= 0) {
+					return str + '必须大于0';
+				}
+				if (value % 1 != 0) {
+					return str + '必须为整数';
+				}
+			},
+			money: function(value, item) {
+				var str = $(item).parents(".layui-form-item").find("label").text().split("*").join("");
+				str = str.substring(0, str.length - 1);
+				
+				if (value < 0) {
+					return str + '不能小于0';
+				}
+				var arrMen = value.split(".");
+				var val = 0;
+				if (arrMen.length == 2) {
+					val = arrMen[1];
+				}
+				if (val.length > 2) {
+					return str + "最多可保留两位小数";
+				}
+			}
+		});
+    });
+	
+	function delDiv(e) {
+		var _len = $(e).parents(".layui-form-item").index();
+		$(e).parents(".layui-form-item").addClass("layui-hide");
+		$(e).parents(".layui-form-item").find("input").removeAttr("lay-verify");
+		$(e).parents(".layui-form-item").find("input").val("");
+		$(".ns-level-btn").eq(_len).removeClass("ns-border-color");
+	}
+	
+	function back() {
+		location.href = ns.url("fenxiao://shop/level/lists");
+	}
+</script>
+{/block}

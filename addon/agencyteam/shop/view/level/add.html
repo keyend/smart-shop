@@ -1,0 +1,279 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-form {margin-top: 0;}
+	.layui-btn+.layui-btn {margin-left: 0;}
+	.layui-btn {margin-right: 10px; margin-bottom: 15px;}
+	.weight-list span{display: inline-block;width: 60px;line-height: 30px;border:1px solid #eee;border-radius: 4px;text-align: center;font-size: 12px;cursor: pointer;}
+	.weight-list span.active{border-color: #2d8cf0; }
+	.weight-list span.disabled{background:#f1f1f1;cursor: not-allowed; }
+	.layui-input-inner::before {content: none!important;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">等级佣金比例</h2>
+	</div>
+</div>
+<div class="layui-form ns-form">
+	<!-- 等级信息 -->
+	<div class="layui-card ns-card-common ns-card-brief">
+		<div class="layui-card-body">
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required">*</span>等级权重：</label>
+				<div class="layui-input-block weight-list">
+					{for start="1" end="11"}
+					<span value="{$i}" class="{if in_array($i, $level_weight)}disabled{/if}">{$i}级</span>
+					{/for}
+				</div>
+				<div class="ns-word-aux">
+					<p>等级权重越大等级越高</p>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required">*</span>等级名称：</label>
+				<div class="layui-input-block">
+					<input type="text" name="levelname" lay-verify="required" autocomplete="off" class="layui-input ns-len-mid">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required"> </span>排序SORT：</label>
+				<div class="layui-input-block">
+					<input type="number" name="sort" lay-verify="required" autocomplete="off" class="layui-input ns-len-mid" value="0">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--策略设置-->
+	<div class="layui-card ns-card-common ns-card-brief">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">等级策略</h2>
+		</div>	
+		<div class="layui-card-body">
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required"> </span>代理升级：</label>
+				<div class="layui-input-block">
+					<div class="layui-input-inline">
+							<input type="radio" name="upgrade" value="0" lay-filter="upgrade-type" title="手动" checked />
+							<input type="radio" name="upgrade" value="1" lay-filter="upgrade-type" title="自动" />
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item" id="upgrade-condition" style="display: none;">
+				<label class="layui-form-label"><span class="required"> </span>升级条件：</label>
+				<div class="layui-input-block">
+					<div class="layui-row layui-input-inner" style="padding: .6rem; border:1px dotted #ccc;">
+						<input type="hidden" name="condition[action]" lay-filter="condition_action" style="display: none;" value="1" />
+						<div class="layui-form-mid">注册成功后</div>
+						<div class="layui-input-inline">
+							<input type="number" name="condition[days]" value="{$level_info.condition.days|intval}" placeholder="日" class="layui-input ns-len-short" />
+						</div>
+						<div class="layui-form-mid">日时间内</div>
+						<div class="layui-form-mid">推荐</div>
+						<div class="layui-input-inline">
+							<input type="number" name="condition[people]" value="{$level_info.condition.people|intval}" placeholder="人" class="layui-input ns-len-short" />
+						</div>
+						<div class="layui-form-mid">有效会员</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item" style="display: none;">
+				<label class="layui-form-label"><span class="required"> </span>周期分红：</label>
+				<div class="layui-input-block">
+					<div class="layui-input-inline">
+						<input type="text" name="rate_bonus" autocomplete="off" class="layui-input ns-len-mid">
+					</div>
+					<div class="layui-form-mid">%</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required"> </span>代理补贴：</label>
+				<div class="layui-input-block">
+					<div class="layui-input-inline">
+						<input type="text" name="rate_subsidy" lay-verify="required" autocomplete="off" class="layui-input ns-len-mid">
+					</div>
+					<div class="layui-form-mid">%</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span class="required"> </span>补贴门槛：</label>
+				<div class="layui-input-block">
+					<div class="layui-row layui-input-inner" style="padding: .6rem; border:1px dotted #ccc;">
+						<div class="layui-form-item">
+							<label class="layui-form-label" style="width: 120px;">关联用户</label>
+							<div class="layui-input-inline">
+								<input type="number" name="subsidy_condition[usertotal]" placeholder="0" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-form-mid layui-word-aux">(VIP)</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label" style="width: 120px;">最低业绩</label>
+							<div class="layui-input-inline">
+								<input type="number" name="subsidy_condition[achievement]" placeholder="0" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-form-mid layui-word-aux"></div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label" style="width: 120px;">下级代理</label>
+							<div class="layui-input-inline">
+								<input type="number" name="subsidy_condition[children]" placeholder="0" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-form-mid layui-word-aux"></div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label" style="width: 120px;">同级补贴</label>
+							<div class="layui-input-inline">
+								<input type="number" name="subsidy_condition[samepeer]" placeholder="0" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-form-mid layui-word-aux">%</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- COMMIT -->
+	<div class="layui-card ns-card-common ns-card-brief" style="margin-top: 0px;">
+		<div class="layui-card-body" style="padding-top: 0px;">
+			<div class="ns-form-row">
+				<button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+				<button class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	$(function(){
+		$('.weight-list span').not('.disabled').eq(0).addClass("active");
+	})
+
+	layui.use(['form'], function() {
+		var form = layui.form,
+				repeat_flag = false; //防重复标识
+				form.render();
+
+		$(".weight-list span").click(function() {
+			if (!$(this).hasClass("disabled")) {
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+			}
+		}),
+		
+		$(".ns-level-btn").click(function() {
+			var _index = $(this).index();
+			
+			if (!$(this).hasClass("ns-border-color")) {
+				$(this).addClass("ns-border-color");
+				$(".ns-level-term>div").eq(_index).removeClass("layui-hide");
+				if ($(this).find("input").val() == 1) {
+					$(".ns-level-term>div").eq(_index).find("input").attr("lay-verify", "required|num");
+				} else {
+					$(".ns-level-term>div").eq(_index).find("input").attr("lay-verify", "required|money");
+				}
+			}
+		}),
+
+		$('[lay-filter="upgrade-type"]').on('click', function() {
+			var d = $('#upgrade-condition').hide();
+			if (this.value == '1') {
+				d.show()
+			}
+		}),
+
+		form.on('submit(save)', function(data) {
+			data.field.level = $(".weight-list span.active").attr('value');
+
+			if (data.field.level == undefined){
+				layer.msg('请选择等级权重');
+				return;
+			}
+
+			if (repeat_flag) return;
+			repeat_flag = true;
+
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				url: ns.url("agencyteam://shop/level/add"),
+				data: data.field,
+				success: function(res) {
+					repeat_flag = false;
+					if (res.code == 0) {
+						layer.confirm('添加成功', {
+							title:'操作提示',
+							btn: ['返回列表', '继续添加'],
+							closeBtn: 0,
+							yes: function(){
+								location.href = ns.url("agencyteam://shop/level/lists");
+							},
+							btn2: function() {
+								location.href = ns.url("agencyteam://shop/level/add");
+							}
+						});
+					}else{
+						layer.msg(res.message);
+					}
+				}
+			});
+		}),
+		
+		/**
+		 * 表单验证
+		 */
+		form.verify({
+			num: function(value, item) {
+				var str = $(item).parents(".layui-form-item").find("label").text().split("*").join("");
+				str = str.substring(0, str.length - 1);
+				
+				if (value <= 0) {
+					return str + '必须大于0';
+				}
+				if (value % 1 != 0) {
+					return str + '必须为整数';
+				}
+			},
+			money: function(value, item) {
+				var str = $(item).parents(".layui-form-item").find("label").text().split("*").join("");
+				str = str.substring(0, str.length - 1);
+				
+				if (value < 0) {
+					return str + '不能小于0';
+				}
+				var arrMen = value.split(".");
+				var val = 0;
+				if (arrMen.length == 2) {
+					val = arrMen[1];
+				}
+				if (val.length > 2) {
+					return str + "最多可保留两位小数";
+				}
+			}
+		});
+	});
+	
+	function delDiv(e) {
+		var _len = $(e).parents(".layui-form-item").index();
+		$(e).parents(".layui-form-item").addClass("layui-hide");
+		$(e).parents(".layui-form-item").find("input").removeAttr("lay-verify");
+		$(e).parents(".layui-form-item").find("input").val("");
+		$(".ns-level-btn").eq(_len).removeClass("ns-border-color");
+	}
+	
+	function back() {
+		location.href = ns.url("agencyteam://shop/level/lists");
+	}
+</script>
+{/block}

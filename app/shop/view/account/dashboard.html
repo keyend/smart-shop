@@ -1,0 +1,238 @@
+{extend name="base"/}
+{block name="resources"}
+<style>
+    .ns-card-brief:nth-child(1){
+        margin-top: 0;
+    }
+    .layui-card-body{
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 0 !important;
+        padding-left: 50px !important;
+        padding-right: 50px !important;
+    }
+    .layui-card-body .content{
+        width: 25%;
+        margin-bottom: 30px;
+        /* display: flex; */
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .layui-card-body .money{
+        font-size: 20px;
+        color: #000;
+        font-weight: bold;
+        margin-top: 10px;
+        max-width: 250px;
+    }
+    .layui-card-body .subhead{
+        font-size: 12px;
+        margin-left: 3px;
+        cursor: pointer;
+    }
+	.ns-member-panel {width: 58px;height: 58px;line-height: 58px;text-align: center;border-radius: 50%;display: inline-block;}
+    .ns-member-iconb {width: 32px}
+	.ns-member-left {margin-right: 20px;display: flex;align-items: center;float: left;}	
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">订单概况</h2>
+	</div>
+</div>
+<div class="layui-card ns-card-common ns-card-brief">
+    <div class="layui-card-body">
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #ff547b;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/all.png" />
+			</div>
+		</div>
+            <p class="title">订单总额（元）</p>
+            <p class="money">{$order_total_money}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #ff547b;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/wait-sh.png" />
+			</div>
+		</div>		
+            <p class="title">退款订单总额（元）</p>
+            <p class="money">{$refund_total_money}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #ff547b;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/order_total.png" />
+			</div>
+		</div>		
+            <p class="title">订单总数</p>
+            <p class="money">{$order_total_count}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #ff547b;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/wait-fh.png" />
+			</div>
+		</div>		
+            <p class="title">退款订单总数</p>
+            <p class="money">{$refund_total_count}</p>
+        </div>
+
+    </div>
+</div>
+
+{if $is_addon_fenxiao == 1}
+<div class="layui-card ns-card-common ns-card-brief">
+    <div class="ns-card-brief">
+	    <div class="ns-form-content">
+		    <h2 class="ns-form-title ns-card-title">分销概况</h2>
+	    </div>
+    </div>
+    <div class="layui-card-body">
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #009afe;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/fx_ze.png" />
+			</div>
+		</div>		
+            <div class="title ns-prompt-block">
+                分销订单总金额（元）
+                <div class="ns-prompt">
+                    <i class="iconfont iconwenhao1"></i>
+                    <div class="ns-prompt-box">
+                        <div class="ns-prompt-con">
+                            分销商的订单总金额统计
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="money">{$fenxiao_order_money.real_goods_money}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #009afe;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/fx_yj.png" />
+			</div>
+		</div>		
+            <div class="title ns-prompt-block">
+                分销总佣金（元）
+                <div class="ns-prompt">
+                    <i class="iconfont iconwenhao1"></i>
+                    <div class="ns-prompt-box">
+                        <div class="ns-prompt-con">
+                            分销商累计总佣金统计
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="money">{$fenxiao_account}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #009afe;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/fx_tx.png" />
+			</div>
+		</div>		
+            <div class="title ns-prompt-block">
+                提现中佣金（元）
+                <div class="ns-prompt">
+                    <i class="iconfont iconwenhao1"></i>
+                    <div class="ns-prompt-box">
+                        <div class="ns-prompt-con">
+                            分销商提现待审核佣金统计
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="money">{$account_data.account_withdraw_apply}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #009afe;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/fx_ytx.png" />
+			</div>
+		</div>		
+            <div class="title ns-prompt-block">
+                已提现佣金（元）
+                <div class="ns-prompt">
+                    <i class="iconfont iconwenhao1"></i>
+                    <div class="ns-prompt-box">
+                        <div class="ns-prompt-con">
+                            分销商已提现的佣金统计
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="money">{$account_data.account_withdraw}</p>
+        </div>
+        
+    </div>
+</div>
+{/if}
+
+<div class="layui-card ns-card-common ns-card-brief">
+    <div class="ns-card-brief">
+	    <div class="ns-form-content">
+		    <h2 class="ns-form-title ns-card-title">会员概况</h2>
+	    </div>
+    </div>
+    <div class="layui-card-body">
+        {if $is_memberwithdraw == 1}
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #feb822;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/hy_ye.png" />
+			</div>
+		</div>		
+            <p class="title">会员可提现余额（元）</p>
+            <p class="money">{$member_balance_sum.balance_money}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #feb822;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/hy_ytxye.png" />
+			</div>
+		</div>		
+            <p class="title">会员已提现余额（元）</p>
+            <p class="money">{$member_balance_sum.balance_withdraw}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #feb822;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/hy_txzye.png" />
+			</div>
+		</div>		
+            <p class="title">会员提现中余额（元）</p>
+            <p class="money">{$member_balance_sum.balance_withdraw_apply}</p>
+        </div>
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #feb822;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/hy_btxzye.png" />
+			</div>
+		</div>		
+            <p class="title">不可提现余额（元）</p>
+            <p class="money">{$member_balance_sum.balance}</p>
+        </div>
+
+        {else /}
+        <div class="content">
+			<div class="ns-member-left">
+			    <div class="ns-member-panel" style="background-color: #feb822;"/>
+				<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/hy_zye.png" />
+			</div>
+		</div>		
+            <p class="title">会员总余额（元）</p>
+            <p class="money">{$member_balance}</p>
+        </div>
+        {/if}
+
+    </div>
+</div>
+
+{/block}
+{block name="script"}
+{/block}

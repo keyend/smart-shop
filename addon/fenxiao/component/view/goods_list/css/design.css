@@ -1,0 +1,223 @@
+@CHARSET "UTF-8";
+.component-fenxiao-goods .goods-head {width: 100%;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-pack: justify;-webkit-justify-content: space-between;justify-content: space-between;-webkit-box-align: center;-webkit-align-items: center;align-items: center;margin-bottom: 10px;height: 20px;line-height: 20px;}
+.component-fenxiao-goods .goods-head .title-wrap {display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;width: calc(100% - 75px);}
+.component-fenxiao-goods .goods-head .title-wrap .name {font-weight: bold;margin-right: 8px;}
+.component-fenxiao-goods .goods-head .more {display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;justify-content: flex-end;}
+.component-fenxiao-goods .goods-head .more {font-size: 12px;width: 75px;}
+.component-fenxiao-goods .goods-head .left-icon, .component-fenxiao-goods .goods-head .right-icon {display: inline-block; height: 20px; line-height: 20px;flex-shrink: 0;}
+.component-fenxiao-goods .goods-head .iconfont {flex-shrink: 0;}
+.component-fenxiao-goods .goods-head .more span, .component-fenxiao-goods .goods-head .title-wrap .name {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+.component-fenxiao-goods .goods-head .left-icon img, .component-fenxiao-goods .goods-head .right-icon img {max-height: 20px;vertical-align: top;}
+.component-fenxiao-goods .goods-head .left-icon img {margin-right: 5px;}
+.component-fenxiao-goods .goods-head .right-icon img {margin-left: 5px;}
+.component-fenxiao-goods .list-wrap{overflow: hidden;}
+.component-fenxiao-goods h3 {font-size: 14px; font-weight: 600; padding: 5px 10px 10px 10px;}
+.component-fenxiao-goods .layui-btn.layui-btn-primary.sm {margin-top: 0; padding: 0 10px !important;}
+/* .component-fenxiao-goods .list-wrap .item {width: 50%;height: 100%;background: #ffffff;float: left;margin-bottom: 10px;text-align: center;}
+.component-fenxiao-goods .list-wrap .item .img-wrap {margin-bottom: 5px;}
+.component-fenxiao-goods .list-wrap .item .img-wrap img {width: 100px;height: 100px;padding: 0;margin: 0;}
+.component-fenxiao-goods .list-wrap .item p {font-size: 14px;margin-bottom: 5px;}
+.component-fenxiao-goods .list-wrap .item span {font-size: 12px;text-align: center;color: #898989;vertical-align: middle;} */
+
+/* 商品列表风格 */
+.component-fenxiao-goods .fenxiao-list-style {
+	display: none;
+}
+
+.style-list-con-fenxiao {
+	display: flex;
+	flex-wrap: wrap;
+}
+.style-list-con-fenxiao .style-li-fenxiao {
+	width: 32%;
+	height: 250px;
+	line-height: 250px;
+	margin-right: 2%;
+	margin-bottom: 15px;
+	cursor: pointer;
+	border: 1px solid #ededed;
+	background: #f7f8fa;
+	box-sizing: border-box;
+}
+
+.style-list-con-fenxiao .style-li-fenxiao:nth-child(3n) {
+	margin-right: 0;
+}
+
+.style-list-con-fenxiao .style-li-fenxiao img {
+	width: 100%;
+}
+
+.layui-layer-page .layui-layer-content {
+	overflow: auto !important;
+}
+
+.btn-box {
+	margin-top: 30px;
+	text-align: center;
+}
+
+/* 标题 */
+.groupbuy-addon-title {
+	width: 100%;
+}
+
+.groupbuy-addon-title li {
+	padding: 10px;
+	background: #ffffff;
+	border: 1px dashed #e5e5e5;
+	position: relative;
+}
+
+.groupbuy-addon-title li .content-block {
+	display: inline-block;
+	width: 71%;
+}
+
+.groupbuy-addon-title li .content-block .layui-form-label {
+    width: 60px;
+}
+
+.groupbuy-addon-title li .content-block .layui-input-block {
+    margin-left: 60px;
+}
+
+/* 风格一 */
+.component-fenxiao-goods .fenxiao-goods-list-1 {
+	width: 100%;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .item {
+	width: 100%;
+	display: flex;
+	background-color: #FFFFFF;
+	padding: 8px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+.component-fenxiao-goods .fenxiao-goods-list-1 .item:last-child{
+	margin-bottom: 0;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .list-wrap .item .img-wrap {
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	margin-right: 8px;
+	margin-bottom: 0;
+	flex-shrink: 0;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .img-wrap img {
+	max-width: 100px;
+	max-height: 100px;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .list-wrap .item .font-wrap {
+	flex: 1;
+	text-align: left;
+	position: relative;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .price-wrap {
+	position: absolute;
+	bottom: 0;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .list-wrap .item .fenxiao-price {
+	border: 1px solid #FF4544;
+	border-radius: 3px;
+	height: 18px;
+	line-height: 18px;
+	color: #FF4544;
+	font-size: 12px;
+	padding-right: 6px;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .list-wrap .item .fenxiao-price span {
+	background-color: #FF4544;
+	color: #FFFFFF;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	vertical-align: top;
+	font-size: 14px;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-1 .follow-wrap {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background-color: #FF4544;
+	padding: 5px 12px;
+	border-radius: 30px;
+	color: #FFFFFF;
+}
+
+/* 风格二 */
+.component-fenxiao-goods .fenxiao-goods-list-2 .list-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-2 .item {
+	width: 48.5%;
+	margin-right: 3%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 8px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	background-color: #FFFFFF;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-2 .item:nth-child(2n) {
+	margin-right: 0;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-2 .item .img-wrap {
+	width: 100%;
+	height: 130px;
+	line-height: 130px;
+	text-align: center;
+	
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-2 .item .img-wrap img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-2 .item .good-name {
+	margin: 3px 0;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-2 .fenxiao-price {
+	border: 1px solid #FF4544;
+	border-radius: 3px;
+	height: 18px;
+	line-height: 18px;
+	color: #FF4544;
+	font-size: 12px;
+	padding-right: 6px;
+	display: inline-block;
+	margin: 5px 0;
+}
+
+.component-fenxiao-goods .fenxiao-goods-list-2 .fenxiao-price span {
+	background-color: #FF4544;
+	color: #FFFFFF;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	vertical-align: top;
+	font-size: 14px;
+}
+

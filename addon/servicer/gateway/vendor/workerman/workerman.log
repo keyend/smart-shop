@@ -1,0 +1,140 @@
+2022-11-10 09:22:20 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:21 pid:1 Worker process terminated
+2022-11-10 09:22:22 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:23 pid:1 Worker process terminated
+2022-11-10 09:22:24 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:25 pid:1 Worker process terminated
+2022-11-10 09:22:26 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:27 pid:1 Worker process terminated
+2022-11-10 09:22:28 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:29 pid:1 Worker process terminated
+2022-11-10 09:22:30 pid:1 Register auth timeout (127.0.0.1). See http://doc2.workerman.net/register-auth-timeout.html
+2022-11-10 09:22:30 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:31 pid:1 Worker process terminated
+2022-11-10 09:22:32 pid:1 Register auth timeout (127.0.0.1). See http://doc2.workerman.net/register-auth-timeout.html
+2022-11-10 09:22:32 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:33 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:34 pid:1 Worker process terminated
+2022-11-10 09:22:35 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php:1561
+Stack trace:
+#0 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1561): PDO->__construct('mysql:dbname=99...', 'root', 'root', Array)
+#1 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\mysql\src\Connection.php(1549): Workerman\MySQL\Connection->connect()
+#2 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\Events.php(55): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', 'root', '9999')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(198): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(2180): GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\gateway-worker\src\BusinessWorker.php(175): Workerman\Worker->run()
+#7 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1271): GatewayWorker\BusinessWorker->run()
+#8 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(1220): Workerman\Worker::forkWorkersForWindows()
+#9 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\vendor\workerman\workerman\Worker.php(477): Workerman\Worker::forkWorkers()
+#10 C:\Users\mi\Documents\WebApps\shopv3\wwwroot\addon\servicer\gateway\Applications\Service\start_businessworker.php(31): Workerman\Worker::runAll()
+#11 {main}
+2022-11-10 09:22:36 pid:1 Worker process terminated
+2022-11-10 09:58:00 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2022-11-10 09:58:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2022-11-10 09:59:04 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html
+2022-11-10 10:01:12 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://doc2.workerman.net/register-auth-timeout.html

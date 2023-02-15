@@ -1,0 +1,175 @@
+{extend name="app/shop/view/base.html" /}
+{block name="resources"}
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">小程序开发者设置</h2>
+	</div>
+</div>
+<div class="layui-form">
+	<div class="layui-card ns-card-common ns-card-brief">
+		<div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label">小程序名称：</label>
+                <div class="layui-input-inline ">
+                    <input type="text" name="ttapp_name" autocomplete="off" class="layui-input ns-len-long" value="{$config_info.ttapp_name ?? ''}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label img-upload-lable">小程序二维码：</label>
+                <div class="layui-input-inline img-upload">
+                    <div class="upload-img-block icon">
+                        <div class="upload-img-box">
+                        {if condition="$config_info && $config_info.qrcode"}
+                            <img layer-src src="{:img($config_info.qrcode)}" />
+                        {else/}
+                            <div class="ns-upload-default">
+                                <img src="SHOP_IMG/upload_img.png" />
+                                <p>点击上传</p>
+                            </div>
+                        {/if}
+                        </div>
+                        <p id="img" class=" {if condition="$config_info && $config_info.qrcode"} replace {else/} no-replace{/if}">替换</p>
+                        <input type="hidden" class="layui-input" name="qrcode" value="{$config_info.qrcode ?? ''}"/>
+                        <i class="del {if condition="$config_info && $config_info.qrcode"}show{/if}">x</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<div class="layui-card ns-card-common ns-card-brief">
+	    <div class="ns-form-content">
+		    <h2 class="ns-form-title ns-card-title">开发参数设置</h2>
+	    </div>	
+		<div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label">APPID：</label>
+                <div class="layui-input-inline ">
+                    <input type="text" name="appid" autocomplete="off" class="layui-input ns-len-long" value="{$config_info.appid ?? ''}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">APP密钥：</label>
+                <div class="layui-input-block ">
+                    <input type="text" name="appsecret" autocomplete="off" class="layui-input ns-len-long" value="{$config_info.appsecret ?? ''}">
+                </div>
+                <div class="ns-word-aux">AppID(小程序ID)和AppSecret(小程序密钥)来自于您申请的小程序账号，使用小程序账号密码登录抖音开放平台，进入控制台相应的小程序项目，在开发->开发配置中可以找到</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">平台公钥：</label>
+                <div class="layui-input-block ">
+                    <textarea type="text" name="platform_key" autocomplete="off" class="layui-input ns-len-long" style="height: 120px;font-size: .9rem;line-height: 1rem;color: #898989;word-break: keep-all;white-space: nowrap;font-family: monospace; padding: .3rem;">{$config_info.platform_key ?? ''}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">应用公钥：</label>
+                <div class="layui-input-block ">
+                    <textarea type="text" name="public_key" autocomplete="off" class="layui-input ns-len-long" style="height: 120px;font-size: .9rem;line-height: 1rem;color: #898989;word-break: keep-all;white-space: nowrap;font-family: monospace; padding: .3rem;">{$config_info.public_key ?? ''}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">应用私钥：</label>
+                <div class="layui-input-block ">
+                    <textarea type="text" name="private_key" autocomplete="off" class="layui-input ns-len-long" style="height: 120px;font-size: .9rem;line-height: 1rem;color: #898989;word-break: keep-all;white-space: nowrap;font-family: monospace; padding: .3rem;">{$config_info.private_key ?? ''}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">webview域名检验：</label>
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-primary" id="checkFile">上传文件</button>
+                </div>
+                <div class="ns-word-aux">仅支持上传TXT格式的文件</div>
+            </div>
+        </div>
+    </div>
+
+	<div class="layui-card ns-card-common ns-card-brief">
+		<div class="layui-card-header">
+			<span class="ns-card-title">服务器域名配置</span>
+		</div>
+		<div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label">request合法域名：</label>
+                <div class="layui-input-inline ">
+                    <input type="text" autocomplete="off" readonly id="url_request" class="layui-input ns-len-long" value="https://{$url}">
+                </div>
+                <button class="layui-btn layui-btn-primary" onclick="ns.copy('url_request')">复制</button>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">socket合法域名：</label>
+                <div class="layui-input-inline ">
+                    <input type="text" autocomplete="off" readonly id="url_socket" class="layui-input ns-len-long" value="wss://{$url}">
+                </div>
+                <button class="layui-btn layui-btn-primary" onclick="ns.copy('url_socket')">复制</button>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">uploadFile合法域名：</label>
+                <div class="layui-input-inline ">
+                    <input type="text" autocomplete="off" readonly id="url_upload" class="layui-input ns-len-long" value="https://{$url}">
+                </div>
+                <button class="layui-btn layui-btn-primary" onclick="ns.copy('url_upload')">复制</button>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">downloadFile合法域：</label>
+                <div class="layui-input-inline ">
+                    <input type="text" autocomplete="off" id="url_download" readonly class="layui-input ns-len-long" value="https://{$url}">
+                </div>
+                <button class="layui-btn layui-btn-primary" onclick="ns.copy('url_download')">复制</button>
+            </div>
+        </div>
+    </div>
+	
+	<div class="layui-card ns-card-common ns-card-brief">
+        <div class="layui-card-body">
+             <div class="ns-form-row">
+                 <button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+                 <button type="reset" class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+             </div>
+         </div>
+     </div>
+ </div>
+ {/block}
+ {block name="script"}
+ <script type="text/javascript">
+     layui.use(['form'], function () {
+         var form = layui.form,
+             repeat_flag = false; //防重复标识
+         form.render();
+
+         form.on('submit(save)', function (data) {
+             if (repeat_flag) return;
+             repeat_flag = true;
+             $.ajax({
+                 type: "post",
+                 url: "{:addon_url('ttapp://shop/ttapp/config')}",
+                 dataType: "JSON",
+                 data: data.field,
+                 success: function (data) {
+                     repeat_flag = false;
+                     layer.msg(data.message);
+                 }
+             });
+         });
+
+         var upload = new Upload({
+             elem: '#img'
+         });
+
+         var file_upload = new Upload({
+             elem: '#checkFile',
+             url: ns.url("shop/upload/checkfile"),
+             accept: 'file',
+             acceptMime: 'text/plain',
+             exts: 'txt'
+         });
+
+     });
+
+     function back() {
+         location.href = "{:addon_url('ttapp://shop/ttapp/setting')}";
+     }
+
+ </script>
+ {/block}

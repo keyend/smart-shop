@@ -1,0 +1,15 @@
+.layui-layout-admin .layui-body {
+    position: absolute;
+    overflow: auto !important;
+    top: 60px;
+    bottom: 0;
+    left: 258px;
+    background-color: #F4F6F8;
+    padding: 0;
+}
+.layui-layout-admin .layui-body .ns-body-content {
+    padding: 0;
+	min-height: initial;
+    padding-top: 0;
+    padding-bottom: 0;
+}

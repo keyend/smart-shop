@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+
+/*.component-store-show-info .preview-draggable {*/
+/*	overflow: hidden;*/
+/*}*/
+
+/* 风格一 */
+.component-store-show-info .style-one, .component-store-show-info .style-three{
+	display: flex;
+	justify-content: space-between;
+}
+.component-store-show-info .style-one .info-item{
+	flex: 1;
+}
+.component-store-show-info .style-one .store-name{
+	margin-right: 10px;
+	font-size: 16px;
+}
+.component-store-show-info .style-one .change{
+	font-size: 12px;
+}
+.component-store-show-info .style-one p{
+	margin-top: 10px;
+	font-size: 12px;
+}
+.component-store-show-info .style-one .img-wrap, .component-store-show-info .style-two .img-wrap, .component-store-show-info .style-three .img-wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+.component-store-show-info .style-one .img-wrap img, .component-store-show-info .style-two .img-wrap img, .component-store-show-info .style-three .img-wrap img{
+	width: 100%;
+	height: 100%;
+}
+
+
+/* 风格二 */
+.component-store-show-info .style-two{
+	display: flex;
+}
+.component-store-show-info .style-two .info-item{
+	margin-left: 10px;
+}
+.component-store-show-info .style-two .store-name{
+	font-size: 16px;
+}
+.component-store-show-info .style-two p{
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+.component-store-show-info .style-two .change{
+	margin-left: auto;
+	align-self: center;
+	flex-shrink: 0;
+}
+
+/* 风格三 */
+.component-store-show-info .style-three .info-item{
+	display: flex;
+	align-items: center;
+}
+.component-store-show-info .style-three .store-name{
+	margin-left: 8px;
+	margin-right: 15px;
+	font-size: 16px;
+}
+.component-store-show-info .style-three .change{
+	font-size: 12px;
+}
+.component-store-show-info .style-three .icon-wrap{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	align-self: center;
+}
+.component-store-show-info .style-three .icon-wrap img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/* 弹窗 */
+.style-list-con-store {
+	display: flex;
+	flex-wrap: wrap;
+}
+.style-list-con-store .style-li-goods{
+	height: 240px;
+	line-height: 240px;
+	width: 32%;
+	margin-right: 2%;
+	margin-bottom: 15px;
+	cursor: pointer;
+	border: 1px solid #ededed;
+	background: #f7f8fa;
+	box-sizing: border-box;
+}
+.style-list-con-store .style-li-goods img{
+	max-width: 100%;
+}
+.style-list-con-store .style-li-goods:nth-child(3n) {
+	margin-right: 0;
+}

@@ -1,0 +1,92 @@
+{extend name="addon/store/store/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-single-filter-box {
+		background-color: transparent;
+	}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">入库详情</h2>
+	</div>
+</div>
+<div class="layui-collapse ns-tips">
+	<div class="layui-colla-item">
+		<ul class="layui-colla-content layui-show">
+			<li>文件名称：{$info.filename}</li>
+			<li>导入sku数：{$info.sku_num}</li>
+			<li>失败数：<span style="color: red">{$info.error_num}</span></li>
+			<li>导入时间：{:date('Y-m-d H:i:s',$info.create_time)}</li>
+		</ul>
+	</div>
+</div>
+
+<div class="layui-tab ns-table-tab" lay-filter="solution_tab">
+
+	<ul class="layui-tab-title">
+		<li class="layui-this" data-status="">全部</li>
+		<li data-status="0">成功</li>
+		<li data-status="-1">失败</li>
+	</ul>
+
+	<div class="layui-tab-content">
+		<table id="solution_list" lay-filter="solution_list"></table>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	var table, form, element, repeat_flag = false;// 防重复标识
+	layui.use(['form', 'element'], function () {
+		form = layui.form;
+		element = layui.element;
+		form.render();
+
+        //监听Tab切换，以改变地址hash值
+        element.on('tab(solution_tab)', function () {
+            table.reload({
+                page: {
+                    curr: 1
+                },
+                where: {
+                    'status': this.getAttribute('data-status')
+                }
+            });
+        });
+
+		table = new Table({
+			elem: '#solution_list',
+			url: ns.url("store://store/storestockimport/detail"),
+			where:{
+			  file_id:{$file_id}
+			},
+			cols: [
+				[{
+					field: 'goods_name',
+					title: '商品名称',
+					unresize: 'false'
+				}, {
+                    field: 'sku_name',
+					title: 'sku名称',
+                    unresize: 'false'
+				}, {
+                    field: 'stock',
+                    title: '库存（增/减）',
+                    unresize: 'false',
+					width:'10%'
+                }, {
+                    field:'reason',
+                    title: '失败原因',
+                    unresize: 'false',
+                    width:'15%'
+                }]
+			]
+
+		});
+
+	});
+
+</script>
+{/block}

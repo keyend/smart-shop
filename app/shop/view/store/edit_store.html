@@ -1,0 +1,524 @@
+{extend name="base"/}
+{block name="resources"}
+<style>
+	#container{ width: 650px; height: 500px; }
+	.empty-address{ display: none; }
+	.address-content {
+		display: inline-block;
+		vertical-align: top;
+	}
+	.ns-form {margin-top: 0;}
+</style>
+{/block}
+{block name="main"}
+<div class="layui-form">
+	<div class="ns-card-brief">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">基本信息</h2>
+		</div>
+	</div>
+	<div class="ns-form" lay-filter="storeform" >
+		<input type="hidden" name="store_id" value="{$store_id}"/>
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span class="required">*</span>商户名称：</label>
+			<div class="layui-input-block">
+				<input type="text" name="store_name" autocomplete="off" lay-verify="store_name" class="layui-input ns-len-mid" value="{$info.store_name}">
+			</div>
+			<div class="ns-word-aux">商户的名称（招牌）</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label img-upload-lable">商户图片：</label>
+			<div class="layui-input-block img-upload">
+				<div class="upload-img-block icon">
+					<div class="upload-img-box">
+						{if empty($info.store_image)}
+						<div class="ns-upload-default">
+							<img src="SHOP_IMG/upload_img.png" />
+							<p>点击上传</p>
+						</div>
+						{else/}
+						<img layer-src src="{:img($info.store_image)}" alt="">
+						{/if}
+					</div>
+					<p id="storeUpload" class=" {if condition="$info.store_image"} replace {else/} no-replace{/if}">替换</p>
+					<input type="hidden" name="store_image" value="{$info.store_image}">
+					<i class="del {if !empty($info.store_image)}show{/if}">x</i>
+				</div>
+			</div>
+			<div class="ns-word-aux">
+				<p>商户图片在PC及移动端对应页面及列表作为商户标志出现。</p>
+				<p>建议图片尺寸：100 * 100像素，图片格式：jpg、png、jpeg。</p>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span class="required">* </span>商户类型：</label>
+			<div class="layui-input-block">
+				<select name="type" lay-filter="type" lay-verify="type">
+					<option value="">请选择类型</option>
+					<option value="1" data-filter="producer">生产商</option>
+					<option value="2" data-filter="partner">合伙人</option>
+					<option value="3" data-filter="store">加盟门店</option>
+					<option value="4" data-filter="alliance">联盟企业</option>
+					<option value="5" data-filter="service">服务中心</option>
+				</select>
+			</div>
+			<div class="ns-word-aux">商户的入驻类型，默认为合伙人</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">商户电话：</label>
+			<div class="layui-input-block">
+				<input type="text" name="telphone" value="{$info.telphone}" lay-verify="tel" autocomplete="off" class="layui-input ns-len-mid">
+			</div>
+			<div class="ns-word-aux">请输入合法的手机号</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span class="required">* </span>商户状态：</label>
+			<div class="layui-input-block">
+				{if in_array($info['status'], [1, -1])}
+				<input type="checkbox" name="status" value="1" lay-skin="switch" {if !empty($info) && $info.status==1 }checked{/if}>
+				{else}
+				<label>
+					<input type="radio" name="status" value="0" />
+					未入驻
+				</label>
+				<label>
+					<input type="radio" name="status" value="1" />
+					审核入驻
+				</label>
+				<label>
+					<input type="radio" name="status" value="-2" />
+					拒绝入驻
+				</label>
+				{/if}
+			</div>
+			<div class="ns-word-aux">商户当前状态</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span class="required">* </span>主营项目：</label>
+			<div class="layui-input-block">
+				<input type="text" name="extra[mainly]" value="{$info.extra.mainly}" lay-verify="tel" autocomplete="off" class="layui-input ns-len-mid">
+			</div>
+			<div class="ns-word-aux">商户的主营项目</div>
+		</div>
+
+		<div class="layui-form-item" data-type="store">
+			<label class="layui-form-label">是否启用自提：</label>
+			<div class="layui-input-block">
+				<input type="checkbox" value="1" name="is_pickup" lay-skin="switch" {if !empty($info) && $info.is_pickup==1 }checked{/if}>
+			</div>
+		</div>
+		
+		<div class="layui-form-item" data-type="store|producer|alliance">
+			<label class="layui-form-label">自行添加商品：</label>
+			<div class="layui-input-block">
+				<input type="checkbox" value="1" name="is_custom" lay-skin="switch" {if !empty($info) && $info.is_custom==1 }checked{/if}>
+			</div>
+		</div>
+
+		<!--自提点地址-->
+		<div class="layui-form-item">
+			<label class="layui-form-label"><span class="required">* </span>商户地址：</label>
+			<div class="layui-input-inline area-select">
+				<select name="province_id" lay-filter="province_id" lay-verify="province_id">
+					{foreach $province_list as $k => $v}
+					<option value="{$v.id}" {if $info.province_id == $v.id}select{/if}>{$v.name}</option>
+					{/foreach}
+				</select>
+			</div>
+			
+			<div class="layui-input-inline area-select">
+				<select name="city_id"  lay-filter="city_id" lay-verify="city_id">
+					<option value="">请选择城市</option>
+				</select>
+			</div>
+			
+			<div class="layui-input-inline area-select">
+				<select name="district_id"  lay-filter="district_id" lay-verify="district_id">
+					<option value="">请选择区/县</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label"></label>
+			<div class="layui-input-block">
+				<input type="text" name="address"  placeholder="请填写商户的具体地址" value="{$info.address}" lay-verify="required" autocomplete="off" class="layui-input ns-len-long address-content" value="">
+				<input type = "hidden" name="longitude" lay-verify="required" class="layui-input" value="{$info.longitude}"/>
+				<input type = "hidden" name="latitude" lay-verify="required" class="layui-input"value="{$info.latitude}"/>
+				<button class='layui-btn-primary layui-btn' onclick="refreshFrom();">查找地址</button>
+			</div>
+			<div class="ns-word-aux">点击查找地址可在地图上显示输入的地理位置</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">地图定位：</label>
+			<div class="layui-input-block">
+				<div id="container" class="selffetch-map"></div>
+			</div>
+			<span class="layui-word-aux empty-address">请选择地理位置！在地图上点击得到的地理位置会自动填入到对应的输入框中</span>
+		</div>
+
+		<div class="layui-form-item" data-type="store">
+			<label class="layui-form-label">是否启用外卖配送：</label>
+			<div class="layui-input-block">
+				<input type="checkbox" value="1" name="is_o2o" lay-skin="switch" {if !empty($info) && $info.is_o2o==1 }checked{/if}>
+			</div>
+		</div>
+
+		<div class="layui-form-item" data-type="store">
+			<label class="layui-form-label">营业时间：</label>
+			<div class="layui-input-block">
+				<input type="text" name="open_date" value="{$info.open_date}" class="layui-input ns-len-long">
+			</div>
+			<div class="ns-word-aux ">例：上午9:00-12:00，下午2:00-6:00</div>
+		</div>
+
+		<div class="layui-form-item" data-type="store|producer|partner|alliance">
+			<label class="layui-form-label">是否推荐：</label>
+			<div class="layui-input-block">
+				<input type="checkbox" value="1" name="is_recomment" lay-skin="switch" {if !empty($info) && $info.is_recomment==1 }checked{/if}>
+			</div>
+		</div>
+
+	</div>
+	<div class="ns-card-brief">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">帐号信息</h2>
+		</div>
+	</div>
+	<div class="ns-form" lay-filter="account">
+		<div class="layui-form-item">
+			<label class="layui-form-label">商户主账号：</label>
+			<div class="layui-input-block">
+				<input type="text" name="username" value="{$info.username}" class="layui-input ns-len-long">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">子账户数量：</label>
+			<div class="layui-input-block">
+				<input type="number" name="extra[child_length]" value="{$info.extra.child_length}" class="layui-input ns-len-long">
+			</div>
+			<span class="layui-word-aux empty-address">商户可以创建的子管理帐号个数，默认不能创建</span>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">商品数量：</label>
+			<div class="layui-input-block">
+				<input type="number" name="extra[goods_length]" value="{$info.extra.child_length}" class="layui-input ns-len-long">
+			</div>
+			<span class="layui-word-aux empty-address">商户可以创建的商品个数</span>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">到期时间：</label>
+			<div class="layui-input-block">
+				<input type="datetime" name="extra[expire_time]" value="{$info.extra.expire_time}" class="layui-input ns-len-long">
+			</div>
+			<span class="layui-word-aux empty-address">商户账户有效期限</span>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">备注信息：</label>
+			<div class="layui-input-block">
+				<textarea class="layui-textarea ns-len-long" placeholder="商户备注说明" placeholder-class="textarea-placeholder" maxlength="255" lay-verify="remark" name="extra[remark]">{$info.extra.remark}</textarea>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="ns-card-brief">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">参数配置</h2>
+		</div>
+	</div>
+
+	<div class="ns-form" lay-filter="options">
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">是否启用积分商城：</label>
+			<div class="layui-input-block">
+				<input type="checkbox" value="1" name="extra[is_creditshop]" lay-skin="switch" {if !empty($info) && $info.extra.is_creditshop==1 }checked{/if}>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="ns-card-brief">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">商户结算</h2>
+		</div>
+	</div>
+
+	<div class="ns-form" lay-filter="settlement">
+		<div class="layui-form-item">
+			<label class="layui-form-label">收款账户类型：</label>
+			<div class="layui-input-block">
+				<select name="extra[settle][account_type]" lay-filter="account" lay-verify="account">
+					<option value="">请选择类型</option>
+					<option value="alipay" data-filter="alipay">支付宝</option>
+					<option value="wechat" data-filter="wechat">微信</option>
+					<option value="bank" data-filter="bank">银行卡号</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item" data-account="bank">
+			<label class="layui-form-label">开户行：</label>
+			<div class="layui-input-block">
+				<input type="datetime" name="extra[settle][account_bank]" value="{$info.extra.settle.account_bank}" class="layui-input ns-len-long">
+			</div>
+		</div>
+
+		<div class="layui-form-item" data-account="branch">
+			<label class="layui-form-label">所属支行：</label>
+			<div class="layui-input-block">
+				<input type="datetime" name="extra[settle][account_branch]" value="{$info.extra.settle.account_branch}" class="layui-input ns-len-long">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">收款账户：</label>
+			<div class="layui-input-block">
+				<input type="datetime" name="extra[settle][account]" value="{$info.extra.settle.account}" class="layui-input ns-len-long">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">收款人：</label>
+			<div class="layui-input-block">
+				<input type="datetime" name="extra[settle][account_name]" value="{$info.extra.settle.account_name}" class="layui-input ns-len-long">
+			</div>
+		</div>
+	</div>
+
+	<div class="ns-form" lay-filter="commit">
+		<div class="ns-form-row">
+			<button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+			<button class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<!--<script type="text/javascript" src="{$http_type}://webapi.amap.com/maps?v=1.4.6&amp;key=2df5711d4e2fd9ecd1622b5a53fc6b1d"></script>-->
+<!--<script type="text/javascript" src="STATIC_JS/map_address.js"></script>-->
+<script type="text/javascript" src="SHOP_JS/address.js"></script>
+<script src="https://map.qq.com/api/gljs?v=1.exp&libraries=service&key={$tencent_map_key}"></script>
+<script src="https://map.qq.com/api/js?v=2.exp&key={$tencent_map_key}"></script>
+<script type="text/javascript" src="STATIC_JS/qq_map.js"></script>
+<script>
+	var form, repeat_flag, map_class;
+
+	layui.use(['form'], function() {
+		form = layui.form;
+		$ = layui.$;
+		repeat_flag = false;//防重复标识
+		
+		form.render();
+		
+		var initdata = {province_id : '{$info.province_id}', city_id : '{$info.city_id}', district_id : '{$info.district_id}'};
+		initAddress(initdata, "storeform");
+		if('{$info.latitude}' == "" || '{$info.longitude}' == ""){
+				var latlng = {lat:'',lng:''};
+		}else{
+				var latlng = {lat:'{$info.latitude}',lng:'{$info.longitude}'};
+		}
+
+		//地图展示
+		map_class = new mapClass("container",latlng);
+		
+		$("select[lay-filter]").each(function(i, v) {
+			$("[data-" + v.getAttribute('lay-filter') + "]").hide()
+		}).on("change", function() {
+			var filter = $(this).find('option[value="' + this.value + '"]').data('filter'), name = this.getAttribute('lay-filter');
+			$("[data-" + name + "]").hide().each(function(i, v) {
+				if (v.getAttribute("data-" + name).indexOf(filter) != -1) {
+					$(v).show()
+				}
+			});
+		}),
+
+		form.on('select(type)', function(obj) {
+			$(obj.elem).trigger('change')
+		}),
+
+		form.on('select(account)', function(obj) {
+			$(obj.elem).trigger('change')
+		}),
+
+		/**
+		 * 验证码
+		 */
+		form.verify({
+			required : function(value, item){
+				var msg = $(item).attr("placeholder") != undefined ? $(item).attr("placeholder") : '';
+				if(value == '') return msg;
+			},
+			province_id : function(value, item){
+				if(value == ''){
+					return '请选择省份';
+				}
+			},
+			city_id : function(value, item){
+				if(value == ''){
+					return '请选择城市';
+				}
+			},
+			district_id : function(value, item){
+				if(value == ''){
+					return '请选择区/县';
+				}
+			},
+			tel : function(value, item) {
+				var tel = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/; //固定电话
+				var phone = /^1[345678]\d{9}$/; //手机
+				if (value != '') {
+					if (!(tel.test(value)) && !(phone.test(value))) {
+						return '请输入正确的电话号码或手机号！';
+					}
+				}
+			},
+			store_name : function (value,item) {
+				if(value == ""){
+					return '请输入商户名称';
+				}
+			}
+		});
+
+		// 商户logo
+		var upload = new Upload({
+			elem: '#storeUpload'
+		});
+
+		/**
+		 * 监听提交
+		 */
+		form.on('submit(save)', function(data){
+			if( data.field.longitude == "" || data.field.latitude == ""){
+				layer.msg('请确认地理位置!');
+				$(".empty-address").show();
+				return;
+			}else{
+				$(".empty-address").hide();
+			}
+			
+			var full_address  = [];
+			full_address.push($("select[name=province_id] option:selected").text());
+			full_address.push($("select[name=city_id] option:selected").text());
+			full_address.push($("select[name=district_id] option:selected").text());
+
+			data.field.full_address = full_address.toString();
+
+			// 删除图片
+			if(!data.field.store_image) upload.delete();
+
+			if(repeat_flag) return;
+			repeat_flag = true;
+			
+			$.ajax({
+				type : "POST",
+				dataType: 'JSON',
+				url : ns.url("shop/store/editStore"),
+				async : true,
+				data : data.field,
+				success : function(res) {
+					repeat_flag = false;
+
+					if (res.code == 0) {
+						layer.confirm('编辑成功', {
+							title: '操作提示',
+							btn: ['返回列表', '继续操作'],
+							yes: function() {
+								location.href = ns.url("shop/store/lists")
+							},
+							btn2: function() {
+								location.reload();
+							}
+						});
+					} else {
+						layer.msg(res.message);
+					}
+				}
+			})
+		});
+
+	});
+
+	function back() {
+		location.href = ns.url("shop/store/lists");
+	}
+	
+	/**
+	 * 重新渲染表单
+	 */
+	function refreshFrom(){
+		form.render();
+		orderAddressChange();//改变地址
+		map_class.mapChange();
+	}
+
+	//动态改变订单地址赋值
+	function orderAddressChange(){
+		map_class.address.province = $("select[name=province_id]").val();
+		map_class.address.province_name = $("select[name=province_id] option:selected").text();
+		map_class.address.city = $("select[name=city_id]").val();
+		map_class.address.city_name = $("select[name=city_id] option:selected").text();
+		map_class.address.district = $("select[name=district_id]").val();
+		map_class.address.district_name = $("select[name=district_id] option:selected").text();
+		map_class.address.detail_address = $("input[name='address']").val();
+	}
+	
+	/**
+	 * 地址下拉框（主要用于坐标记录）
+	 */
+	function selectCallBack(){
+		$("input[name=longitude]").val(map_class.address.longitude);//坐标
+		$("input[name=latitude]").val(map_class.address.latitude);//坐标
+	}
+
+	//地图点击回调事件
+	function mapChangeCallBack(){
+		$("input[name=address]").val(map_class.address.address);//详细地址
+		$("input[name=longitude]").val(map_class.address.longitude);//坐标
+		$("input[name=latitude]").val(map_class.address.latitude);//坐标
+
+		$.ajax({
+			type : "POST",
+			dataType: 'JSON',
+			url : ns.url("shop/address/getGeographicId"),
+			async : true,
+			data : {
+				"address" : map_class.address.area
+			},
+			success : function(data) {
+				map_class.address.province = data.province_id;
+				map_class.address.city = data.city_id;
+				map_class.address.district = data.district_id;
+				map_class.address.township = data.subdistrict_id;
+				map_class.map_change = false;
+				form.val("storeform", {
+					"province_id": data.province_id
+				});
+				$("select[name=province_id]").change();
+				form.val("storeform", {
+					"city_id": data.city_id
+				});
+				$("select[name=city_id]").change();
+				form.val("storeform", {
+					"district_id": data.district_id
+				});
+				refreshFrom();//重新渲染form
+				map_class.map_change = true;
+			}
+		})
+
+	}
+
+</script>
+{/block}

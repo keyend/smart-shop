@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+.component-notes .goods-head {width: 100%;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-pack: justify;-webkit-justify-content: space-between;justify-content: space-between;-webkit-box-align: center;-webkit-align-items: center;align-items: center;margin-bottom: 10px;height: 20px;line-height: 20px;}
+.component-notes .goods-head .title-wrap {display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;width: calc(100% - 75px);}
+.component-notes .goods-head .title-wrap .name {font-size: 14px;margin-right: 8px; font-weight: 600;}
+.component-notes .goods-head .more {display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;justify-content: flex-end;}
+.component-notes .goods-head .more {font-size: 12px;width: 75px;}
+.component-notes .goods-head .left-icon, .component-notes .goods-head .right-icon {display: inline-block; height: 20px; line-height: 20px; flex-shrink: 0;}
+.component-notes .goods-head .iconfont {flex-shrink: 0;}
+.component-notes .goods-head .more span, .component-notes .goods-head .title-wrap .name {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.component-notes .goods-head .more span {text-align: right;}
+.component-notes .goods-head .more i {font-size: 12px; margin-left: 2px;}
+.component-notes .goods-head .title-wrap .name {max-width: 180px;}
+.component-notes .goods-head .left-icon img, .component-notes .goods-head .right-icon img {max-height: 20px;vertical-align: top;}
+.component-notes .goods-head .left-icon img {margin-right: 5px;}
+.component-notes .goods-head .right-icon img {margin-left: 5px;}
+.component-notes .goods-head .time {font-size: 12px; color: #777777;}
+.component-notes .goods-head .time span {display: inline-block; width: 18px; height: 18px; line-height: 18px; text-align: center; background-color: #383838; color: #FFFFFF; border-radius: 3px; margin: 0 3px;}
+.component-notes .goods-head .time .second {background-color: #FF4544;}
+
+/* 风格一 */
+.component-notes .list-wrap {width: 100%;}
+.component-notes .list-wrap .item {width: 100%; height: 100%; border-radius: 5px; overflow: hidden; margin-top: 15px; box-sizing: border-box; -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .1); -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .1); box-shadow: 1px 2px 4px rgba(0, 0, 0, .1);}
+.component-notes .list-wrap .item .img-wrap {width: 100%; height: 130px; padding: 0 10px; background-color: #FFFFFF; box-sizing: border-box;}
+.component-notes .list-wrap .item .img-wrap img {width: 100%; height: 100%; object-fit: cover; padding: 0; margin: 0;}
+.component-notes .list-wrap .item .img-wrap-boxs {display: flex; justify-content: space-between; flex-wrap: wrap; height: auto;}
+.component-notes .list-wrap .item .img-wrap-boxs img {display: inline-block; width: 31%; height: 100px; margin-top: 10px;}
+.component-notes .list-wrap .item .img-wrap-boxs img:nth-child(-n+3) {margin-top: 0;}
+.component-notes .list-wrap .item .item-con {background-color: #FFFFFF; padding: 10px;}
+.component-notes .list-wrap .item .item-con .notes-title {font-size: 16px; font-weight: 600; line-height: 22px;}
+.component-notes .list-wrap .item .item-con .notes-highlights-list {margin-top: 5px;}
+.component-notes .list-wrap .item .item-con .notes-highlights-list span {display: inline-block; color: #FFFFFF; font-size: 12px; line-height: 18px; padding: 0 5px; border-radius: 2px;}
+.component-notes .list-wrap .item .item-con .notes-intro {margin-top: 5px; font-size: 14px;}
+.component-notes .list-wrap .item .item-con .notes-intro span {float: left; margin-right: 7px;}
+.component-notes .list-wrap .item .item-con .notes-info {display: flex; justify-content: space-between; align-items: center; margin-top: 3px;}
+.component-notes .list-wrap .item .item-con .notes-info span {color: #969799; font-size: 12px; display: flex; align-items: center;}
+.component-notes .list-wrap .item .item-con .notes-info span img {width: 11px; margin-right: 3px;}
+.component-notes .list-wrap .item .new-price {font-size: 14px;display: block;}
+.component-notes .list-wrap .item .old-price {font-size: 12px;color: #898989;text-decoration: line-through;}
+.component-notes .list-wrap .item .good-name {margin-top: 5px;}
+.component-notes .list-wrap .item .good-desc {color: #898989; font-size: 12px;}
+.component-notes .list-wrap .item .good-stock {color: #898989; font-size: 12px;}
+
+.component-notes h3 {font-size: 14px; font-weight: 600; padding: 5px 10px 10px 10px;}
+.component-notes .goods-show-box .layui-input-inline {padding-left: 20px;}
+
+/* 弹框 */
+/* 风格 */
+.component-notes .notes-list-style {
+	display: none;
+}
+
+.style-list-con-notes {
+	display: flex;
+	flex-wrap: wrap;
+}
+.style-list-con-notes .style-li-notes {
+	width: 32%;
+	height: 300px;
+	line-height: 300px;
+	margin-right: 2%;
+	margin-bottom: 15px;
+	cursor: pointer;
+	border: 1px solid #ededed;
+	background: #f7f8fa;
+	box-sizing: border-box;
+}
+
+.style-list-con-notes .style-li-notes:nth-child(3n) {
+	margin-right: 0;
+}
+
+.style-list-con-notes .style-li-notes img {
+	width: 100%;
+}
+
+.layui-layer-page .layui-layer-content {
+	overflow: auto !important;
+}
+
+.btn-box {
+	margin-top: 30px;
+	text-align: center;
+}

@@ -1,0 +1,352 @@
+{extend name="$extend_base"/}
+{block name="resources"}
+<link rel="stylesheet" href="STATIC_EXT/color_picker/css/colorpicker.css" />
+<link rel="stylesheet" href="STATIC_EXT/diyview/css/diyview.css" />
+<link rel="stylesheet" type="text/css" href="SHOP_CSS/loading.css" />
+{/block}
+{block name="main"}
+<div id="diyView">
+
+	<!-- 组件列表 -->
+	<div class="component-list">
+		<nav>
+			{foreach name="$diy_view_utils" item="vo" key="k"}
+			<h3 data-index="{$k}"><img src="__STATIC__/ext/diyview/img/component_down.png" />{$vo.type_name}</h3>
+			<ul data-index="{$k}" class="component-left-box">
+				{if $vo['type'] == 'SYSTEM' && $name != 'DIYVIEW_GOODS_CATEGORY'}
+				<li title="弹出广告" v-on:click='changeCurrentIndex(-98)'>
+					<img src="__ROOT__/public/static/ext/diyview/img/icon/pop_adv.png" data-icon="__ROOT__/public/static/ext/diyview/img/icon/pop_adv.png" data-icon-selected="__ROOT__/public/static/ext/diyview/img/icon/pop_adv_selected.png" />
+					<span>弹出广告</span>
+				</li>
+				{/if}
+				{foreach name="$vo.list" item="li" key="li_k"}
+				<li title="{$li.title}"
+				    {if condition="$li.value"}v-on:click='addComponent({$li.value},{ name : "{$li.name}", title : "{$li.title}", max_count : {$li.max_count}, addon_name : "{$li.addon_name}", controller : "{$li.controller}", is_delete : "{$li.is_delete}" })'
+				    v-bind:class="{ 'disabled' : !checkComponentIsAdd('{$li.name}',{$li.max_count}) }"
+					    {if condition="$li.support_diy_view"}
+					    class="hot"
+					    {/if}
+					{else/}class="disabled"{/if}>
+					<img src="__ROOT__/{$li.icon}" data-icon="__ROOT__/{$li.icon}" data-icon-selected="__ROOT__/{$li.icon_selected}" />
+					<span>{$li.title}</span>
+				</li>
+				{/foreach}
+			</ul>
+			{/foreach}
+		</nav>
+	</div>
+
+	<div class="preview-wrap">
+
+		<div class="preview-restore-wrap">
+
+			<div class="dv-wrap">
+
+				{empty name="$disabled_page_set"}
+				<button class="layui-btn layui-btn-primary position-page-btn" v-on:click="changeCurrentIndex(-99)">页面设置</button>
+				{/empty}
+
+				<div class='diy-view-wrap layui-form' v-bind:style="{ backgroundColor : global.bgColor,backgroundImage : 'url('+changeImgUrl(global.bgUrl)+')' }">
+
+					<div class="preview-head" {empty name="$disabled_page_set"}v-on:click="changeCurrentIndex(-99)"{/empty}>
+						<span v-bind:style="{ color:global.textNavColor}">{{global.title}}</span>
+
+						<div v-bind:class="{selected : currentIndex==-99}" v-bind:data-sort="-99" style="display:none;" {empty name="$disabled_page_set"}v-show="data.length==0 || currentIndex==-99"{else/}v-show="currentIndex==-99"{/empty}>
+
+							<div class="edit-attribute">
+								<div class="attr-wrap">
+									<div class="restore-wrap">
+										<h2 class="attr-title">页面设置</h2>
+
+										<div class="layui-form-item" >
+											<label class="layui-form-label sm">页面名称</label>
+											<div class="layui-input-block">
+												<input type="text" v-model="global.title" placeholder="请输入页面名称" class="layui-input" maxlength="50">
+											</div>
+										</div>
+
+										<div class="layui-form-item">
+											<label class="layui-form-label sm">底部导航</label>
+											<div class="layui-input-block">
+												<div v-on:click="global.openBottomNav = true" v-bind:class="{ 'layui-unselect layui-form-radio' : true,'layui-form-radioed' : global.openBottomNav }"><i class="layui-anim layui-icon">&#xe643;</i><div>显示</div></div>
+												<div v-on:click="global.openBottomNav = false" v-bind:class="{ 'layui-unselect layui-form-radio' : true,'layui-form-radioed' : !global.openBottomNav }"><i class="layui-anim layui-icon">&#xe643;</i><div>隐藏</div></div>
+												<!-- <div class="layui-unselect layui-form-switch" v-on:click="global.openBottomNav=!global.openBottomNav" v-bind:class="{ 'layui-form-onswitch' : global.openBottomNav }" lay-skin="_switch">
+													<em></em>
+													<i></i>
+												</div> -->
+											</div>
+											<div class="ns-word-aux ns-diy-word-aux">此处控制当前页面底部导航菜单是否显示</div>
+										</div>
+
+										<template v-if="globalLazyLoad">
+											<color v-bind:data="{ field : 'bgColor', label : '背景颜色', value : global.bgColor, defaultcolor : '#ffffff', global: 1 }"></color>
+											<color v-bind:data="{ field : 'topNavColor', label : '顶部颜色', value : global.topNavColor, defaultcolor : '#ffffff', global: 1 }"></color>
+											<color v-bind:data="{ field : 'textNavColor', label : '标题颜色', value : global.textNavColor, defaultcolor : '#333333', global: 1 }"></color>
+										</template>
+
+										<div class="layui-form-item">
+											<label class="layui-form-label sm">背景图片</label>
+											<div class="layui-input-block">
+												<img-upload v-bind:data="{ data : global, field : 'bgUrl' }"></img-upload>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div v-bind:class="{selected : currentIndex==-98}" v-bind:data-sort="-98" style="display:none;" v-show="currentIndex==-98">
+
+						<div class="edit-attribute">
+							<div class="attr-wrap">
+								<div class="restore-wrap">
+									<h2 class="attr-title">弹出广告</h2>
+									<div class="layui-form-item">
+										<label class="layui-form-label sm">弹出广告</label>
+										<div class="layui-input-block">
+											<img-upload v-bind:data="{ data : global.popWindow, field : 'imageUrl' }"></img-upload>
+										</div>
+										<div class="ns-word-aux ns-diy-word-aux">建议上传图片大小：362px * 502px</div>
+									</div>
+
+									<div class="layui-form-item">
+										<label class="layui-form-label sm">弹出形式</label>
+										<div class="layui-input-block">
+											<div v-on:click="global.popWindow.count=-1" v-bind:class="{ 'layui-unselect layui-form-radio' : true,'layui-form-radioed' : (global.popWindow.count==-1) }"><i class="layui-anim layui-icon">&#xe643;</i><div>不弹出</div></div>
+											<div v-on:click="global.popWindow.count=1" v-bind:class="{ 'layui-unselect layui-form-radio' : true,'layui-form-radioed' : (global.popWindow.count==1) }"><i class="layui-anim layui-icon">&#xe643;</i><div>首次弹出</div></div>
+											<div v-on:click="global.popWindow.count=0" v-bind:class="{ 'layui-unselect layui-form-radio' : true,'layui-form-radioed' : (global.popWindow.count==0) }"><i class="layui-anim layui-icon">&#xe643;</i><div>每次弹出</div></div>
+										</div>
+									</div>
+
+									<nc-link v-bind:data="{ field : global.popWindow.link, label : '弹出链接' }"></nc-link>
+
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="preview-block">
+
+						<template v-for="(nc,index) in data" v-bind:k="index">
+
+							<div v-bind:data-index="index" v-on:click="changeCurrentIndex(nc.index)" v-bind:class="{ 'draggable-element nc-border-color-selected' : true,selected : currentIndex == nc.index }" v-bind:data-sort="index">
+								{foreach name="$diy_view_utils" item="vo"}
+									{foreach name="$vo.list" item="li"}
+									<template v-if="nc.type == '{$li.name}'">
+										{:event('DiyViewUtils',['controller'=>$li['controller'],'addon_name'=>$li['addon_name']],true)}
+									</template>
+									{/foreach}
+								{/foreach}
+							</div>
+
+						</template>
+
+						<!--背景占位，防止右侧编辑栏闪动-->
+						<div class="edit-attribute-placeholder"></div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="custom-save">
+		<button class="layui-btn ns-bg-color save">保存</button>
+		{notempty name="$qrcode_info"}
+		<button class="layui-btn ns-bg-color" onclick="preview()">预览</button>
+		{/notempty}
+	</div>
+
+</div>
+
+{notempty name="$qrcode_info"}
+<!-- 页面预览 -->
+<script type="text/html" id="h5_preview">
+	<div class="goods-preview">
+		<div class="qrcode-wrap">
+			<img src="{:img($qrcode_info.path.h5.img)}" alt="推广二维码">
+			<p class="tips ns-text-color">扫码访问页面 <a class="ns-text-color" href="javascript:ns.copy('h5_preview_1');">复制链接</a></p>
+			<input type="text" id="h5_preview_1" value="{$qrcode_info.path.h5.url}&store_id={$store_id==0?'':$store_id}" readonly />
+		</div>
+		<div class="phone-wrap">
+			<div class="iframe-wrap">
+				<iframe src="{$qrcode_info.path.h5.url}&preview=1&store_id={$store_id==0?'':$store_id}" frameborder="0"></iframe>
+			</div>
+		</div>
+	</div>
+</script>
+{/notempty}
+
+{if condition="!empty($diy_view_info) && !empty($diy_view_info.value)"}
+	<input type="hidden" id="info" value='{$diy_view_info.value}' />
+{/if}
+
+{if condition="!empty($diy_view_info) && !empty($diy_view_info.name)"}
+	<input type="hidden" id="name" value="{$diy_view_info.name}" />
+{elseif condition="!empty($name)"}
+	<input type="hidden" id="name" value="{$name}" />
+{else/}
+	<input type="hidden" id="name" value="DIY_VIEW_RANDOM_{$time}" />
+{/if}
+{/block}
+{block name="script"}
+<script>
+    var STATICIMG = 'STATIC_IMG';
+    var post = '{$app_module}';
+	var store_id = '{$store_id}';
+
+    // 自适应全屏，调整高度
+    var height = $(window).height();
+    var commonHeight = height - 162;
+	$(".component-list nav").css("height", (commonHeight + 20) + "px");
+	$(".preview-wrap .preview-restore-wrap .dv-wrap").css("height", (commonHeight) + "px");
+	$(".edit-attribute .attr-wrap").css("height", (commonHeight) + "px");
+	$(".edit-attribute-placeholder").css("height", (height - 162) + "px");
+	$(".preview-block").css("min-height", (commonHeight - 120) + "px");
+
+	$("body").on("click",".component-list h3",function () {
+		var index = $(this).attr("data-index");
+		var ul = $(".component-list ul[data-index='" + index + "']");
+		if (ul.height()) {
+			$(this).find("img").attr("src", "__STATIC__/ext/diyview/img/component_right.png");
+			if (!ul.attr("data-height")) ul.attr("data-height", ul.height());
+			ul.animate({opacity: 0, height: 0},100);
+		} else {
+			$(this).find("img").attr("src", "__STATIC__/ext/diyview/img/component_down.png");
+			ul.animate({opacity: 1, height: ul.attr("data-height") + "px"},100);
+		}
+
+	}).on("mousemove",".component-list ul li",function () {
+		var icon_selected = $(this).find("img").attr("data-icon-selected");
+		$(this).find("img").attr("src", icon_selected);
+	}).on("mouseout",".component-list ul li",function () {
+		var icon = $(this).find("img").attr("data-icon");
+		$(this).find("img").attr("src", icon);
+	});
+
+	function preview() {
+		var layerIndex = layer.open({
+			title: '访问页面',
+			skin: 'layer-tips-class',
+			type: 1,
+			area: ['600px', '600px'],
+			content: $("#h5_preview").html(),
+		});
+	}
+
+</script>
+<script src="STATIC_JS/vue.js"></script>
+<!--<script src="STATIC_EXT/color_picker/js/colorpicker.js"></script>-->
+<script src="STATIC_EXT/colorPicker/js/colorpicker.js"></script>
+<script src="STATIC_EXT/jquerycolorpicker/js/paigusu.min.js"></script>
+<script src="STATIC_EXT/diyview/js/async_load_css.js"></script>
+<script src="STATIC_EXT/diyview/js/ddsort.js"></script>
+<script src="STATIC_EXT/ueditor/ueditor.config.js"></script>
+<script src="STATIC_EXT/ueditor/ueditor.all.js"> </script>
+<script src="STATIC_EXT/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="STATIC_EXT/diyview/js/components.js"></script>
+<script src="STATIC_EXT/diyview/js/custom_template.js"></script>
+<script>
+
+    {if condition="!empty($diy_view_info) && (!empty($diy_view_info.value) || !empty($diy_view_info.id) )"}
+	    var id = "{$diy_view_info.id}";
+	    var info = JSON.parse($("#info").val().toString());
+
+	    if(!$.isEmptyObject(info) && info.value){
+	        for(var i=0;i<info.value.length;i++) vue.addComponent(info.value[i]);
+	        vue.setGlobal(info.global);
+	    }else{
+	        vue.setGlobal({ title : "{$diy_view_info.title}" });
+	    }
+
+        {if $disabled_page_set}
+	    vue.currentIndex=0;
+        {/if}
+
+	    vue.title = "{$diy_view_info.title}";
+    {else/}
+        var id = 0;
+		vue.globalLazyLoad = true;
+    {/if}
+
+    var repeat_flag = false;//防重复标识
+    $("button.save").click(function(){
+
+    	// 刷新排序
+    	vue.refresh();
+    	setTimeout(function () {
+
+			if(vue.verify()){
+
+				//全局属性
+				var global = JSON.stringify(vue.global);
+				global = eval("("+global+")");
+
+				//组件属性
+				var value = JSON.stringify(vue.data);
+				value = eval(value);
+
+				//重新排序
+				value.sort(function(a,b){
+					return a.sort-b.sort;
+				});
+
+				for(var item in value){
+					delete value[item].verify;
+					delete value[item].lazyLoad;
+					delete value[item].lazyLoadCss;
+					delete value[item].index;
+					delete value[item].sort;
+					delete value[item].outerCountJs;
+				}
+
+				// console.log(JSON.stringify(value));
+				// console.log(JSON.stringify(global));
+				var v = {
+					global : global,
+					value : value
+				};
+
+				// console.log(v);
+				// console.log(JSON.stringify(v));
+				// return;
+
+				if(repeat_flag) return;
+				repeat_flag = true;
+
+				$.ajax({
+					type : "post",
+					url : "{:addon_url($request_url)}",
+					data : { id : id, name : $("#name").val(), title : vue.global.title, value : JSON.stringify(v) },
+					dataType : "JSON",
+					success : function(res) {
+						layer.msg(res.message);
+						if (res.code == 0) {
+
+							if (id > 0 || $("#name").val() != "DIY_VIEW_RANDOM_{$time}") {
+								location.reload();
+							} else {
+								location.href = ns.url("{$app_module}/diy/lists");
+							}
+
+						} else {
+							repeat_flag = false;
+						}
+						// console.log(JSON.stringify(vue.data));
+						// console.log(res);
+					}
+				});
+			}
+		},100);
+    });
+</script>
+{/block}

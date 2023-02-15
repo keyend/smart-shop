@@ -1,0 +1,203 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<link rel="stylesheet" href="FENXIAO_CSS/order_list.css">
+<style>
+	.layui-table-view {margin-top: 15px;}
+</style>
+{/block}
+{block name="main"}
+<!-- 筛选面板 -->
+<div class="ns-screen layui-collapse" lay-filter="selection_panel">
+	<div class="layui-colla-item">
+		<form class="layui-colla-content layui-form layui-show">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">搜索方式：</label>
+					<div class="layui-input-inline">
+						<select name="search_text_type" >
+							<option value="order_no">订单编号</option>
+						</select>
+					</div>
+					
+					<div class="layui-input-inline">
+						<input type="text" name="search_text" placeholder="商品名称/订单编号" autocomplete="off" class="layui-input"/>
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">结算状态：</label>
+					<div class="layui-input-inline">
+						<select name="status" lay-filter="is_settlement">
+							<option value="">全部</option>
+							<option value="1">待结算</option>
+							<option value="2">已结算</option>
+						</select>
+					</div>
+				</div>
+			</div>
+				
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">下单时间：</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="start_time" placeholder="开始时间" id="start_time" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+					<div class="layui-form-mid">-</div>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="end_time" placeholder="结束时间" id="end_time" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+				</div>
+			</div>
+			
+			<div class="ns-form-row">
+				<button class="layui-btn ns-bg-color" lay-submit lay-filter="search">筛选</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="layui-tab ns-table-tab">
+    <div class="layui-tab-content">
+        <!-- 列表 -->
+        <div id="order_list"></div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="FENXIAO_JS/order_list.js"></script>
+<script>
+    var laypage,element, form, hash_url;
+    var is_refresh = false;
+
+    /**
+     *通过hash获取页数
+     */
+    function getHashPage(){
+        var page = 1;
+        var hash = location.hash;
+
+        var hash_arr = hash.split("&");
+        $.each(hash_arr,function(index, itemobj){
+            var item_arr = itemobj.split("=");
+            if(item_arr.length == 2){
+                if(item_arr[0].indexOf("page") != "-1"){
+                    page = item_arr[1];
+                }
+            }
+        });
+        return page;
+    }
+
+    //从hash中获取数据
+    function getHashData(){
+        var hash = ns.urlReplace(location.hash);
+        var data= [];
+
+        var hash_arr = hash.split("&");
+
+        var form_json = {
+            "end_time" : "",
+            "order_from" : "",
+            "order_label" : $("select[name=order_label]").val(),
+            "order_name" : "",
+            "order_status" : "",
+            "promotion_type" : "",
+            "pay_type" : "",
+            "search" : "",
+            "start_time" : "",
+            "order_type" : 'all',
+            "page" : ""
+        };
+        if(hash_arr.length > 0){
+            // page = hash_arr[0].replace('#!page=', '');
+            $.each(hash_arr,function(index, itemobj){
+                var item_arr = itemobj.split("=");
+                if(item_arr.length == 2){
+                    $.each(form_json,function(key, form_val){
+                        if(item_arr[0].indexOf(key) != "-1"){
+                            form_json[key] = item_arr[1];
+                        }
+                    })
+                }
+            })
+        }
+        form.val("order_list", form_json);
+        return form_json;
+    }
+
+    layui.use(['laypage','laydate','form', 'element'], function(){
+        form = layui.form;
+        laypage = layui.laypage;
+        element = layui.element;
+        var laydate = layui.laydate;
+		form.render();
+		
+        //渲染时间
+        laydate.render({
+            elem: '#start_time'
+            ,type: 'datetime'
+            ,change: function(value, date, endDate){
+                $(".date-picker-btn").removeClass("selected");
+            }
+        });
+        laydate.render({
+            elem: '#end_time'
+            ,type: 'datetime'
+            ,change: function(value, date, endDate){
+                $(".date-picker-btn").removeClass("selected");
+            }
+        });
+
+        //监听筛选事件
+        form.on('submit(search)', function(data){
+            is_refresh = true;
+            data.field.page = 1;
+            getOrderList(data.field);
+            return false;
+        });
+
+        getOrderList();//筛选
+    });
+    
+
+    var order = new Order();
+    function getOrderList(data){
+        var url = ns.url("fenxiao://shop/order/lists");
+        if (data == undefined) data = {};
+
+        $.ajax({
+            type : 'post',
+            dataType: 'json',
+            url :url,
+            data: data,
+            success : function(res){
+                if(res.code == 0){
+                    order.setData(res.data);
+                    $("#order_list").html(order.fetch());
+                    //执行一个laypage实例
+                    laypage.render({
+                        elem: 'order_page',
+                        count: res.data.count,
+                        curr: getHashPage(),
+                        layout: ['count', 'prev', 'page', 'next'],
+                        jump: function(obj, first){
+                            //首次不执行
+                            if(!first){
+                                var hash_data = getHashData();
+                                hash_data.page = obj.curr;
+                                setHashOrderList(hash_data);
+                            }
+                        }
+                    });
+                }else{
+                    layer.msg(res.message);
+                }
+            }
+        });
+    }
+</script>
+{/block}

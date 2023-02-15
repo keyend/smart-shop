@@ -1,0 +1,127 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+    .ns-form-row{margin-top: 0;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">团队设置</h2>
+	</div>
+</div>
+<div class="layui-form ns-form">
+    <!-- 基础上传 -->
+    <div class="layui-card ns-card-common ns-card-brief">
+        <div class="layui-card-body">          
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否开启：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="radio" name="basic[status]" value="0" lay-filter="enable" title="关闭" {if $basic.status == 0} checked {/if}/>
+                        <input type="radio" name="basic[status]" value="1" lay-filter="enable" title="开启" {if $basic.status > 0} checked {/if}/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="layui-card ns-card-common ns-card-brief distribution-index {if $basic.status == 0}layui-hide{/if}">
+	    <div class="ns-form-content">
+		    <h2 class="ns-form-title ns-card-title">代理策略</h2>
+    	</div>
+        <div class="layui-card-body">
+            <div class="layui-form-item distributor">
+                <label class="layui-form-label">代理奖励：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="radio" name="split[status]" value="0" lay-filter="split_status" title="无策略" {if $split.status == 0} checked {/if}/>
+                    </div>
+                </div>
+                <div class="ns-word-aux"></div>
+            </div>
+
+            <div class="layui-form-item layui-hide consume_count">
+                <label class="layui-form-label">总拨比例：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="number" name="split[total]" value="{$split.total}" autocomplete="off" class="layui-input ns-len-small">
+                    </div>
+                    <div class="layui-form-mid">%</div>
+                </div>
+                <div class="ns-word-aux">等级对应比例请到<a href="{:addon_url('agencyteam://shop/level/lists')}" class="text-primary">团队等级</a>进行设置</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="layui-card ns-card-common ns-card-brief distribution-index {if $basic.status == 0}layui-hide{/if}">
+	    <div class="ns-form-content">
+		    <h2 class="ns-form-title ns-card-title">升级条件</h2>
+    	</div>
+        <div class="layui-card-body">
+            
+            <div class="layui-form-item distributor">
+                <label class="layui-form-label">成为代理：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="radio" name="upgrade[condition]" value="0" lay-filter="upgrade_condition" title="手动指定" {if $upgrade.condition == 0} checked {/if}/>
+                    </div>
+                </div>
+                <div class="ns-word-aux"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="layui-card ns-card-common ns-card-brief" style="margin-top: 0;">
+        <div class="layui-card-body" style="padding-top: 0;">
+            <div class="ns-form-row">
+                <button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+            </div>
+        </div>
+    </div>    
+</div>
+{/block}
+{block name="script"}
+<script>
+	layui.use(['form'], function() {
+		var form = layui.form,
+			openDistribution = "{$basic.status}",
+			repeat_flag = false; //防重复标识
+		form.render();
+		
+		form.on('submit(save)', function(data) {
+			if (repeat_flag) return;
+			repeat_flag = true;
+
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				url: location.href,
+				data: data.field,
+				success: function(res) {
+					layer.msg(res.message);
+					repeat_flag = false;
+					if (res.code == 0) {
+						location.reload();
+					}
+				}
+			});
+		});
+		
+		form.on('radio(enable)', function(data){
+			openDistribution = data.value;
+			if (!parseInt(openDistribution)){
+				$(".distribution-index").addClass('layui-hide');
+				return false;
+			}
+			$(".distribution-index").removeClass('layui-hide');
+		});
+		
+		//监听成为分销商条件选择
+		form.on('radio(upgrade_condition)', function(data){
+			var value = data.value;
+			// distributionConditions(value);
+		});
+	});
+</script>
+{/block}

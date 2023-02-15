@@ -1,0 +1,110 @@
+<nc-component v-bind:data="data[index]" class="component-notes" v-bind:style="{ backgroundColor : nc.backgroundColor  }">
+
+	<!-- 预览 -->
+	<template slot="preview">
+		<div class="notes-list-preview" v-bind:class="'text-title-'+ nc.style" v-bind:style="{ paddingTop: (nc.padding + 'px'), paddingBottom: (nc.padding + 'px'), paddingLeft: (nc.paddingLeftRight + 'px'), paddingRight: (nc.paddingLeftRight + 'px') }">
+			<template v-if="nc.lazyLoad">
+				<notes-top-content></notes-top-content>
+			</template>
+			
+			<div class="list-wrap" v-if="nc.style==1">
+				<div class="item">
+					<div class="item-con">
+						<p class="notes-title ns-multi-line-hiding">这里显示笔记标题最多显示2行</p>
+						<div class="notes-highlights-list" v-show="nc.notesLabel == 1">
+							<span class="ns-bg-color">亮点</span>
+						</div>
+						<div class="notes-intro">
+							<span class="notes-label ns-text-color">#掌柜说#</span>
+							<p>笔记内容介绍</p>
+						</div>
+					</div>
+					<div class="img-wrap">
+						<img src="STATIC_EXT/diyview/img/default_img.png" />
+					</div>
+					<div class="item-con">
+						<div class="notes-info">
+							<div class="notes-num"><span v-show="nc.uploadTime == 1">2020-01-01</span></div>
+							<div class="notes-num"><span v-show="nc.readNum == 1">阅读 1000</span></div>
+							<!-- <div class="notes-num"><span v-show="nc.thumbsUpNum == 1"><img src="{$resource_path}/notes/img/thumbs_up.png" /><span>1000</span></span></div> -->
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="item-con">
+						<p class="notes-title ns-multi-line-hiding">这里显示笔记标题最多显示2行</p>
+						<div class="notes-highlights-list" v-show="nc.notesLabel == 1">
+							<span class="ns-bg-color">亮点</span>
+						</div>
+						<div class="notes-intro">
+							<span class="notes-label ns-text-color">#掌柜说#</span>
+							<p>笔记内容介绍</p>
+						</div>
+					</div>
+					<div class="img-wrap img-wrap-boxs">
+						<img src="STATIC_EXT/diyview/img/default_img.png" />
+						<img src="STATIC_EXT/diyview/img/default_img.png" />
+						<img src="STATIC_EXT/diyview/img/default_img.png" />
+					</div>
+					<div class="item-con">
+						<div class="notes-info">
+							<div class="notes-num"><span v-show="nc.uploadTime == 1">2020-01-01</span></div>
+							<div class="notes-num"><span v-show="nc.readNum == 1">阅读 1000</span></div>
+							<!-- <div class="notes-num"><span v-show="nc.thumbsUpNum == 1"><img src="{$resource_path}/notes/img/thumbs_up.png" /><span>1000</span></span></div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<!-- 编辑 -->
+	<template slot="edit">
+		<color v-bind:data="{ field : 'backgroundColor', 'label' : '背景颜色' }"></color>
+		<slide v-bind:data="{ field : 'padding', label : '上下边距' }"></slide>
+		
+		<template v-if="nc.lazyLoad">
+			<notes-style></notes-style>
+		</template>
+		
+		<h3>顶部标题设置</h3>
+		<template v-if="nc.lazyLoad">
+			<notes-top-list></notes-top-list>
+		</template>
+		
+		
+		<h3>显示内容</h3>
+		<template v-if="nc.lazyLoad">
+			<notes-content></notes-content>
+		</template>
+		
+		<!-- <h3>底部查看更多</h3>
+		<template v-if="nc.lazyLoad">
+			<notes-more></notes-more>
+		</template> -->
+		
+
+		<!-- 弹框 -->
+		<div class="notes-list-style">
+			<div class="style-list-notes layui-form">
+				<div class="style-list-con-notes">
+					<div class="style-li-notes" v-bind:class="{'selected ns-border-color': nc.style == 1}">
+						<img src="{$resource_path}/notes/img/notes_style_1.png" />
+					</div>
+				</div>
+
+				<input type="hidden" name="style">
+			</div>
+		</div>
+	
+	</template>
+	
+	<!-- 资源 -->
+	<template slot="resource">
+
+		<js src="{$resource_path}/notes/js/design.js"></js>
+		<css src="{$resource_path}/notes/css/design.css"></css>
+
+	</template>
+	
+</nc-component>

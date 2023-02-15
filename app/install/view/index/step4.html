@@ -1,0 +1,38 @@
+{extend name="base"/}
+{block name="resources"}
+<style>
+	.install-content-procedure .content-procedure-item:first-of-type{
+		background: url("INSTALL_IMG/complete_two.png") no-repeat center / contain;
+		color: #fff;
+	}
+	.install-content-procedure .content-procedure-item:nth-child(2), .install-content-procedure .content-procedure-item:nth-child(3){
+		background: url("INSTALL_IMG/complete_four.png") no-repeat center / contain;
+		color: #fff;
+	}
+	.install-content-procedure .content-procedure-item:nth-child(4){
+		background: url("INSTALL_IMG/complete_three.png") no-repeat center / contain;
+		color: #fff;
+	}
+	.install-content-procedure{border: none;}
+</style>
+{/block}
+{block name="main"}
+<div class="install-success">
+	<div class="install-success-box">
+		<img class="install-success-pic" src="INSTALL_IMG/install_complete.png" alt="">
+		<div class="install-success-text">
+			<p class="install-success-title">恭喜您！已成功安装新零售电商系统。</p>
+			<p class="install-success-desc">建议删除安装目录install后使用</p>
+		</div>
+	</div>
+</div>
+<div class="other-links">
+	<p class="other-links-btn"><a href="{$root_url}" class="other-links-text other-links-b" target="_blank" style="color: #fff;">访问网站后台</a></p>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+	ControlContent(3);
+</script>
+{/block}

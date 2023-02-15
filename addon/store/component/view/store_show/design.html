@@ -1,0 +1,81 @@
+<nc-component v-bind:data="data[index]" class="component-store-show-info" v-bind:style="{ backgroundColor : nc.backgroundColor }">
+	
+	<!-- 预览 -->
+	<template slot="preview">
+		<div class="info-list">
+			<div class="info-item style-one" v-if="nc.style == 1">
+				<div class="info-item">
+					<span class="store-name" :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">门店名称</span>
+					<span class="change" :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">切换 ></span>
+					<p :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">这里展示门店地址</p>
+				</div>
+				<div class="img-wrap">
+					<img src="{$resource_path}/store_show/img/default_store.png" />
+				</div>
+			</div>
+
+
+			<div class="info-item style-two" v-if="nc.style == 2">
+				<div class="img-wrap">
+					<img src="{$resource_path}/store_show/img/default_store.png" />
+				</div>
+				<div class="info-item">
+					<span class="store-name" :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">门店名称</span>
+					<p :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">这里展示门店地址</p>
+				</div>
+				<span class="change" :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">切换 ></span>
+			</div>
+
+			<div class="info-item style-three" v-if="nc.style == 3">
+				<div class="info-item">
+					<div class="img-wrap">
+						<img src="{$resource_path}/store_show/img/default_store.png" />
+					</div>
+					<span class="store-name" :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">门店名称</span>
+					<span class="change" :style="{ color: nc.textColor?nc.textColor:'rgba(0,0,0,0)' }">切换 ></span>
+				</div>
+				<div class="icon-wrap">
+					<img src="{$resource_path}/store_show/img/sousuo.png" />
+				</div>
+			</div>
+		</div>
+
+	</template>
+	
+	<!-- 编辑 -->
+	<template slot="edit">
+		<template v-if="nc.lazyLoad">
+			<store-show-style></store-show-style>
+		</template>
+
+
+		<!-- 商品列表风格弹框 -->
+		<div class="goods-list-style" style="display: none;">
+			<div class="style-list-goods layui-form">
+				<div class="style-list-con-store">
+					<div class="style-li-goods" v-bind:class="{'selected ns-border-color': nc.style == 1}">
+						<img src="{$resource_path}/store_show/img/style1.png" />
+					</div>
+					<div class="style-li-goods" v-bind:class="{'selected ns-border-color': nc.style == 2}">
+						<img src="{$resource_path}/store_show/img/style2.png" />
+					</div>
+					<div class="style-li-goods" v-bind:class="{'selected ns-border-color': nc.style == 3}">
+						<img src="{$resource_path}/store_show/img/style3.png" />
+					</div>
+				</div>
+
+				<input type="hidden" name="style">
+
+			</div>
+		</div>
+	</template>
+	
+	<!-- 资源 -->
+	<template slot="resource">
+		
+		<css src="{$resource_path}/store_show/css/design.css"></css>
+		<js src="{$resource_path}/store_show/js/design.js"></js>
+	
+	</template>
+
+</nc-component>

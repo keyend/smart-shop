@@ -1,0 +1,316 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+    .layui-card-body{
+        display: flex;
+        justify-content: space-around;
+    }
+    .layui-card-body .money{
+        font-size: 20px;
+        color: #000;
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: center;
+        max-width: 250px;
+    }
+    .layui-card-body .subhead{
+        font-size: 12px;
+        margin-left: 3px;
+        cursor: pointer;
+    }
+    .pull-right {
+        float: right;
+    }
+    .layui-btn-sm {
+        height: 30px!important;
+        line-height: 30px!important;
+        padding: 0 10px!important;
+        font-size: 12px!important;
+    }
+    .layui-input-inline .inner {
+        display: inline-block;
+        height: 34px;
+        line-height: 34px;
+        padding: 0 10px 0 0;
+        box-sizing: border-box;
+        font-size: 14px;
+        color: #454545 !important;
+        margin-left: -8px;
+    }
+</style>
+
+{/block}
+{block name='main'}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">
+            <a class="pull-right layui-btn layui-btn-normal layui-btn-sm" lay-filter="settlement" style="margin-top: -5px;">
+                <i class="layui-icon layui-icon-print"></i>团队结算
+            </a>
+            结算管理
+        </h2>
+		<ul class="layui-colla-content layui-show">
+			<li>点击右侧团队结算可以结算上次到指定时间的订单明细。</li>
+			<li>点击查看明细可以查看结算分配明细</li>
+		</ul>		
+	</div>
+</div>
+<!-- 筛选面板 -->
+<div class="ns-single-filter-box" style="margin-top: -2rem;">
+    <div class="layui-labels">
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 100px;"><strong>待结算金额：</strong></label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <span class="inner">{$signals.bonus.settlement_money + $signals.subsidy.settlement_money}</span>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: auto; text-align: left"><strong>待结算订单：</strong></label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <span class="inner">{$signals.bonus.order_count + $signals.subsidy.order_count}</span>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="text" name="start_time" id="start_time" placeholder="开始时间" class="layui-input" autocomplete="off" readonly>
+                <i class="ns-calendar"></i>
+            </div>
+            <div class="layui-input-inline end-time">
+                <input type="text" name="end_time" id="end_time" placeholder="结束时间" class="layui-input" autocomplete="off" readonly>
+                <i class="ns-calendar"></i>
+            </div>
+            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="search">搜索</button>
+        </div>
+    </div>
+</div>
+
+<div class="layui-tab ns-table-tab" lay-filter="goods_list_tab" style="margin-top: -1rem;">
+
+    <div class="layui-tab-content">
+        <table id="account_list" lay-filter="account_list"></table>
+    </div>
+
+</div>
+
+<script type="text/html" id="tpl_settlement">
+    <div class="layui-form" lay-filter="otherInfo">
+        <div class="layui-form-item">
+            <label class="layui-form-label sm">结算时间</label>
+            <div class="layui-input-inline nc-len-mid">
+                <div class="layui-inline">
+                  <div class="layui-input-inline">
+                      <input type="text" name="start_time" id="settlement_start_time" placeholder="开始时间" class="layui-input" autocomplete="off" readonly />
+                      <i class="ns-calendar"></i>
+                  </div>
+                    <div class="layui-input-inline end-time">
+                        <input type="text" name="end_time" id="settlement_end_time" placeholder="结束时间" class="layui-input" autocomplete="off" readonly />
+                        <i class="ns-calendar"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="ns-form-row sm">
+            <button class="layui-btn ns-bg-color" lay-submit lay-filter="settlement-commit">开始结算</button>
+        </div>
+    </div>
+</script>
+
+{/block}
+{block name="script"}
+<script type="text/html" id="operation">
+    <div class="ns-table-btn">
+        <a class="layui-btn" lay-event="detail">详情</a>
+    </div>
+</script>
+
+<script type="text/html" id="shop_money">
+    <span style="color: red;">￥{{d.shop_money}}</span>
+</script>
+
+<script type="text/html" id="platform_money">
+    <span style="color: green;">￥{{d.platform_money}}</span>
+</script>
+
+<script>
+    var start_time,end_time;
+    layui.use(['laydate','form'], function () {
+        var laydate = layui.laydate,
+            form = layui.form,
+            dialogIndex = null;
+		      form.render();
+
+        //开始时间
+        laydate.render({
+            elem: '#start_time' //指定元素
+            ,done: function(value, date, endDate){
+                start_time = ns.date_to_time(value);
+
+            }
+        });
+        //结束时间
+        laydate.render({
+            elem: '#end_time' //指定元素
+            ,done: function(value, date, endDate){
+                end_time = ns.date_to_time(value);
+            }
+        });
+
+        /**
+         * 搜索功能
+         */
+        form.on('submit(search)', function (data) {
+            data.field.start_time = start_time;
+            data.field.end_time = end_time;
+            table.reload({
+                page: {
+                    curr: 1
+                },
+                where: data.field
+            });
+            return false;
+        }),
+        
+        $('[lay-filter="settlement"]').on('click', function (data) {
+            var that = this;
+            this.getAttribute('data-state') != '1' && (this.setAttribute('data-state', '1'),
+            $.get(ns.url("agencyteam://shop/settlement/last"), function(xhr) {
+                that.setAttribute('data-state', 0);
+                if (xhr.code == 0) {
+                    dialogIndex = layer.open({
+                        type: 1,
+                        title: '团队结算',
+                        skin: 'layer-tips-class',
+                        area: ['560px'],
+                        content: $('#tpl_settlement').html()
+                    }),
+                    $('#settlement_start_time').val(xhr.data.begin_time),
+                    //结束时间
+                    laydate.render({
+                        elem: '#settlement_end_time' //指定元素
+                        ,type: 'datetime'
+                        ,value: (new Date())
+                        ,done: function(value, date, endDate){
+                            end_time = ns.date_to_time(value);
+                        }
+                    });
+
+                    if (xhr.data != null) {
+                        $('#settlement_start_time').val(xhr.data.begin_time)
+                    }
+                }
+            }))
+        }),
+
+        form.on('submit(settlement-commit)', function (data) {
+            var loader = layer.load(2);
+            data = {},
+            data['begin_time'] = $('#settlement_start_time').val(),
+            data['last_time'] = $('#settlement_end_time').val(),
+            $.post(ns.url("agencyteam://shop/settlement/commit"), data, function(xhr) {
+                layer.close(loader),
+                layer.alert(xhr.message),
+                xhr.code == 0 && setTimeout(() => location.reload(), 1000)
+            })
+        })
+    });
+
+    var types = ['团队分红','代理补贴'];
+    var table = new Table({
+        elem: '#account_list',
+        url: ns.url("agencyteam://settlement/lists"),
+        cols: [
+            [{
+                type:'numbers',
+                title: '#',
+                width:'40',
+                align: 'center'
+            },{
+                field:'trade_no',
+                title: '流水编号',
+                unresize: 'false',
+                width:'14%',
+            }, {
+                title: '结算类型',
+                unresize: 'false',
+                width:'7%',
+				align: 'left',
+                templet: function (res) {
+                    return '<span style="color: green;">'+ types[res.type] + '</span>';
+                }
+            }, {
+                title: '订单总额',
+                unresize: 'false',
+                width:'8%',
+                templet: function (res){
+                    return '￥' + res.order_money
+                }
+            }, {
+                title: '单数',
+                unresize: 'false',
+                width:'7%',
+                templet: function (res){
+                    return res.order_count ? res.order_count + '单' : '--'
+                }
+            }, {
+                title: '用户数',
+                unresize: 'false',
+                width:'7%',
+                templet: function (res){
+                    return res.user_total ? res.user_total + '人' : '--'
+                }
+            }, {
+                title: '开始时间',
+                unresize: 'false',
+                width:'12%',
+                templet: function (res){
+                    if(res.begin_time == 0){
+                        return '-------- --:--:--';
+                    }else{
+                        return ns.time_to_date(res.begin_time)
+                    }
+                }
+            }, {
+                title: '结束时间',
+                unresize: 'false',
+                width:'12%',
+                templet: function (res){
+                    if(res.end_time == 0){
+                        return '--';
+                    }else{
+                        return ns.time_to_date(res.last_time)
+                    }
+                }
+            }, {
+                title: '结算时间',
+                unresize: 'false',
+                width:'12%',
+                templet: function (res){
+                    if(res.create_time == 0){
+                        return '-------- --:--:--';
+                    }else{
+                        return ns.time_to_date(res.create_time)
+                    }
+                }
+            }, {
+                title: '操作',
+                toolbar: '#operation',
+                unresize: 'false'
+            }]
+        ]
+    });
+
+    /**
+     * 监听工具栏操作
+     */
+    table.tool(function(obj) {
+        var data = obj.data;
+        switch (obj.event) {
+            case 'detail': //编辑
+                location.href = ns.url("agencyteam://settlement/detail",{settlement_id: data.id});
+                break;
+        }
+    });
+</script>
+{/block}

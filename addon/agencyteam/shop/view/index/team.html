@@ -1,0 +1,124 @@
+
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+
+</style>
+{/block}
+
+{block name="main"}
+
+<div class="layui-tab ns-table-tab" lay-filter="team_list_tab">
+    <div class="layui-tab-content">
+        <!-- 列表 -->
+        <table id="team_list" lay-filter="team_list"></table>
+    </div>
+</div>
+
+
+<!-- 用户信息 -->
+<script type="text/html" id="userdetail">
+    <div class='ns-table-tuwen-box'>
+        <div class='ns-img-box' style="float: left; margin-right: .3rem;">
+            <img layer-src src="{{ns.img(d.headimg)}}" onerror="this.src = 'SHOP_IMG/default_headimg.png' ">
+        </div>
+        <div class='ns-font-box'>
+            <p class="layui-elip" style="line-height: 21px; padding: 3px 0;">
+                <strong>{{d.nickname}}</strong><br />
+                {{# if (d.level == 0) { }}
+                <span class="text-primary">普通会员</span>
+                {{# } else { }}
+                <span class="text-warning">{{d.levelname}}</span>
+                {{# } }}
+            </p>
+        </div>
+    </div>
+</script>
+
+<!-- 工具栏操作 -->
+<script type="text/html" id="action">
+    <div class="ns-table-btn">
+        <a class="layui-btn" lay-event="detail">查看</a>
+    </div>
+</script>
+
+{/block}
+
+{block name="script"}
+<script>
+    var form,table,element = false;
+    layui.use(['form', 'element'], function() {
+        form = layui.form;
+        element = layui.element;
+        form.render();
+        table = new Table({
+            elem: '#team_list',
+            url: ns.url("agencyteam://shop/index/team"),
+            where:{agencyteam_id:"{$agencyteam_id}"},
+            cols: [
+                [ {
+                    field: 'userdetail',
+                    title: '账户信息',
+                    width: '18%',
+                    unresize: 'false',
+                    templet: '#userdetail'
+                },  {
+                    field: 'order_money',
+                    title: '消费额',
+                    width: '7%',
+                    unresize: 'false',
+                },  {
+                    field: 'order_complete_money',
+                    title: '消费额',
+                    width: '7%',
+                    unresize: 'false',
+                },  {
+                    field: 'order_complete_num',
+                    title: '消费量',
+                    width: '7%',
+                    unresize: 'false',
+                }, {
+                    field: 'reg-login',
+                    title: '注册时间',
+                    width: '12%',
+                    unresize: 'false',
+                    templet: function (data) {
+                        return ns.time_to_date(data.reg_time);
+                    }
+                }, {
+                    title: '操作',
+                    unresize: 'false',
+                    toolbar: '#action'
+                }
+                ]
+            ]
+        });
+
+        /**
+         * 监听工具栏操作
+         */
+        table.tool(function(obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'detail': //编辑
+                    location.href = ns.url("shop/member/editmember?member_id=" + data.member_id);
+                    break;
+            }
+        });
+        element.on('tab(team_list_tab)', function () {
+            table.reload({
+                page: {
+                    curr: 1
+                },
+                where: {
+                    'level': this.getAttribute('data-status')
+                }
+            });
+
+        });
+
+    });
+
+
+</script>
+{/block}

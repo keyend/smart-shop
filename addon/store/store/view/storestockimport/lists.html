@@ -1,0 +1,207 @@
+{extend name="addon/store/store/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-single-filter-box {
+		background-color: transparent;
+	}
+</style>
+{/block}
+{block name="main"}
+<!-- 搜索框 -->
+<div class="ns-single-filter-box">
+	<div class="ns-form-row" style="margin-top: 0;margin-left: 0;">
+		<button class="layui-btn ns-bg-color" id="order_file">门店库存导入</button>
+		<button class="layui-btn layui-btn-primary" onclick="selectGoods()">下载导入商品</button>
+	</div>
+</div>
+
+<div class="layui-tab ns-table-tab" lay-filter="solution_tab">
+	<!--	<ul class="layui-tab-title">-->
+	<!--		<li class="layui-this" data-status="">全部</li>-->
+	<!--		<li data-status="1">正常</li>-->
+	<!--		<li data-status="0">禁用</li>-->
+	<!--	</ul>-->
+	<div class="layui-tab-content">
+		<table id="solution_list" lay-filter="solution_list"></table>
+	</div>
+</div>
+
+<!-- 操作 -->
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+		<a class="layui-btn" lay-event="detail">详情</a>
+		<a class="layui-btn" lay-event="delete">删除</a>
+	</div>
+</script>
+
+{/block}
+{block name="script"}
+<script src="STORE_JS/common.js"></script>
+<script>
+	var table, form,upload, element, repeat_flag = false;// 防重复标识
+	layui.use(['form', 'element','upload'], function () {
+		form = layui.form;
+		upload = layui.upload;
+		element = layui.element;
+		form.render();
+
+		//监听Tab切换，以改变地址hash值
+		element.on('tab(solution_tab)', function () {
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: {
+					'status': this.getAttribute('data-status')
+				}
+			});
+		});
+
+		//允许上传的文件后缀
+		upload.render({
+			elem: '#order_file'
+			,url: ns.url("store://store/upload/file"),
+			accept: 'file',
+			exts: 'xlsx',
+			done: function(res){
+				if (res.code >= 0) {
+
+					$.ajax({
+						url: ns.url("store://store/storestockimport/import"),
+						data: {
+							filename: res.data.name,
+							path:res.data.path
+						},
+						dataType: 'JSON',
+						type: 'POST',
+						success: function (res) {
+							layer.msg(res.message);
+							repeat_flag = false;
+							if (res.code == 0) table.reload();
+						}
+					});
+				}else{
+					layer.msg(res.message);
+				}
+			}
+		});
+
+		table = new Table({
+			elem: '#solution_list',
+			url: ns.url("store://store/storestockimport/lists"),
+			cols: [
+				[{
+					field: 'filename',
+					title: '文件名称',
+					unresize: 'false',
+					width:'20%'
+				}, {
+					field: 'sku_num',
+					title: '导入sku数',
+					unresize: 'false'
+				}, {
+					field: 'error_num',
+					title: '失败数',
+					unresize: 'false'
+				}, {
+					title: '导入时间',
+					unresize: 'false',
+					templet: function (data) {
+						return ns.time_to_date(data.create_time);
+					}
+				}, {
+					title: '操作',
+					toolbar:'#operation',
+					unresize:'false'
+				}]
+			]
+
+		});
+
+		/**
+		 * 监听工具栏操作
+		 */
+		table.tool(function (obj) {
+			var data = obj.data;
+			switch (obj.event) {
+				case 'detail':
+					storeStockImportLog(data.id);
+					break;
+				case 'delete': //删除
+					deleteStoreStockImport(data.id);
+					break;
+			}
+		});
+
+		/**
+		 * 搜索功能
+		 */
+		form.on('submit(search)', function (data) {
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: data.field
+			});
+		});
+
+		/**
+		 * 删除
+		 */
+		function deleteStoreStockImport(id) {
+			if (repeat_flag) return false;
+			repeat_flag = true;
+
+			layer.confirm('确定要删除吗?', function () {
+				$.ajax({
+					url: ns.url("store://store/storestockimport/delete"),
+					data: {
+						id: id
+					},
+					dataType: 'JSON',
+					type: 'POST',
+					success: function (res) {
+						layer.msg(res.message);
+						repeat_flag = false;
+						if (res.code == 0) table.reload();
+					}
+				});
+			}, function () {
+				layer.close();
+				repeat_flag = false;
+			});
+		}
+
+		function storeStockImportLog(id)
+		{
+//            var url = ns.url("store://store/storestockimport/detail",{'file_id' : id});
+			location.href = ns.url("store://store/storestockimport/detail",{'file_id' : id});
+			//iframe层-父子操作
+//            var layerIndex = layer.open({
+//                title: "失败明细",
+//                type: 2,
+//                area: ['1200px', '800px'],
+//                // btn: '保存',
+//                content: url
+//            });
+		}
+
+	});
+
+	/**
+	 * 选择商品
+	 */
+	var selectGoodsSkuId = [];
+	function selectGoods() {
+		goodsSelect(function (res) {
+			if (!res.length) return false;
+
+			for (var i = 0; i < res.length; i++) {
+				selectGoodsSkuId.push(res[i].goods_id);
+			}
+
+			location.href = ns.url("store://store/storestockimport/exportStoreGoods", {goods_ids: selectGoodsSkuId.toString()});
+		}, [], {mode: "sku"});
+	}
+</script>
+{/block}

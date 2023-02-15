@@ -1,0 +1,134 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-form {margin-top: 0;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">申请设置</h2>
+	</div>
+</div>
+<div class="layui-form ns-form">
+    <!-- 基础上传 -->
+    <div class="layui-card ns-card-common ns-card-brief">
+            <div class="layui-form-item apply">
+                <label class="layui-form-label">申请协议：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="radio" name="agreement[is_show]" value="1" lay-filter="is_show" title="显示" {if $agreement.is_show == 1} checked {/if}/>
+                        <input type="radio" name="agreement[is_show]" value="0" lay-filter="is_show" title="隐藏" {if $agreement.is_show != 1} checked {/if}/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item apply_img">
+                <label class="layui-form-label img-upload-lable">顶部图片：</label>
+                <div class="layui-input-block">
+                    <div class="upload-img-block">
+                        <div class="upload-img-box">
+                            {if condition="$agreement.img"}
+                                <img layer-src src="{:img($agreement.img)}" />
+                            {else/}
+                                <div class="ns-upload-default">
+                                    <img src="SHOP_IMG/upload_img.png" />
+                                    <p>点击上传</p>
+                                </div>
+                            {/if}
+                        </div>
+                        <p id="applyImg" class=" {if condition='$agreement.img'} replace {else/} no-replace{/if}">替换</p>
+                        <input type="hidden" name="agreement[img]" value="{$agreement.img}">
+                        <i class="del {if condition="$agreement.img"}show{/if}">x</i>
+                    </div>
+                </div>
+            <div class="ns-word-aux">
+                <p>建议尺寸：750*337像素</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card ns-card-common ns-card-brief">
+	    <div class="ns-form-content">
+		    <h2 class="ns-form-title ns-card-title">协议设置</h2>
+    	</div>	
+            <div class="layui-form-item">
+                <label class="layui-form-label">协议名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="agreement[title]" value="{$agreement.title}" lay-verify="required" class="layui-input ns-len-mid new_pass" maxlength="18">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">协议内容：</label>
+                <div class="layui-input-block">
+                    <script id="editor" type="text/plain" class="ns-special-length" style="height:600px;"></script>
+                    <input type="hidden" name="agreement[content]" id="agreement_content" value="{$agreement.content}" />
+                </div>
+
+            </div>
+
+    </div>
+
+    <div class="ns-form-row">
+        <button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+    </div>
+</div>
+{/block}
+{block name="script"}
+
+<script type="text/javascript" charset="utf-8" src="STATIC_EXT/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="STATIC_EXT/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="STATIC_EXT/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script>
+    //实例化富文本
+    var ue = UE.getEditor('editor');
+    if($("#agreement_content").val()){
+        ue.ready(function() {
+            ue.setContent($("#agreement_content").val());
+        });
+    }
+
+    layui.use(['form'], function() {
+        var form = layui.form,
+            repeat_flag = false; //防重复标识
+        form.render();
+
+        var upload = new Upload({
+            elem: '#applyImg'
+        });
+
+        form.on('submit(save)', function(data) {
+            if (repeat_flag) return;
+            repeat_flag = true;
+
+            var field = data.field;
+
+            // 删除图片
+            if(!field.img) upload.delete();
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                url: ns.url("fenxiao://shop/config/agreement"),
+                data: {
+                    'is_agreement' : field.is_agreement,
+                    'agreement_title'  : field.agreement_title,
+                    'agreement_content' : ue.getContent(),
+                    'img' : field.img,
+                },
+                success: function(res) {
+                    layer.msg(res.message);
+					repeat_flag = false;
+                    if (res.code == 0) {
+                        location.reload();
+                    }
+                }
+            });
+        });
+
+    });
+    
+</script>
+{/block}

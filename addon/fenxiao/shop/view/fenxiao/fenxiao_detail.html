@@ -1,0 +1,89 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+{/block}
+{block name="main"}
+<div class="layui-form">
+    <div class="layui-card ns-card-common">
+        <div class="ns-card-brief">
+        	<div class="ns-form-content">
+        		<h2 class="ns-form-title ns-card-title">分销商信息</h2>
+        	</div>
+        </div>		
+        <div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label">分销商编号：</label>
+                <div class="layui-input-inline">{$info.fenxiao_no}</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分销商：</label>
+                <div class="layui-input-inline">{$info.fenxiao_name}</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上级推荐人：</label>
+                <div class="layui-input-inline">{if $info.parent_name == ''} 无 {else /}{$info.parent_name} {/if}</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分销商等级：</label>
+                <div class="layui-input-inline">{$level.level_name}</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">当前佣金：</label>
+                <div class="layui-input-inline">{$info.account} 元</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">已提现佣金：</label>
+                <div class="layui-input-inline">{$info.account_withdraw} 元</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">提现中佣金：</label>
+                <div class="layui-input-inline">{$info.account_withdraw_apply} 元</div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">当前状态：</label>
+                <div class="layui-input-inline">{$status[$info['status']]}</div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card ns-card-common">
+        <div class="ns-card-brief">
+        	<div class="ns-form-content">
+        		<h2 class="ns-form-title ns-card-title">账户概况</h2>
+        	</div>
+        </div>			
+        <div class="layui-card-body">
+            <div class="layui-form-item">
+                <label class="layui-form-label">一级分销订单总数：</label>
+                <div class="layui-input-inline">{$info.one_fenxiao_order_num}</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">一级分销订单总额：</label>
+                <div class="layui-input-inline">{$info.one_fenxiao_order_money} 元</div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">一级下线人数：</label>
+                <div class="layui-input-inline">{$info.one_child_num} 人</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">一级下线分销商：</label>
+                <div class="layui-input-inline">{$info.one_child_fenxiao_num} 人</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="layui-form ns-form">
+    <div class="ns-form-row">
+        <button class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    function back() {
+        location.href = ns.url("fenxiao://shop/fenxiao/lists");
+    }
+</script>
+{/block}

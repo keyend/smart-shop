@@ -1,0 +1,83 @@
+{extend name="app/shop/view/base.html"/}
+
+{block name="resources"}
+<style>
+	.layui-card-body{width: 100%; box-sizing: border-box; display: flex;}
+	.ns-card-brief:nth-child(1){
+			margin-top: 0;
+	}
+	.layui-card-body{
+			display: flex;
+			flex-wrap: wrap;
+			padding-bottom: 0 !important;
+			padding-left: 50px !important;
+			padding-right: 50px !important;
+	}
+	.layui-card-body .content{
+			width: 25%;
+			margin-bottom: 30px;
+			/* display: flex; */
+			flex-wrap: wrap;
+			flex-direction: column;
+			justify-content: center;
+	}
+	.layui-card-body .money{
+			font-size: 20px;
+			color: #000;
+			font-weight: bold;
+			margin-top: 10px;
+			max-width: 250px;
+	}
+	.layui-card-body .subhead{
+			font-size: 12px;
+			margin-left: 3px;
+			cursor: pointer;
+	}
+	.ns-member-panel {width: 58px;height: 58px;line-height: 58px;text-align: center;border-radius: 50%;display: inline-block;}
+	.ns-member-iconb {width: 32px}
+	.ns-member-left {margin-right: 20px;display: flex;align-items: center;float: left;}	
+</style>
+{/block}
+
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">团队概览</h2>
+	</div>
+</div>
+
+<div class="layui-card ns-card-common ns-card-brief">
+	<div class="layui-card-body">
+		<div class="content">
+			<div class="ns-member-left">
+				<div class="ns-member-panel" style="background-color: #ff547b;">
+					<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/fx_ze.png" />
+				</div>
+			</div>
+			<p class="title">代理团队</p>
+			<p class="money">{$total_account}</p>
+		</div>
+		<div class="content">
+			<div class="ns-member-left">
+				<div class="ns-member-panel" style="background-color: #ff547b;">
+					<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/fx_yj.png" />
+				</div>
+			</div>		
+			<p class="title">全局总业绩</p>
+			<p class="money">{$total_money}</p>
+		</div>
+		<div class="content">
+			<div class="ns-member-left">
+				<div class="ns-member-panel" style="background-color: #ff547b;">
+					<img class="ns-member-iconb" src="SHOP_IMG/menu_icon/fx_yj.png" />
+				</div>
+			</div>		
+			<p class="title">近52周业绩</p>
+			<p class="money">{$w52_money}</p>
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+{/block}

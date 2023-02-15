@@ -1,0 +1,362 @@
+ b{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<link rel="stylesheet" type="text/css" href="SHOP_CSS/goods_edit.css" />
+<style>
+	.good-name, .good-price {
+		line-height: 34px;
+	}
+	
+	/* @media screen and (min-width: 1514px) {
+		.ns-len-short {width: 80px!important;}
+	} */
+	@media screen and (max-width: 1330px) {
+		.ns-len-short {width: 100px!important;}
+	}
+	#rule_list .layui-input {display: inline-block;}
+	.layui-table[lay-size=lg] td, .layui-table[lay-size=lg] th {padding: 15px;}
+	.ns-align-right {text-align: right;}
+	.ns-align-center {text-align: center!important;}
+	.ns-line-height {line-height: 45px;}
+	input[disabled] {background-color: #F5F5F5;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief ns-tips">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">分销商品设置</h2>
+		<ul class="layui-colla-content layui-show">
+			<li>分销商层级与后台配置有关，最多三级分销。</li>
+			<li>分销商等级与分销商的分销订单数，分销订单总额，自购订单数，自购订单总额，分销商下线人数，分销商的下级分销商人数有关。</li>
+			<li>商品分销总佣金不得超过商品实际价格的50%。</li>
+			<li>分销佣金是根据当前分销订单所属分销商等级或者商品自定义的计算规则进行结算。</li>
+			<li>分销结算说明： A 、B 、C是分销商，C的上级为B，B的上级为A。
+				分佣按照所属分销商的等级佣金比率进行分配，分销商C的等级分佣比率为一级10%，二级5%，三级2%，
+				订单属于分销商C，则C获得商品实付金额10%，B获得商品实付金额5%，A获得商品实付金额2%。
+				若C推荐的普通用户D购买商品，则该订单属于C；若C购买商品，则该订单属于C。</li>
+		</ul>		
+	</div>
+</div>
+
+<div class="layui-form">
+	<div class="layui-card ns-card-common">
+		<div class="ns-form-content">
+			<h2 class="ns-form-title ns-card-title">商品信息</h2>
+		</div>
+		<div class="layui-card-body">
+			<div class="layui-form-item goods-image-wrap">
+				<label class="layui-form-label">商品图片：</label>
+				<div class="layui-input-block">
+					<!--商品主图项-->
+					<div class="js-goods-image"><img layer-src src="{:img($goods_info.goods_image[0],'small')}" width = "50px"/></div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">商品名称：</label>
+				<div class="layui-input-inline good-name">
+					{$goods_info.goods_name}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="layui-card ns-card-common">
+		<div class="ns-form-content">
+		    <h2 class="ns-form-title ns-card-title">佣金设置</h2>
+		</div>
+		<div class="layui-card-body">
+			<div class="layui-form-item goods-image-wrap">
+				<label class="layui-form-label">是否参与分销：</label>
+				<div class="layui-input-block">
+					<input type="radio" name="is_fenxiao" value="1" title="参与" lay-filter="is_fenxiao" {if $goods_info['is_fenxiao'] == 1 }checked{/if}>
+					<input type="radio" name="is_fenxiao" value="0" title="不参与" lay-filter="is_fenxiao" {if $goods_info['is_fenxiao'] == 0 }checked{/if}>
+				</div>
+			</div>
+
+			<div class="layui-form-item goods-image-wrap {if $goods_info['is_fenxiao'] == 0}layui-hide{/if}" id="fenxiao_price">
+				<label class="layui-form-label">分销计算价格：</label>
+				<div class="layui-input-block">
+					<table class="layui-table" lay-skin="line">
+						<thead>
+							<colgroup>
+								<col width="40%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+							</colgroup>
+							<tr>
+								<th>商品规格</th>
+								<th>销售价</th>
+								<th>成本价</th>
+								<th class="ns-align-center">分销计算价</th>
+							</tr>
+						</thead>
+						<tbody>
+							{foreach $goods_info['sku_data'] as $sku}
+							<tr>
+								<td>
+									<div class="ns-line-hiding ns-line-height">
+										{$sku.sku_name}
+									</div>
+								</td>
+								<td>{$sku.discount_price}</td>
+								<td>{$sku.cost_price}</td>
+								<td class="ns-align-center">
+									<input type="number" name="fenxiao_price[{$sku.sku_id}]" class="layui-input ns-len-short ns-input-rate" value="{$sku.fenxiao_price}"> 元
+								</td>
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+				<div class="ns-word-aux">
+					<p>未设置分销计算价以该商品实付金额来计算佣金，设置后以该价格来计算佣金。</p>
+				</div>
+			</div>
+
+			<div class="layui-form-item {if $goods_info['is_fenxiao'] == 0}layui-hide{/if}" id="fenxiao_type">
+				<label class="layui-form-label">佣金规则：</label>
+				<div class="layui-input-inline good-name">
+					<input type="radio" name="fenxiao_type" value="1" title="默认规则" lay-filter="fenxiao_type" {if $goods_info['fenxiao_type'] == 1 }checked{/if}>
+					<input type="radio" name="fenxiao_type" value="2" title="单独设置" lay-filter="fenxiao_type" {if $goods_info['fenxiao_type'] == 2 }checked{/if}>
+				</div>
+			</div>
+			
+			<div class="layui-form-item {if $goods_info['is_fenxiao'] == 0 || $goods_info['fenxiao_type'] == 2}layui-hide{/if}" id="default_rule">
+				<label class="layui-form-label"></label>
+				<div class="layui-input-block">
+					<table class="layui-table" id="default_rule_list" lay-skin="line" lay-size="lg">
+						<colgroup>
+							<col width="25%">
+							<col width="25%">
+							<col width="25%">
+							<col width="25%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>默认规则</th>
+								<th>一级佣金比例</th>
+								<th>二级佣金比例</th>
+								<th>三级佣金比例</th>
+							</tr>
+						</thead>
+						<tbody>
+							{foreach $fenxiao_level as $level}
+							<tr>
+								<td>{$level.level_name}</td>
+								<td>{$level.one_rate}%</td>
+								<td>{$level.two_rate}%</td>
+								<td>{$level.three_rate}%</td>
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+			</div>
+				
+			<div class="layui-form-item {if $goods_info['is_fenxiao'] == 0 || $goods_info['fenxiao_type'] == 1}layui-hide{/if}" id="personal_rule">
+				<label class="layui-form-label"></label>
+				<div class="layui-input-block">
+					<table class="layui-table" id="rule_list" lay-skin="line" lay-size="lg">
+						<colgroup>
+							<col width="15%">
+							<col width="10%">
+							<col width="5%">
+							<col width="10%">
+							<col width="20%">
+							<col width="20%">
+							<col width="20%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>商品规格</th>
+								<th><p class="ns-align-right">价格</p></th>
+								<th></th>
+								<th><p class="ns-line-hiding" title="分销商等级名称">分销商等级名称</p></th>
+								<th>一级佣金比例</th>
+								<th>二级佣金比例</th>
+								<th>三级佣金比例</th>
+							</tr>
+						</thead>
+						<tbody>
+							{foreach $fenxiao_level as $level}
+							<tr>
+								{foreach $goods_info['sku_data'] as $sku}
+								<input name="fenxiao[{$level['level_id']}][sku_id][]" value="{$sku.sku_id}" hidden />
+								<input name="fenxiao[{$level['level_id']}][sku_price][]" value="{$sku.price}" hidden />
+								{/foreach}
+								<td>
+									{foreach $goods_info['sku_data'] as $sku}
+									<p class="ns-line-hiding ns-line-height" title="{$sku.sku_name}">{$sku.sku_name}</p>
+									{/foreach}
+								</td>
+								<td>
+									{foreach $goods_info['sku_data'] as $sku}
+									<p class="ns-align-right ns-line-height" title="￥{$sku.price}">￥{$sku.price}</p>
+									{/foreach}
+								</td>
+								<td></td>
+								<td>{$level.level_name}</td>
+								<td>
+									{foreach $goods_info['sku_data'] as $sku}
+										{if isset($goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id])}
+											<div class="ns-line-height">
+												<div><input class="layui-input ns-len-short ns-input-rate" type="number" min="0" max="100" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][one_rate][]" value="{$goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['one_rate'] ?: ''}" {if $goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['one_money'] > 0}disabled{/if} > %</div>
+												<div><input class="layui-input ns-len-short ns-input-num" type="number" min="0" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][one_money][]" value="{$goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['one_money'] ?: ''}" {if $goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['one_rate'] > 0}disabled{/if} > 元</div>
+											</div>
+										{else/}
+											<div class="ns-line-height">
+												<div><input class="layui-input ns-len-short ns-input-rate" type="number" min="0" max="100" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][one_rate][]" value="" > %</div>
+												<div><input class="layui-input ns-len-short ns-input-num" type="number" min="0" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][one_money][]" value="" > 元</div>
+											</div>
+										{/if}
+									{/foreach}
+								</td>
+								<td>
+									{foreach $goods_info['sku_data'] as $sku}
+										{if isset($goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id])}
+											<div class="ns-line-height">
+												<div><input class="layui-input ns-len-short ns-input-rate" type="number" min="0" max="100" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][two_rate][]" value="{$goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['two_rate'] ?: ''}" {if $goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['two_money'] > 0}disabled{/if} > %</div>
+												<div><input class="layui-input ns-len-short ns-input-num" type="number" min="0" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][two_money][]"  value="{$goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['two_money'] ?: ''}" {if $goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['two_rate'] > 0}disabled{/if} > 元</div>
+											</div>
+										{else/}
+											<div class="ns-line-height">
+												<div><input class="layui-input ns-len-short ns-input-rate" type="number" min="0" max="100" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][two_rate][]" value=""> %</div>
+												<div><input class="layui-input ns-len-short ns-input-num" type="number" min="0" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][two_money][]"  value=""> 元</div>
+											</div>
+										{/if}
+									{/foreach}
+								</td>
+								<td>
+									{foreach $goods_info['sku_data'] as $sku}
+										{if isset($goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id])}
+											<div class="ns-line-height">
+												<div><input class="layui-input ns-len-short ns-input-rate" type="number" min="0" max="100" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][three_rate][]" value="{$goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['three_rate'] ?: ''}" {if $goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['three_money'] > 0}disabled{/if} > %</div>
+												<div><input class="layui-input ns-len-short ns-input-num" type="number" min="0" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][three_money][]" value="{$goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['three_money'] ?: ''}" {if $goods_info['fenxiao_skus'][$level.level_id . '_' . $sku.sku_id]['three_rate'] > 0}disabled{/if} > 元</div>
+											</div>
+										{else/}
+											<div class="ns-line-height">
+												<div><input class="layui-input ns-len-short ns-input-rate" type="number" min="0" max="100" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][three_rate][]" value=""> %</div>
+												<div><input class="layui-input ns-len-short ns-input-num" type="number" min="0" lay-verify="required|flnum" name="fenxiao[{$level.level_id}][three_money][]"  value=""> 元</div>
+											</div>
+										{/if}
+									{/foreach}
+								</td>
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="ns-single-filter-box">
+		<div class="ns-form-row">
+			<button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+			<button class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+		</div>
+		<input type="hidden" name="goods_id" value="{$goods_info.goods_id}" />
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	var fenxiao_type = {$goods_info.fenxiao_type};
+	if (fenxiao_type == 1) {
+		$(".layui-input").removeAttr("lay-verify");
+	}
+	layui.use(['form', 'laydate'], function() {
+		var form = layui.form,
+			laydate = layui.laydate,
+			repeat_flag = false;
+
+		form.render();
+
+		$(".layui-input").each(function() {
+			$(this).on('input', function(){
+				var _this = $(this);
+				if(Number($(_this).val()) > 0){
+					$(this).parent().siblings().find("input").attr('disabled', true);
+					$(this).parent().siblings().find("input").removeAttr("lay-verify");
+				} else {
+					$(this).parent().siblings().find("input").attr('disabled', false);
+					$(this).parent().siblings().find("input").attr("lay-verify", "required|flnum");
+				}
+			});
+		});
+		
+		// 是否参与分销 is_fenxiao
+		form.on("radio(is_fenxiao)", function (data) {
+			if (data.value == 1) {
+				$("#fenxiao_type,#fenxiao_price,#default_rule").removeClass("layui-hide");
+				$(".layui-input").removeAttr("lay-verify");
+			} else {
+				$("#fenxiao_type,#fenxiao_price,#default_rule").addClass("layui-hide");
+				$(".layui-input").attr("lay-verify", "required|flnum");
+			}
+		});
+
+		// 佣金规则
+		form.on("radio(fenxiao_type)", function (data) {
+			if (data.value == 1) {
+				$("#default_rule").removeClass("layui-hide");
+				$("#personal_rule").addClass("layui-hide");
+				$(".layui-input").removeAttr("lay-verify");
+			} else {
+				$("#default_rule").addClass("layui-hide");
+				$("#personal_rule").removeClass("layui-hide");
+				$(".layui-input").attr("lay-verify", "required|flnum");
+			}
+		});
+
+		/**
+		 * 表单提交
+		 */
+		form.on('submit(save)', function(data){
+			if(repeat_flag) return;
+			repeat_flag = true;
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				url: ns.url("fenxiao://shop/goods/config"),
+				data: data.field,
+				async: false,
+				success: function(res){
+					repeat_flag = false;
+					if (res.code == 0) {
+						layer.msg('操作成功');
+						location.reload();
+					}else{
+						layer.msg(res.message);
+					}
+				}
+			})
+		});
+		
+		/**
+		 * 表单验证
+		 */
+		form.verify({
+			required: function (value) {
+				if (value.trim() == '' || value < 0) {
+					return '佣金比例不能为空，且必须大于0!';
+				}
+			},
+			flnum: function (value) {
+				var arrMen = value.split(".");
+				var val = 0;
+				if (arrMen.length == 2) {
+					val = arrMen[1];
+				}
+				if (val.length > 2) {
+					return "佣金比例最多可保留两位小数";
+				}
+			}
+		});
+	});
+	
+	function back() {
+		location.href = ns.url("fenxiao://shop/goods/lists");
+	}
+</script>
+{/block}

@@ -1,0 +1,226 @@
+{extend name="app/shop/view/base.html" /}
+{block name="resources"}
+<style>
+	.layui-elem-quote{color: #999;}
+	.ns-table-btn{justify-content: center;}
+	.layui-card-header{border: 1px solid #f6f6f6;}
+	.layui-card-header .ns-card-title{font-size: 14px;}
+	.template-content{white-space:pre;line-height: 1.5;text-align: left}
+</style>
+{/block}
+{block name="main"}
+<div class="layui-collapse ns-tips">
+	<div class="layui-colla-item">
+		<h2 class="layui-colla-title">操作提示</h2>
+		<ul class="layui-colla-content layui-show">
+			<li> 注意：请在小程序的服务类目中添加类目：一级类目：IT科技  二级类目：软件服务提供商</li>
+			<li>小程序最多支持50个消息模板获取时请注意小程序剩余模板数量是否充足</li>
+		</ul>
+	</div>
+</div>
+
+<table id="template_list" lay-filter="template_list"></table>
+
+<script type="text/html" id="batchOperation">
+	<button class="layui-btn layui-btn-primary" lay-event="open">批量开启</button>
+	<button class="layui-btn layui-btn-primary" lay-event="close">批量关闭</button>
+	<button class="layui-btn layui-btn-primary" lay-event="getAll">批量获取</button>
+</script>
+
+
+<script type="text/html" id="toolOperation">
+	<button class="layui-btn layui-btn-primary" lay-event="open">批量开启</button>
+	<button class="layui-btn layui-btn-primary" lay-event="close">批量关闭</button>
+	<button class="layui-btn layui-btn-primary" lay-event="getAll">批量获取</button>
+</script>
+
+
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+	{{# if(d.weapp_is_open == 0){ }}
+		<a class="layui-btn" lay-event="open">开启</a>
+	{{# }else{ }}	
+		<a class="layui-btn" lay-event="close">关闭</a>
+	{{# } }}
+
+	{{# if(d.weapp_template_id != undefined && d.weapp_template_id != ''){ }}
+		<a class="layui-btn" lay-event="getTemplateNo">重新获取</a>
+	{{# } }}
+
+	</div>
+</script>
+
+<script type="text/html" id="message_type">
+	<div class="template-content">{{ d.message_info.content }}</div>
+</script>
+
+<script type="text/html" id="template_no">
+	{{ d.weapp_template_id ? d.weapp_template_id : '' }}
+</script>
+
+<script type="text/html" id="weapp_is_open">
+	{{ d.weapp_is_open == 1 ? '已启用' : '已关闭' }}
+</script>
+
+{/block}
+{block name="script"}
+<script type="text/javascript">
+	var form,table;
+	layui.use(['form'], function(){
+		form = layui.form;
+		var repeat_flag = false;//防重复标识
+
+		table = new Table({
+			elem: '#template_list',
+			url: ns.url("weapp://shop/message/config"),
+			cols: [
+				[
+					{
+						width: "3%",
+						type: 'checkbox',
+						unresize: 'false'
+					},
+					{
+						field: 'title',
+						title: '类型',
+						align: 'left'
+					},
+					{
+					    width: "25%",
+						field: 'message_type',
+						title: '回复内容',
+						templet: '#message_type',
+						align: 'left'
+					},
+					{
+						field: 'weapp_is_open',
+						title: '是否启用',
+						templet: '#weapp_is_open',
+						align: 'center'
+					},
+					{
+                        width: "35%",
+						field: 'wechat_template_id',
+						title: '编号',
+						align: 'center',
+						templet: '#template_no'
+					},
+					{
+						align: 'center',
+						title: '操作',
+						toolbar: '#operation'
+					}
+				]
+			],
+			toolbar: '#toolOperation',
+			bottomToolbar: "#batchOperation"
+		});
+
+		/**
+		 * 批量操作
+		 */
+		table.bottomToolbar(function(obj) {
+
+			if (obj.data.length < 1) {
+				layer.msg('请选择要操作的数据');
+				return;
+			}
+
+			var keywords_array = new Array();
+			for (i in obj.data) keywords_array.push(obj.data[i].keywords);
+			switch (obj.event) {
+				case 'open': //开启
+					setStatus(keywords_array.toString(), 1);
+					break;
+				case 'close': //关闭
+					setStatus(keywords_array.toString(), 0);
+					break;
+				case 'getAll': //关闭
+					getTemplate(keywords_array.toString());
+					break;
+			}
+		});
+
+		table.toolbar(function(obj){
+			if (obj.data.length < 1) {
+				layer.msg('请选择要操作的数据');
+				return;
+			}
+			var keywords_array = new Array();
+			for (i in obj.data) keywords_array.push(obj.data[i].keywords);
+			switch (obj.event) {
+				case 'open': //开启
+					setStatus(keywords_array.toString(), 1);
+					break;
+				case 'close': //关闭
+					setStatus(keywords_array.toString(), 0);
+					break;
+				case 'getAll': //关闭
+					getTemplate(keywords_array.toString());
+					break;
+			}
+		});
+		
+		/**
+		 * 监听工具栏操作
+		 */
+		table.tool(function(obj) {
+			var data = obj.data;
+			switch (obj.event) {
+				case 'getTemplateNo': //获取模板id
+					getTemplate(data.keywords);
+					break;
+                case 'open': //开启
+                    setStatus(data.keywords, 1);
+                    break;
+                case 'close': //关闭
+                    setStatus(data.keywords, 0);
+                    break;
+			}
+		});
+
+		function setStatus(keywords, status) {
+			$.ajax({
+				type : "post",
+				url : '{:addon_url("weapp://shop/message/setWeappStatus")}',
+				data : {
+					"weapp_is_open":status,
+					'keywords' : keywords
+				},
+				dataType : "JSON",
+				success : function(res) {
+					repeat_flag = false;
+					layer.msg(res.message);
+					table.reload('template_list');
+				}
+			});
+		}
+
+		function getTemplate(keywords) {
+			var loadLayer;
+			layer.confirm('已存在的模板再次获取会导致模板重复存在，是否继续?', function () {
+				$.ajax({
+					type : "post",
+					url : '{:addon_url("weapp://shop/message/getWeappTemplateNo")}',
+					data : {
+						'keywords' : keywords
+					},
+					dataType : "JSON",
+					beforeSend: function(){
+						loadLayer = layer.msg("模板获取中，请耐心等待，请勿进行其他操作！",{ time : 1000 * 10000});
+					},
+					complete: function(){
+						layer.close(loadLayer);
+					},
+					success : function(res) {
+						repeat_flag = false;
+						layer.msg(res.message);
+						table.reload('template_list');
+					}
+				});
+			})
+		}
+		
+	});
+</script>
+{/block}

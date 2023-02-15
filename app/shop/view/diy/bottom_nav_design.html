@@ -1,0 +1,94 @@
+{extend name="base"/}
+{block name="resources"}
+<link rel="stylesheet" href="STATIC_EXT/color_picker/css/colorpicker.css" />
+<link rel="stylesheet" href="STATIC_EXT/diyview/css/bottom_nav_design.css" />
+<link rel="stylesheet" href="STATIC_EXT/diyview/css/diyview.css" />
+<link rel="stylesheet" type="text/css" href="SHOP_CSS/loading.css" />
+{/block}
+{block name="main"}
+<div id="bottomNav" class="layui-form">
+	<div class="component-list">
+		<nav></nav>
+	</div>
+	<div class="preview-wrap">
+	    <div class="preview-restore-wrap">
+		    <div class="preview">
+		        <div class="preview-head">
+			    <span>底部导航</span>
+            </div>
+		    <div class="preview-block">
+			    <ul v-show="data.list.length>0" v-bind:style="{ backgroundColor : data.backgroundColor }">
+				    <li v-for="(item,index) in data.list" v-on:mouseover="mouseOver(index)" v-on:mouseout="mouseOut()">
+					    <div v-show="data.type == 1 || data.type == 2">
+						    <img v-bind:src="(selected == index ? (item.selectedIconPath? changeImgUrl(item.selectedIconPath) : 'STATIC_EXT/diyview/img/crack_figure.png') :  (item.iconPath? changeImgUrl(item.iconPath) : 'STATIC_EXT/diyview/img/crack_figure.png') )"/>
+					    </div>
+					    <span v-bind:style="{ fontSize : ( data.fontSize + 'px'), color : (selected == index ? data.textHoverColor :  data.textColor ) }" v-show="data.type == 1 || data.type == 3">{{ item.text }}</span>
+				    </li>
+			    </ul>
+		    </div>
+	    </div>	
+	    <div class="edit-attribute">
+	        <div class="attr-wrap">
+		        <bottom-menu></bottom-menu>
+	        </div>
+	    </div>
+    </div>
+</div>
+	<div class="custom-save">
+		<button class="layui-btn ns-bg-color btn-apply save">保存</button>
+	</div>
+</div>
+{if condition="$bottom_nav_info"}
+<input type="hidden" id="info" value='{$bottom_nav_info}' />
+{/if}
+{/block}
+{block name="script"}
+<script>
+    var STATICIMG = 'STATIC_IMG';
+    // 自适应全屏，调整高度
+    var height = $(window).height();
+    var commonHeight = height - 162;
+	$(".component-list nav").css("height", (commonHeight + 20) + "px");
+	$(".preview-wrap .preview-restore-wrap .dv-wrap").css("height", (commonHeight) + "px");
+	$(".edit-attribute .attr-wrap").css("height", (commonHeight) + "px");
+	$(".edit-attribute-placeholder").css("height", (height - 162) + "px");
+	$(".preview-block").css("min-height", (commonHeight - 120) + "px");
+
+	$("body").on("click",".component-list h3",function () {
+		var index = $(this).attr("data-index");
+		var ul = $(".component-list ul[data-index='" + index + "']");
+		if (ul.height()) {
+			$(this).find("img").attr("src", "__STATIC__/ext/diyview/img/component_right.png");
+			if (!ul.attr("data-height")) ul.attr("data-height", ul.height());
+			ul.animate({opacity: 0, height: 0},100);
+		} else {
+			$(this).find("img").attr("src", "__STATIC__/ext/diyview/img/component_down.png");
+			ul.animate({opacity: 1, height: ul.attr("data-height") + "px"},100);
+		}
+
+	}).on("mousemove",".component-list ul li",function () {
+		var icon_selected = $(this).find("img").attr("data-icon-selected");
+		$(this).find("img").attr("src", icon_selected);
+	}).on("mouseout",".component-list ul li",function () {
+		var icon = $(this).find("img").attr("data-icon");
+		$(this).find("img").attr("src", icon);
+	});
+
+</script>
+<script>
+	var STATICIMG = 'STATIC_IMG';
+	var post = 'shop';
+	{if condition="$bottom_nav_info"}
+		var bottomNavInfo = JSON.parse($("#info").val().toString());
+	{else/}
+		var bottomNavInfo = null;
+	{/if}
+</script>
+<script src="STATIC_JS/vue.js"></script>
+<script src="STATIC_EXT/color_picker/js/colorpicker.js"></script>
+<script src="STATIC_EXT/colorPicker/js/colorpicker.js"></script>
+<script src="STATIC_EXT/jquerycolorpicker/js/paigusu.min.js"></script>
+<script src="STATIC_EXT/diyview/js/ddsort.js"></script>
+<script src="STATIC_EXT/diyview/js/components.js"></script>
+<script src="STATIC_EXT/diyview/js/shop_bottom_nav.js"></script>
+{/block}

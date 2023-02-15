@@ -1,0 +1,48 @@
+<nc-component v-bind:data="data[index]" class="top-category" v-bind:style="{ backgroundColor : nc.backgroundColor}">
+
+	<!-- 预览 -->
+	<template slot="preview">
+		<div class="topCategorty">
+			<div class="top-categorty-item active" v-bind:style="{ color : nc.selectColor?nc.selectColor:'rgba(0,0,0,0)'}">
+				<p>{{nc.title}}</p>
+				<p class="line"  v-bind:style="{ background : nc.selectColor}"></p>
+			</div>
+			<div class="top-categorty-item" v-bind:style="{ color : nc.nsSelectColor?nc.nsSelectColor:'rgba(0,0,0,0)'}">
+				商品分类1
+			</div>
+			<div class="top-categorty-item" v-bind:style="{ color : nc.nsSelectColor?nc.nsSelectColor:'rgba(0,0,0,0)'}">
+				商品分类2
+			</div>
+			<div class="top-categorty-item" v-bind:style="{ color : nc.nsSelectColor?nc.nsSelectColor:'rgba(0,0,0,0)'}">
+				商品分类3
+			</div>
+		</div>
+	</template>
+
+	<!-- 编辑 -->
+	<template slot="edit">
+		
+		<template v-if="nc.lazyLoad">
+			<!-- <top-category></top-category> -->
+			<color v-bind:data="{ field : 'backgroundColor', 'label' : '背景颜色' }"></color>
+			<color v-bind:data="{ field : 'selectColor', 'label' : '选中颜色' }"></color>
+			<color v-bind:data="{ field : 'nsSelectColor', 'label' : '未选中颜色' }"></color>
+			<div class="layui-form-item">
+				<label class="layui-form-label sm">主页名称</label>
+				<div class="layui-input-block">
+					<input type="text" v-model="nc.title" v-bind:id="'title_'+index" placeholder="请输入文本" class="layui-input">
+				</div>
+			</div>
+		</template>
+		
+	</template>
+
+	<!-- 资源 -->
+	<template slot="resource">
+
+		<css src="{$resource_path}/top_category/css/design.css"></css>
+		<js src="{$resource_path}/top_category/js/design.js"></js>
+
+	</template>
+
+</nc-component>

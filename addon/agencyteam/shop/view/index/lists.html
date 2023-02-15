@@ -1,0 +1,337 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-screen {
+		margin-top: 15px;
+	}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief ns-tips">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">团队管理</h2>
+		<ul class="layui-colla-content layui-show">
+			<li>点击查看按钮可以查看团队信息、订单信息、账户明细。</li>
+			<li>点击冻结按钮可以取消其团队资格</li>
+		</ul>		
+	</div>
+</div>
+<div class="ns-screen layui-collapse" lay-filter="selection_panel">
+	<div class="layui-colla-item">
+		<h2 class="layui-colla-title"></h2>
+		<form class="layui-colla-content layui-form layui-show">
+			<div class="layui-form-item">
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">用户名称：</label>
+					<div class="layui-input-inline">
+						<input type="text" id="keyword" name="keyword" placeholder="请输入团队用户名" class="layui-input">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">团队等级：</label>
+					<div class="layui-input-inline">
+						<select name="level_id" lay-filter="level_id">
+							<option value="">全部</option>
+							{volist name="$level_list" id="level"}
+							<option value="{$level.level}">{$level.levelname}</option>
+							{/volist}
+						</select>
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">团队状态：</label>
+					<div class="layui-input-inline">
+						<select name="status" lay-filter="status">
+							<option value="">全部</option>
+							<option value="1">正常</option>
+							<option value="-1">已冻结</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">区代等级：</label>
+					<div class="layui-input-inline">
+						<select name="level_id" lay-filter="level_id">
+							<option value="">全部</option>
+							{volist name="$area_list" id="level"}
+							<option value="{$level.id}">{$level.areaname}</option>
+							{/volist}
+						</select>
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">添加时间：</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="start_time"  id="start_time" autocomplete="off" placeholder="开始时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+					<div class="layui-form-mid">-</div>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="end_time" id="end_time" autocomplete="off" placeholder="结束时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">代理区域：</label>
+
+						<div class="layui-input-inline ns-len-mid area-select">
+							<select name="province_id" lay-filter="province_id" lay-verify="province_id">
+								<option value="">请选择省份</option>
+								{foreach $province_list as $k => $v}
+								<option value="{$v.id}">{$v.name}</option>
+								{/foreach}
+							</select>
+						</div>
+						
+						<div class="layui-input-inline ns-len-mid area-select">
+							<select name="city_id"  lay-filter="city_id" lay-verify="city_id">
+								<option value="">请选择城市</option>
+							</select>
+						</div>
+						
+						<div class="layui-input-inline ns-len-mid area-select">
+							<select name="district_id"  lay-filter="district_id" lay-verify="district_id">
+								<option value="">请选择区/县</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="ns-form-row">
+				<button class="layui-btn ns-bg-color" lay-submit lay-filter="search">筛选</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- 列表 -->
+<table id="agencyteam_list" lay-filter="agencyteam_list"></table>
+
+<!-- 用户信息 -->
+<script type="text/html" id="account">
+	<div class="layui-elip">当前佣金：{{d.account}}</div>
+	<div class="layui-elip">已提现佣金：{{d.account_withdraw}}</div>
+</script>
+
+<!-- 会员信息 -->
+<script type="text/html" id="username">
+	<a href="javascript:memberDetail({{ d.member_id }});">{{ d.username }}</a>
+</script>
+
+<!-- 状态 -->
+<script type="text/html" id="status">
+	{{# if(d.status == 1){ }}
+	<span style="color: gray;">未开通</span>
+	{{# }else if(d.status == 2){ }}
+	<span style="color: green;">已开通</span>
+	{{# }else if(d.status == 0){ }}
+	<span style="color: rgb(107, 4, 4);">冻结</span>
+	{{# } }}
+</script>
+
+<!-- 工具栏操作 -->
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+		<a class="layui-btn" lay-event="detail">编辑</a>
+		{{# if(d.status == 2){ }}
+		<a class="layui-btn" lay-event="frozen">冻结</a>
+		{{# } }}
+		{{# if(d.status == 0){ }}
+		<a class="layui-btn" lay-event="unfrozen">恢复正常</a>
+		{{# } }}
+	</div>
+</script>
+{/block}
+
+{block name="script"}
+<script type="text/javascript" src="SHOP_JS/address.js"></script>
+<script>
+	var table,form,laydate,map_class;
+	layui.use(['form', 'laydate'], function() {
+		form = layui.form;
+		laydate = layui.laydate;
+		form.render();
+		
+		//渲染时间
+		laydate.render({
+			elem: '#start_time',
+			type: 'datetime'
+		});
+		
+		laydate.render({
+			elem: '#end_time',
+			type: 'datetime'
+		});
+		
+		table = new Table({
+			elem: '#agencyteam_list',
+			url: ns.url("agencyteam://shop/index/lists"),
+			cols: [
+				[{
+					field: 'user_id',
+					title: '#',
+					unresize: 'false',
+					width: '4%'
+				}, {
+					field: 'username',
+					title: '会员账号',
+					unresize: 'false',
+					templet:'#username',
+					width: '10%'
+				}, {
+					field: 'levelname',
+					title: '团队等级',
+					unresize: 'false',
+					width: '7%'
+				}, {
+					field: 'areaname',
+					title: '区代级别',
+					unresize: 'false',
+					width: '7%'
+				}, {
+					field: 'full_address',
+					title: '代理区域',
+					width:'15%',
+					unresize: 'false',
+				}, {
+					title: '总人数',
+					unresize: 'false',
+					width: '7%',
+					templet: function(data) {
+						return data.companion == 0 ? '--' : data.companion
+					}
+				}, {
+					title: '总业绩',
+					unresize: 'false',
+					width: '7%',
+					templet: function(data) {
+						return data.performance == 0 ? '--' : data.performance
+					}
+				}, {
+					title: '月业绩',
+					unresize: 'false',
+					width: '7%',
+					templet: function(data) {
+						return data.interim_performance == 0 ? '--' : data.interim_performance
+					}
+				}, {
+					title: '当前状态',
+					templet: '#status',
+					unresize: 'false',
+					width: '7%'
+				}, {
+					field: 'create_time',
+					title: '添加时间',
+					unresize: 'false',
+					width: '12%',
+					templet: function(data) {
+						return ns.time_to_date(data.create_time);
+					}
+				}, {
+					title: '操作',
+					toolbar: '#operation',
+					unresize: 'false',
+					width: '15%'
+				}]
+			]
+		});
+		
+		/**
+		 * 搜索功能
+		 */
+		form.on('submit(search)', function(data) {
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: data.field
+			});
+			return false;
+		});
+
+		/**
+		 * 监听工具栏操作
+		 */
+		table.tool(function(obj) {
+			var data = obj.data,
+				event = obj.event;
+			switch (event) {
+				case 'detail': //查看
+					location.href = ns.url('agencyteam://shop/index/detail', {'agencyteam_id': data.member_id})
+					break;
+				case 'frozen': //冻结
+					layer.confirm('确定要冻结该账户吗，冻结过程中将无法收到结算?', function () {
+						if (repeat_flag) return;
+						repeat_flag = true;
+						
+						$.ajax({
+							url: ns.url("agencyteam://shop/index/frozen"),
+							data: {agencyteam_id:data.member_id},
+							dataType: 'JSON',
+							type: 'POST',
+							success: function(res) {
+								layer.msg(res.message);
+								repeat_flag = false;
+								if (res.code == 0) {
+									table.reload();
+								}
+							}
+						});
+					});
+					break;
+				case 'unfrozen': //解冻
+					layer.confirm('该账户确定要恢复正常吗?', function () {
+						if (repeat_flag) return;
+						repeat_flag = true;
+						
+						$.ajax({
+							url: ns.url("agencyteam://shop/index/unfrozen"),
+							data: {agencyteam_id:data.member_id},
+							dataType: 'JSON',
+							type: 'POST',
+							success: function(res) {
+								layer.msg(res.message);
+								repeat_flag = false;
+								if (res.code == 0) {
+									table.reload();
+								}
+							}
+						});
+					});
+					break;
+                case 'change':
+                    var url = ns.url("agencyteam://shop/index/change", {member_id: data.member_id});
+                    //iframe层-父子操作
+                    var layerIndex = layer.open({
+                        title: "变更上级团队",
+                        type: 2,
+                        area: ['1200px', '800px'],
+                        // btn: '保存',
+                        content: url,
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                    break;
+			}
+		});
+	});
+
+    function memberDetail(member_id){
+        window.open(ns.url("shop/member/editMember?member_id=" + member_id));
+    }
+</script>
+{/block}

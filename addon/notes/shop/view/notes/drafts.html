@@ -1,0 +1,229 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+{/block}
+{block name="main"}
+<div class="ns-card-brief ns-tips">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">草稿箱</h2>
+		<ul class="layui-colla-content layui-show">
+			<li>店铺笔记展示店铺笔记相关信息</li>
+		</ul>		
+	</div>
+</div>
+<div class="ns-screen layui-collapse" lay-filter="selection_panel">
+	<div class="layui-colla-item">
+		<form class="layui-colla-content layui-form layui-show">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">笔记名称：</label>
+					<div class="layui-input-inline">
+						<input type="text" name="note_name" placeholder="请输入笔记名称" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">笔记类型：</label>
+					<div class="layui-input-inline">
+						<select name="note_type" lay-filter="status">
+							<option value="">全部</option>
+							{foreach $note_type as $v}
+							<option value="{$v['type']}">{$v['name']}</option>
+							{/foreach}
+						</select>
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">笔记分组：</label>
+					<div class="layui-input-inline">
+						<select name="group_id" lay-filter="status">
+							<option value="">全部</option>
+							{foreach $group_list as $v}
+							<option value="{$v['group_id']}">{$v['group_name']}</option>
+							{/foreach}
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">创建时间：</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="start_time"  id="start_time" autocomplete="off" placeholder="开始时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+					<div class="layui-form-mid">-</div>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="end_time" id="end_time" autocomplete="off" placeholder="结束时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="ns-form-row">
+				<button class="layui-btn ns-bg-color" lay-submit lay-filter="search">筛选</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<div class="layui-tab ns-table-tab" lay-filter="notes_tab">
+
+	<div class="layui-tab-content">
+		<!-- 列表 -->
+		<table id="notes_list" lay-filter="notes_list"></table>
+	</div>
+</div>
+
+<!-- 商品 -->
+<script type="text/html" id="goods">
+	<div class="ns-table-title">
+		<div class="ns-title-pic">
+			{{#  if(d.goods_image){  }}
+			<img layer-src src="{{ns.img(d.goods_image.split(',')[0],'small')}}"/>
+			{{#  }  }}
+		</div>
+		<div class="ns-title-content">
+			<a href="javascript:;" class="ns-multi-line-hiding ns-text-color"
+			   title="{{d.goods_name}}">{{d.goods_name}}</a>
+		</div>
+	</div>
+</script>
+
+<!-- 时间 -->
+<script id="time" type="text/html">
+	<div class="layui-elip">开始：{{ns.time_to_date(d.start_time)}}</div>
+	<div class="layui-elip">结束：{{ns.time_to_date(d.end_time)}}</div>
+</script>
+
+<!-- 操作 -->
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+		<a class="layui-btn" lay-event="edit">编辑</a>
+		<a class="layui-btn" lay-event="del">删除</a>
+	</div>
+</script>
+{/block}
+
+{block name="script"}
+<script>
+	layui.use(['form', 'element','laydate'], function() {
+		var table,
+			form = layui.form,
+            laydate = layui.laydate,
+			repeat_flag = false; //防重复标识
+		form.render();
+
+        //渲染时间
+        laydate.render({
+            elem: '#start_time',
+            type: 'datetime'
+        });
+
+        laydate.render({
+            elem: '#end_time',
+            type: 'datetime'
+        });
+
+		table = new Table({
+			elem: '#notes_list',
+			url: ns.url("notes://shop/notes/lists"),
+			where:{
+				status:0
+			},
+			cols: [
+				[{
+			    	field:'note_title',
+					title: '笔记标题',
+					unresize: 'false',
+					width: '23%'
+				}, {
+					field: 'group_name',
+					title: '所属分组',
+					unresize: 'false'
+
+				}, {
+			    	title: '添加时间',
+                    unresize: 'false',
+					templet:function(data){
+						return ns.time_to_date(data.create_time);
+					}
+                }, {
+					title: '操作',
+					toolbar: '#operation',
+					unresize: 'false',
+					width: '12%'
+				}]
+			]
+
+		});
+		
+		/**
+		 * 搜索功能
+		 */
+		form.on('submit(search)', function(data) {
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: data.field
+			});
+            return false;
+		});
+
+		/**
+		 * 监听工具栏操作
+		 */
+		table.tool(function(obj) {
+			var data = obj.data;
+			switch (obj.event) {
+				case 'edit': //编辑
+					location.href = ns.url("notes://shop/notes/edit", {"note_id": data.note_id});
+					break;
+				case 'del': //删除
+					deleteNotes(data.note_id);
+					break;
+			}
+		});
+		
+		/**
+		 * 删除
+		 */
+		function deleteNotes(note_id) {
+			layer.confirm('确定要删除该笔记吗?', function() {
+				if (repeat_flag) return;
+				repeat_flag = true;
+
+				$.ajax({
+					url: ns.url("notes://shop/notes/delete"),
+					data: {
+						note_id: note_id
+					},
+					dataType: 'JSON',
+					type: 'POST',
+					success: function(res) {
+						layer.msg(res.message);
+						repeat_flag = false;
+						if (res.code == 0) {
+							table.reload();
+						}
+					}
+				});
+			}, function() {
+				layer.close();
+				repeat_flag = false;
+			});
+		}
+
+	});
+
+	function add() {
+		location.href = ns.url("notes://shop/notes/add");
+	}
+</script>
+{/block}

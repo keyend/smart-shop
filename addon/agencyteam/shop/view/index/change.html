@@ -1,0 +1,227 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-screen {
+		margin-top: 15px;
+	}
+</style>
+{/block}
+{block name="body"}
+
+<div class="ns-screen layui-collapse" lay-filter="selection_panel">
+	<div class="layui-colla-item">
+		<form class="layui-colla-content layui-form layui-show">
+			<div class="layui-form-item">
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">分销商名称：</label>
+					<div class="layui-input-inline">
+						<input type="text" id="fenxiao_name" name="fenxiao_name" placeholder="请输入分销商店铺名" class="layui-input">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">上级分销商：</label>
+					<div class="layui-input-inline">
+						<input type="text" name="parent_name" placeholder="请输入上级分销商" class="layui-input">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">分销等级：</label>
+					<div class="layui-input-inline">
+						<select name="level_id" lay-filter="level_id">
+							<option value="">全部</option>
+							{volist name="$level_list" id="level"}
+							<option value="{$level.level_id}">{$level.level_name}</option>
+							{/volist}
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">分销商状态：</label>
+					<div class="layui-input-inline">
+						<select name="status" lay-filter="status">
+							<option value="">全部</option>
+							<option value="1">正常</option>
+							<option value="-1">已冻结</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">添加时间：</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="start_time"  id="start_time" autocomplete="off" placeholder="开始时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+					<div class="layui-form-mid">-</div>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="end_time" id="end_time" autocomplete="off" placeholder="结束时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+				</div>
+			</div>
+
+			<div class="ns-form-row">
+				<button class="layui-btn ns-bg-color" lay-submit lay-filter="search">筛选</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- 列表 -->
+<table id="fenxiao_list" lay-filter="fenxiao_list"></table>
+
+<input type="hidden" value="" id="param" />
+
+<!-- 状态 -->
+<script type="text/html" id="status">
+	{{# if(d.status == 1){ }}
+	<span style="color: green;">正常</span>
+	{{# }else if(d.status == -1){ }}
+	<span style="color: gray;">冻结</span>
+	{{# } }}
+</script>
+
+<!-- 工具栏操作 -->
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+		<a class="layui-btn" lay-event="confirm">变更</a>
+	</div>
+</script>
+{/block}
+
+{block name="script"}
+<script>
+	var repeat_flag = false;
+	layui.use(['form', 'laydate'], function() {
+		var table,
+			form = layui.form,
+			laydate = layui.laydate;
+		form.render();
+		
+		//渲染时间
+		laydate.render({
+			elem: '#start_time',
+			type: 'datetime'
+		});
+		
+		laydate.render({
+			elem: '#end_time',
+			type: 'datetime'
+		});
+		
+		table = new Table({
+			elem: '#fenxiao_list',
+			url: ns.url("fenxiao://shop/fenxiao/change"),
+			where:{
+                member_id : "{$member_id}"
+			},
+			cols: [
+				[{
+					field: 'fenxiao_name',
+					title: '分销商名称',
+					unresize: 'false',
+					width: '15%'
+				}, {
+					field: 'parent_name',
+					title: '上级分销商',
+					unresize: 'false',
+					width: '15%',
+					templet: function(data) {
+						if(data.parent_name){
+							return data.parent_name;
+						}else{
+							return '无';
+						}
+					}
+				}, {
+					field: 'level_name',
+					title: '分销等级',
+					unresize: 'false',
+					width: '10%'
+				}, {
+					field: 'status',
+					title: '当前状态',
+					templet: '#status',
+					unresize: 'false',
+					width: '10%'
+				}, {
+					field: 'create_time',
+					title: '添加时间',
+					unresize: 'false',
+					width: '15%',
+					templet: function(data) {
+						return ns.time_to_date(data.create_time);
+					}
+				}, {
+					title: '操作',
+					toolbar: '#operation',
+					unresize: 'false',
+					width: '10%'
+				}]
+			]
+		});
+		
+		/**
+		 * 搜索功能
+		 */
+		form.on('submit(search)', function(data) {
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: data.field
+			});
+			return false;
+		});
+		
+		/**
+		 * 监听工具栏操作
+		 */
+		table.tool(function(obj) {
+			var data = obj.data,
+				event = obj.event;
+			switch (event) {
+
+				case 'confirm': //确认更改上下级关系
+					layer.confirm('确定要将该分销商变更为上级分销商吗?', function () {
+						if (repeat_flag) return;
+						repeat_flag = true;
+						
+						$.ajax({
+							url: ns.url("fenxiao://shop/fenxiao/confirmChange"),
+							data: {
+							    parent:data.fenxiao_id,
+								member_id:"{$member_id}"
+							},
+							dataType: 'JSON',
+							type: 'POST',
+							async: false,
+							success: function(res) {
+								layer.msg(res.message);
+								repeat_flag = false;
+								if (res.code == 0) {
+								    $("#param").val(1);
+                                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                    parent.layer.close(index); //再执行关闭
+								}
+							}
+						});
+					});
+					break;
+			}
+		});
+	});
+
+	function fun(callback) {
+        var param = $("#param").val();
+        callback(param);
+    }
+</script>
+{/block}

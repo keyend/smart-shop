@@ -1,0 +1,201 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+{/block}
+{block name="main"}
+<div class="ns-card-brief ns-tips">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">区域代理</h2>
+	</div>
+</div>
+<div class="ns-single-filter-box">
+	<button class="layui-btn ns-bg-color" onclick="clickAdd()">添加代理</button>
+</div>
+<!-- 列表 -->
+<table id="level_list" lay-filter="level_list"></table>
+
+<script type="text/html" id="goods">
+	<div class="ns-table-title">
+		<div class="ns-title-pic">
+			<img layer-src src="{{ns.img(d.goods_image.split(',')[0],'small')}}"/>
+		</div>
+		<div class="ns-title-content">
+			<a href="javascript:;" class="ns-multi-line-hiding ns-text-color">{{d.goods_name}}</a>
+		</div>
+	</div>
+</script>
+
+<!-- 时间 -->
+<script id="time" type="text/html">
+	<div class="layui-elip">开始时间：{{ns.time_to_date(d.start_time)}}</div>
+	<div class="layui-elip">结束时间：{{ns.time_to_date(d.end_time)}}</div>
+</script>
+
+<!-- 状态 -->
+<script type="text/html" id="status">
+	{{#  if(d.status == 0){  }}
+	停用
+	{{#  }else if(d.status == 1){  }}
+	启用
+	{{#  }  }}
+</script>
+
+<!-- 操作 -->
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+		<a class="layui-btn" lay-event="edit">编辑</a>
+		<a class="layui-btn" lay-event="del">删除</a>
+	</div>
+</script>
+{/block}
+
+{block name="script"}
+<script>
+    layui.use('form', function() {
+        var table,
+            repeat_flag = false; //防重复标识
+
+        table = new Table({
+            elem: '#level_list',
+            url: ns.url("agencyteam://shop/province/lists"),
+            cols: [
+                [{
+                    field: 'id',
+                    title: 'ID',
+                    unresize: 'false',
+                    width: '6%'
+                }, {
+                    field: 'areaname',
+                    title: '代理名称',
+                    unresize: 'false',
+                    width: '11%'
+                }, {
+                    field: 'rate_bonus',
+                    title: '周期分红',
+                    unresize: 'false',
+                    width: '11%',
+                    templet: function(data) {
+                        return parseFloat(data.rate_bonus) + '%';
+                    }
+                }, {
+                    title: '操作',
+                    toolbar: '#operation',
+                    unresize: 'false'
+                }]
+            ],
+
+        });
+
+        /**
+         * 监听工具栏操作
+         */
+        table.tool(function(obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'del': //删除
+                    del(data.id);
+                    break;
+                case 'start': //启用
+                    start_status(data.id,1);
+                    break;
+                case 'stop': //停用
+                    stop_status(data.id,0);
+                    break;
+                case 'edit': //编辑
+                    location.href = ns.url("agencyteam://shop/province/edit", {"id": data.id});
+                    break;
+            }
+        });
+
+        /**
+         * 删除
+         */
+        function del(level_id){
+            if (repeat_flag) return false;
+            repeat_flag = true;
+
+            layer.confirm('确定要删除该分销等级吗?', function() {
+                $.ajax({
+                    url: ns.url("agencyteam://shop/province/delete"),
+                    data: {level_id:level_id},
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success: function(res) {
+                        layer.msg(res.message);
+                        repeat_flag = false;
+
+                        if (res.code == 0) {
+                            table.reload();
+                        }
+                    }
+                });
+            }, function () {
+                layer.close();
+                repeat_flag = false;
+            });
+        }
+
+        /**
+         * 停用
+         */
+        function stop_status(level_id,type){
+            if (repeat_flag) return false;
+            repeat_flag = true;
+
+            layer.confirm('确定要停用该分销等级吗?', function() {
+                $.ajax({
+                    url: ns.url("agencyteam://shop/province/status"),
+                    data: {level_id:level_id,type:type},
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success: function(res) {
+                        layer.msg(res.message);
+                        repeat_flag = false;
+
+                        if (res.code == 0) {
+                            table.reload();
+                        }
+                    }
+                });
+            }, function () {
+                layer.close();
+                repeat_flag = false;
+            });
+        }
+
+        /**
+         * 启用
+         */
+        function start_status(level_id,type){
+            if (repeat_flag) return false;
+            repeat_flag = true;
+
+            layer.confirm('确定要启用该分销等级吗?', function() {
+                $.ajax({
+                    url: ns.url("agencyteam://shop/province/status"),
+                    data: {level_id:level_id,type:type},
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success: function(res) {
+                        layer.msg(res.message);
+                        repeat_flag = false;
+
+                        if (res.code == 0) {
+                            table.reload();
+                        }
+                    }
+                });
+            }, function () {
+                layer.close();
+                repeat_flag = false;
+            });
+        }
+
+    });
+
+	function clickAdd()
+	{
+	    location.href = ns.url('agencyteam://shop/province/add');
+	}
+
+</script>
+{/block}

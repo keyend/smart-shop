@@ -1,0 +1,109 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">文字设置</h2>
+	</div>
+</div>
+<div class="layui-form ns-form">
+	<div class="layui-form-item">
+		<label class="layui-form-label">团队名称：</label>
+		<div class="layui-input-block">
+			<input type="text" name="words[name]" lay-verify="required" {if condition="isset($words.name)"} value='{$words.name}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">团队中心：</label>
+		<div class="layui-input-block">
+			<input type="text" name="words[point]" lay-verify="required" {if condition="isset($words.point)"} value='{$words.point}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">成为团队：</label>
+		<div class="layui-input-block">
+			<input type="text"  name="words[join]" lay-verify="required" {if condition="isset($words.join)"} value='{$words.join}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">团队分红：</label>
+		<div class="layui-input-block">
+			<input type="text"  name="words[bonus]" lay-verify="required" {if condition="isset($words.bonus)"} value='{$words.bonus}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">累计分红：</label>
+		<div class="layui-input-block">
+			<input type="text"  name="words[bonus_total]" lay-verify="required" {if condition="isset($words.bonus_total)"} value='{$words.bonus_total}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">待结算分红：</label>
+		<div class="layui-input-block">
+			<input type="text"  name="words[bonus_lock]" lay-verify="required" {if condition="isset($words.bonus_lock)"} value='{$words.bonus_lock}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">预计分红：</label>
+		<div class="layui-input-block">
+			<input type="text"  name="words[bonus_wait]" lay-verify="required" {if condition="isset($words.bonus_wait)"} value='{$words.bonus_wait}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">已结算分红：</label>
+		<div class="layui-input-block">
+			<input type="text"  name="words[bonus_pay]" lay-verify="required" {if condition="isset($words.bonus_pay)"} value='{$words.bonus_pay}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">分红明细：</label>
+		<div class="layui-input-block">
+			<input type="text"  name="words[bonus_detail]" lay-verify="required" {if condition="isset($words.bonus_detail)"} value='{$words.bonus_detail}' {/if} autocomplete="off" class="layui-input ns-len-mid">
+		</div>
+	</div>
+	
+	<div class="ns-form-row">
+		<button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+	</div>
+
+</div>
+{/block}
+{block name="script"}
+<script>
+	layui.use(['form'], function() {
+		var form = layui.form,
+			repeat_flag = false;
+		form.render();
+		
+		/**
+		 * 表单提交
+		 */
+		form.on('submit(save)', function(data){
+			
+			if(repeat_flag) return;
+			repeat_flag = true;
+			
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				url: ns.url("agencyteam://shop/config/words"),
+				data: data.field,
+				async: false,
+				success: function(res){
+					repeat_flag = false;
+					layer.msg(res.message);
+				}
+			})
+		});
+	});
+</script>
+{/block}

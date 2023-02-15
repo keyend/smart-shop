@@ -1,0 +1,62 @@
+{extend name="base"/}
+
+{block name="resources"}
+<style type="text/css">
+.refresh-wrap{
+	width: 100%;
+	height: 100px;
+	padding-top: 40px;
+	text-align: center;
+}
+.refresh-wrap .desc {
+	font-size: 12px;
+	color: #999;
+	margin-top: 10px;
+}
+.layui-btn .layui-icon{
+	margin-right: 5px;
+	font-size: 14px;
+	display: none;
+}
+.refresh-wrap .loading{
+	opacity: .8;
+	cursor: no-drop;
+}
+.refresh-wrap .loading .layui-icon {
+	display: inline-block;
+}
+</style>
+{/block}
+
+{block name="main"}
+<div class="ns-card-brief ns-tips">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">H5端刷新</h2>
+		<ul class="layui-colla-content layui-show">
+			<li>每当H5模板更新之后需执行该操作</li>
+		</ul>		
+	</div>
+</div>
+<div class="refresh-wrap">
+	<a class="layui-btn ns-bg-color" onclick="refresh(this)"><i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>刷新H5端</a>
+	{if $refresh_time}<p class="desc">上次刷新时间：{:time_to_date($refresh_time)}</p>{/if}
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+	function refresh(event){
+		if ($(event).hasClass('loading')) return;
+		$(event).addClass('loading');
+		$.ajax({
+			type: 'POST',
+			url: ns.url("shop/system/refreshH5"),
+			dataType: 'JSON',
+			success: function(res) {
+				layer.msg(res.message);
+				$(event).removeClass('loading');
+			}
+		});
+	}
+</script>
+{/block}

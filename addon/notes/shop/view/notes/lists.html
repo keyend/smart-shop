@@ -1,0 +1,352 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.ns-screen{margin-top: 15px;}
+	.goods-type{display: flex;justify-content: space-between;}
+	.goods-type .item-type{display: flex;flex-direction: column;align-items: center;padding: 20px;border: 1px solid #e5e5e5;border-radius: 5px;cursor: pointer;}
+	.goods-type .item-type ~ .item-type{margin-left: 20px;}
+	.goods-type .item-img{display: flex;justify-content: center;align-content: center;width: 260px;height: 350px;}
+	.goods-type .item-img img{max-width: 100%;max-height: 100%;}
+	.goods-type .item-content{margin-top: 15px;text-align: center;}
+	.goods-type .item-content .description{margin-top: 10px;font-size: 12px;color: #999;line-height: 1.6;}
+	.layui-layer-page .layui-layer-content{padding: 30px;}
+
+	.ns-reason-box{display: none;width: 350px;box-sizing: border-box;padding: 20px;border: 1px solid #aaa;border-radius: 5px;background-color: #FFF;position: absolute;top: 50px;z-index: 999;color: #666;line-height: 30px;left: 0px;font-weight: normal;}
+	.ns-reason-box:before, .ns-reason-box:after{content: "";border: solid transparent;height: 0;position: absolute;width: 0;}
+	.ns-reason-box:before{border-width: 12px;border-bottom-color: #aaa;top: -12px;left: 43px;border-top: none;}
+	.ns-reason-growth:before{left: 56px;}
+	.ns-reason-box:after{border-width: 10px;border-bottom-color: #FFF;top: -20px;left: 45px;}
+	.ns-reason-growth:after{left: 58px;}
+	.ns-reason-box p{white-space: normal;line-height: 1.5;}
+	.layui-table-header{overflow: inherit;}
+	.layui-table-header .layui-table-cell{overflow: inherit;}
+	.ns-prompt-block.balance, .ns-prompt-block.growth {justify-content: flex-end;}
+	.layui-form-item .layui-form-checkbox[lay-skin=primary] {margin-top: 0;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief ns-tips">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">笔记列表</h2>
+		<ul class="layui-colla-content layui-show">
+			<li>店铺笔记展示店铺笔记相关信息</li>
+		</ul>		
+	</div>
+</div>
+<div class="ns-screen layui-collapse" lay-filter="selection_panel">
+	<div class="layui-colla-item">
+		<form class="layui-colla-content layui-form layui-show">
+			<div class="layui-form-item">
+
+				<div class="layui-inline">
+					<label class="layui-form-label">笔记名称：</label>
+					<div class="layui-input-inline">
+						<input type="text" name="note_name" placeholder="请输入笔记名称" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">笔记类型：</label>
+					<div class="layui-input-inline">
+						<select name="note_type" lay-filter="status">
+							<option value="">全部</option>
+							{foreach $note_type as $v}
+							<option value="{$v['type']}">{$v['name']}</option>
+							{/foreach}
+						</select>
+					</div>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">笔记分组：</label>
+					<div class="layui-input-inline">
+						<select name="group_id" lay-filter="status">
+							<option value="">全部</option>
+							{foreach $group_list as $v}
+							<option value="{$v['group_id']}">{$v['group_name']}</option>
+							{/foreach}
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">发布时间：</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="start_time"  id="start_time" autocomplete="off" placeholder="开始时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+					<div class="layui-form-mid">-</div>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" name="end_time" id="end_time" autocomplete="off" placeholder="结束时间" readonly>
+						<i class="ns-calendar"></i>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="ns-form-row">
+				<button class="layui-btn ns-bg-color" lay-submit lay-filter="search">筛选</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- 搜索框 -->
+<div class="ns-single-filter-box">
+	<button class="layui-btn ns-bg-color" onclick="add()">添加笔记</button>
+</div>
+
+<div class="layui-tab ns-table-tab" lay-filter="notes_tab">
+
+	<div class="layui-tab-content">
+		<!-- 列表 -->
+		<table id="notes_list" lay-filter="notes_list"></table>
+	</div>
+</div>
+
+<!-- 商品 -->
+<script type="text/html" id="goods">
+	<div class="ns-table-title">
+		<div class="ns-title-pic">
+			{{#  if(d.goods_image){  }}
+			<img layer-src src="{{ns.img(d.goods_image.split(',')[0],'small')}}"/>
+			{{#  }  }}
+		</div>
+		<div class="ns-title-content">
+			<a href="javascript:;" class="ns-multi-line-hiding ns-text-color"
+			   title="{{d.goods_name}}">{{d.goods_name}}</a>
+		</div>
+	</div>
+</script>
+
+<!-- 时间 -->
+<script id="time" type="text/html">
+	<div class="layui-elip">开始：{{ns.time_to_date(d.start_time)}}</div>
+	<div class="layui-elip">结束：{{ns.time_to_date(d.end_time)}}</div>
+</script>
+
+<!-- 操作 -->
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+		<a class="layui-btn" lay-event="edit">编辑</a>
+		<a class="layui-btn" lay-event="del">删除</a>
+	</div>
+</script>
+
+<!-- 添加笔记 -->
+<script type="text/html" id="addNote">
+	<div class="goods-type">
+		<div class="item-type" onclick="location.href = ns.url('notes://shop/notes/add', {'note_type': 'goods_item'})">
+			<div class="item-img"><img src="SHOP_IMG/notes/item_introduction.png" alt=""></div>
+			<div class="item-content">
+				<p class="name">单品介绍</p>
+				<p class="description">围绕单个商品的亮点、使用心得展开介绍。好的介绍将让粉丝购买的欲望大增</p>
+			</div>
+		</div>
+
+		<div class="item-type" onclick="location.href = ns.url('notes://shop/notes/add', {'note_type': 'shop_said'})">
+			<div class="item-img"><img src="SHOP_IMG/notes/shopkeeper_said.png" alt=""></div>
+			<div class="item-content">
+				<p class="name">掌柜说</p>
+				<p class="description">创作自由度高，多种组件灵活编辑。优质的笔记更容易使消费者产生购买欲望</p>
+			</div>
+		</div>
+	</div>
+</script>
+
+<!-- 排序 -->
+<script type="text/html" id="editSort">
+	<input name="sort" type="number" onchange="editSort({{d.note_id}},this)" value="{{d.sort}}" placeholder="请输入排序" class="layui-input edit-sort ns-len-short">
+</script>
+
+{/block}
+
+{block name="script"}
+<script>
+	var laytpl,table,form,laydate,repeat_flag;
+	layui.use(['form', 'element','laydate','laytpl'], function() {
+		form = layui.form;
+		laytpl = layui.laytpl;
+		laydate = layui.laydate;
+		repeat_flag = false; //防重复标识
+
+		form.render();
+
+        //渲染时间
+        laydate.render({
+            elem: '#start_time',
+            type: 'datetime'
+        });
+
+        laydate.render({
+            elem: '#end_time',
+            type: 'datetime'
+        });
+
+		table = new Table({
+			elem: '#notes_list',
+			url: ns.url("notes://shop/notes/lists"),
+			where:{
+				status:1
+			},
+			cols: [
+				[{
+			    	field:'note_title',
+					title: '笔记标题',
+					unresize: 'false',
+					width: '23%'
+				}, {
+					field: 'group_name',
+					title: '所属分组',
+					unresize: 'false'
+
+				}, {
+					field: 'read_num',
+					title: '阅读次数',
+					unresize: 'false'
+
+				}, {
+					field: 'dianzan_num',
+					title: '点赞次数',
+					unresize: 'false'
+				}, {
+                    title: '<div class="ns-prompt-block">' +
+                    '排序' +
+                    '<div class="ns-prompt">' +
+                    '<i class="iconfont iconwenhao1 required ns-point"></i>'+
+                    '<div class="ns-point-box ns-reason-box ns-prompt-box" >' +
+                    '<div class="ns-prompt-con">从小到大的顺序进行排序</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>',
+                    unresize: 'false',
+                    align: 'left',
+                    templet:'#editSort'
+                }, {
+			    	title: '发布时间',
+                    unresize: 'false',
+					templet:function(data){
+						return ns.time_to_date(data.create_time);
+					}
+                }, {
+					title: '操作',
+					toolbar: '#operation',
+					unresize: 'false',
+					width: '12%'
+				}]
+			]
+
+		});
+
+		/**
+		 * 搜索功能
+		 */
+		form.on('submit(search)', function(data) {
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: data.field
+			});
+            return false;
+		});
+
+		/**
+		 * 监听工具栏操作
+		 */
+		table.tool(function(obj) {
+			var data = obj.data;
+			switch (obj.event) {
+				case 'edit': //编辑
+					location.href = ns.url("notes://shop/notes/edit", {"note_id": data.note_id,"note_type": data.note_type});
+					break;
+				case 'del': //删除
+					deleteNotes(data.note_id);
+					break;
+			}
+		});
+
+		/**
+		 * 删除
+		 */
+		function deleteNotes(note_id) {
+			layer.confirm('确定要删除该笔记吗?', function() {
+				if (repeat_flag) return;
+				repeat_flag = true;
+
+				$.ajax({
+					url: ns.url("notes://shop/notes/delete"),
+					data: {
+						note_id: note_id
+					},
+					dataType: 'JSON',
+					type: 'POST',
+					success: function(res) {
+						layer.msg(res.message);
+						repeat_flag = false;
+						if (res.code == 0) {
+							table.reload();
+						}
+					}
+				});
+			}, function() {
+				layer.close();
+				repeat_flag = false;
+			});
+		}
+
+	});
+
+    // 监听单元格编辑
+    function editSort(id, event) {
+        var data = $(event).val();
+        if (!new RegExp("^-?[1-9]\\d*$").test(data)) {
+            layer.msg("排序号只能是整数");
+            return;
+        }
+        if(data<0){
+            layer.msg("排序号必须大于0");
+            return ;
+        }
+        $.ajax({
+            type: 'POST',
+            url: ns.url("notes://shop/notes/modifySort"),
+            data: {
+                sort: data,
+                note_id: id
+            },
+            dataType: 'JSON',
+            success: function(res) {
+                layer.msg(res.message);
+                if (res.code == 0) {
+                    table.reload();
+                }
+            }
+        });
+    }
+
+	function add() {
+        var html = $("#addNote").html();
+        laytpl(html).render({}, function (html) {
+            layer.open({
+                type: 1,
+                title: '选择笔记类型',
+                area: ['700px'],
+                content: html
+
+            });
+        });
+	}
+
+	$("body").on("mouseenter",".goods-type .item-type",function () {
+		$(this).addClass("ns-border-color");
+	});
+	$("body").on("mouseleave",".goods-type .item-type",function () {
+		$(this).removeClass("ns-border-color");
+	});
+</script>
+{/block}

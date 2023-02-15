@@ -1,0 +1,88 @@
+{extend name="addon/store/store/view/base.html"/}
+{block name="resources"}
+<style>
+	.layui-card-body{width: 100%; box-sizing: border-box; display: flex; justify-content: space-between;}
+	.ns-member {width: 32%;  margin-bottom: 20px; box-sizing: border-box; border-radius: 4px; padding: 20px;}
+	.ns-member-num{color: #fff; font-size: 26px;font-weight: 600; height: 50px; line-height: 50px; }
+	.ns-member-title{color: #fff; font-size: 14px;}
+    .ns-member-iconb {width: 58px;height: 58px;line-height: 58px;text-align: center;border-radius: 50%;display: inline-block;}
+	.ns-member-left {height: 75px;margin-right: 20px;display: flex;align-items: center;float: left;}
+	
+	/* 门店信息 */
+	.ns-survey-shop{display: flex;align-items: center;padding: 20px 0px 35px 20px!important;flex-wrap: nowrap;box-sizing: border-box;}
+	.ns-img-box {width: 80px; height: 80px; line-height: 78px; flex-shrink: 0;border-radius: 50%;overflow: hidden;}
+	.ns-surver-shop-detail{max-width: 1164px;display: flex;flex-wrap: wrap;}
+	.ns-survey-shop-name {margin-right: 50px; margin-left: 10px; flex-shrink: 0; font-size: 18px;}
+	.ns-surver-shop-detail p {width: 340px;line-height: 40px;padding: 0 10px;}
+	
+	/* 概况*/
+	.ns-survey-detail{padding: 20px;margin-top: 20px;}
+	.ns-survey-detail-title{display: flex;justify-content: space-between;margin-bottom: 20px;}
+	.ns-survey-detail-name{font-size: 18px;}
+	.ns-survey-detail-time{color: #999999;}
+	.ns-survey-detail-acount{box-sizing: border-box;}
+	.ns-survey-detail-con{padding: 35px 20px 0;display: inline-block;width: 33%;height: 180px;box-sizing: border-box;vertical-align: top;}
+	.ns-survey-detail-aco{color: #999999;line-height: 30px;}
+	.ns-survey-detail-yesterday{color: #333333;line-height: 30px;}
+	.ns-survey-detail-num{font-size: 30px;color: red;line-height: 50px;}
+	.ns-survey-detail-aim{box-sizing: border-box;padding-left: 50px;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-survey">
+	<!-- 门店信息 -->
+	<div class="ns-survey-shop">
+		<div class="ns-img-box" id="img">
+			<img layer-src src="{:img($store_info.store_image)}" onerror=src="SHOP_IMG/default_shop.png" />
+		</div>
+		<p class="ns-survey-shop-name"><strong>{$store_info.store_name}</strong></p>
+		<div class="ns-surver-shop-detail">
+			<p class="ns-line-hiding"><strong>门店名称：</strong><span class="ns-text-color-dark-gray" title="{$store_info.store_name}">{$store_info.store_name}</span></p>
+			<p class="ns-line-hiding"><strong>用户名：</strong><span class="ns-text-color-dark-gray" title="{$user_info.username}">{$user_info.username}</span></p>
+			<p class="ns-line-hiding"><strong>店铺地址：</strong><span class="ns-text-color-dark-gray" title="{$store_info.full_address}">{$store_info.full_address}</span></p>
+			<p class="ns-line-hiding"><strong>联系方式：</strong><span class="ns-text-color-dark-gray" title="{$store_info.telphone}">{$store_info.telphone}</span></p>
+			<p class="ns-line-hiding"><strong>登录时间：</strong><span class="ns-text-color-dark-gray" title="{:date('Y-m-d H:i:s', $user_info.login_time)}">{:date('Y-m-d H:i:s', $user_info.login_time)}</span></p>
+			<p class="ns-line-hiding"><strong>营业时间：</strong><span class="ns-text-color-dark-gray" title="{$store_info.open_date}">{$store_info.open_date}</span></p>
+		</div>
+	</div>
+	
+	<!-- 概况 -->
+	<div class="layui-card ns-card-common ns-card-brief">
+		<div class="ns-card-brief">
+			<div class="ns-form-content">
+				<h2 class="ns-form-title ns-card-title">门店概况</h2>
+			</div>
+		</div>		
+		<div class="layui-card-body">
+			<div class="ns-member" style="background-color: #009afe;">
+			    <div class="ns-member-left">
+			        <img class="ns-member-iconb" src="SHOP_IMG/menu_icon/member_zongs.png" />
+				</div>
+				<p class="ns-member-num">{$member_count}</p>
+				<p class="ns-member-title">门店会员数</p>
+			</div>
+	
+			<div class="ns-member" style="background-color: #ff547b;">
+				<div class="ns-member-left">
+			        <img class="ns-member-iconb" src="SHOP_IMG/menu_icon/orderamount.png" />
+				</div>
+				<p class="ns-member-num">￥{$store_info.order_complete_money}</p>
+				<p class="ns-member-title">门店订单金额</p>
+			</div>
+	
+			<div class="ns-member" style="background-color: #11cd6e;">
+				<div class="ns-member-left">
+			        <img class="ns-member-iconb" src="SHOP_IMG/menu_icon/numberoforders.png" />
+				</div>			
+				<p class="ns-member-num">{$store_info.order_complete_num}</p>
+				<p class="ns-member-title">门店订单数</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+{/block}
+{block name="script"}
+<script>
+</script>
+{/block}

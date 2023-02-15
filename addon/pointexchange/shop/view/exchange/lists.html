@@ -1,0 +1,209 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">积分商品管理</h2>
+	</div>
+</div>
+<!-- 搜索框 -->
+<div class="ns-single-filter-box">
+    <button class="layui-btn ns-bg-color" onclick="add()">添加积分商品</button>
+    <div class="layui-form">
+		<div class="layui-input-inline">
+			<select name="state" lay-filter="state">
+				<option value="">上/下架</option>
+				<option value="1">上架</option>
+				<option value="0">下架</option>
+			</select>
+		</div>
+		
+        <div class="layui-input-inline">
+            <input type="text" name="search_text" placeholder="请输入兑换名称/关键字" class="layui-input ns-len-mid">
+            <button type="button" class="layui-btn layui-btn-primary" lay-filter="search" lay-submit>
+                <i class="layui-icon">&#xe615;</i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="layui-tab ns-table-tab" lay-filter="type_name">
+	<ul class="layui-tab-title">
+		<li class="layui-this" lay-id="">全部</li>
+		<li lay-id="1">商品</li>
+		<li lay-id="2">优惠券</li>
+		<li lay-id="3">红包</li>
+	</ul>
+	
+	<div class="layui-tab-content">
+		<!-- 列表 -->
+		<table id="exchange_list" lay-filter="exchange_list"></table>
+	</div>
+</div>
+
+<!-- 兑换信息 -->
+<script type="text/html" id="exchange_info">
+    <div class='ns-table-title'>
+        <div class='ns-title-pic'>
+			{{#  if(d.image){  }}
+            <img layer-src src="{{ns.img(d.image.split(',')[0])}}">
+			{{#  }else{  }}
+			<img layer-src src="__STATIC__/img/shape.png">
+			{{#  }  }}
+        </div>
+        <div class='ns-title-content'>
+            <p class="ns-multi-line-hiding">{{d.name}}</p>
+        </div>
+    </div>
+</script>
+
+<!-- 状态 -->
+<script type="text/html" id="state">
+    {{d.state == 1?'上架':'下架'}}
+</script>
+
+<!-- 编辑删除操作 -->
+<script type="text/html" id="operation">
+    <div class="ns-table-btn">
+        <a class="layui-btn" lay-event="edit">编辑</a>
+        <a class="layui-btn" lay-event="delete">删除</a>
+    </div>
+</script>
+{/block}
+{block name="script"}
+<script>
+    layui.use(['form', 'element'], function() {
+        var table,
+            form = layui.form,
+			element = layui.element,
+            repeat_flag = false; //防重复标识
+        form.render();
+
+        //监听Tab切换
+		element.on('tab(type_name)', function(data) {
+			var type = $(this).attr("lay-id");
+			table.reload( {
+				page: {
+					curr: 1
+				},
+				where: {
+					'type': type
+				}
+			});
+		});
+
+        table = new Table({
+            elem: '#exchange_list',
+            url: ns.url("pointexchange://shop/exchange/lists"),
+            cols: [
+                [{
+                    field: 'name',
+                    title: '兑换信息',
+                    unresize: 'false',
+                    width: '38%',
+                    templet: '#exchange_info'
+                }, {
+                    field: 'type_name',
+                    title: '兑换类型',
+                    unresize: 'false',
+                    width: '10%',
+                },  {
+					title: '兑换积分',
+					unresize: 'false',
+					width: '17%',
+					templet: function(data) {
+						if(data.pay_type == 1){
+							return data.point+'积分 + ￥'+data.price;
+						}else{
+							return data.point;
+						}
+					}
+				},{
+                    field: 'market_price',
+                    title: '划线价',
+                    unresize: 'false',
+                    width: '10%',
+					align: 'right',
+					templet: function(data) {
+						return '￥'+ data.market_price;
+					}
+                }, {
+                    field: 'state',
+                    title: '状态',
+                    unresize: 'false',
+                    width: '10%',
+                    templet: '#state',
+                }, {
+                    title: '操作',
+                    toolbar: '#operation',
+                    unresize: 'false',
+                    width: '15%'
+                }]
+            ]
+        });
+
+        /**
+         * 监听工具栏操作
+         */
+        table.tool(function(obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'order': //管理
+                    location.href = ns.url("pointexchange://shop/pointexchange/lists?exchange_id=" + data.id);
+                    break;
+                case 'edit': //管理
+                    location.href = ns.url("pointexchange://shop/exchange/edit?id=" + data.id);
+                    break;
+                case 'delete': //删除
+                    deleteGift(data.id);
+                    break;
+            }
+        });
+
+        /**
+         * 删除
+         */
+        function deleteGift(id) {
+            if (repeat_flag) return false;
+            repeat_flag = true;
+
+            layer.confirm('确定要删除该商品吗?', function() {
+                $.ajax({
+                    url: ns.url("pointexchange://shop/exchange/delete"),
+                    data: {id},
+                    dataType: 'JSON',
+                    type: 'POST',
+                    success: function(res) {
+                        layer.msg(res.message);
+                        repeat_flag = false;
+
+                        if (res.code == 0) {
+                            table.reload();
+                        }
+                    }
+                });
+            }, function () {
+                layer.close();
+                repeat_flag = false;
+            });
+        }
+
+        /**
+         * 搜索功能
+         */
+        form.on('submit(search)', function(data) {
+            table.reload({
+                page: {
+                    curr: 1
+                },
+                where: data.field
+            });
+        });
+    });
+
+    function add() {
+        location.href = ns.url("pointexchange://shop/exchange/add");
+    }
+</script>
+{/block}

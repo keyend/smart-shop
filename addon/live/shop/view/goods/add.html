@@ -1,0 +1,230 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style type="text/css">
+.price-wrap{display: flex;top: 4px;position: relative;}
+.price-wrap > span {display: inline-block;margin: 0 5px;}
+.price-wrap > span.sepa{margin: 0 20px;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">添加商品</h2>
+	</div>
+</div>
+<div class="layui-form ns-form">
+	<div class="layui-form-item">
+		<label class="layui-form-label"></label>
+		<div class="layui-input-block">
+			<button class="layui-btn ns-bg-color" onclick="addGoods()">选择商品</button>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label"><span class="required">*</span>商品名称：</label>
+		<div class="layui-input-block">
+			<input type="text" name="name" lay-verify="required|name" class="layui-input ns-len-mid" autocomplete="off" maxlength="14">
+		</div>
+		<div class="ns-word-aux">
+			<p>商品名称必须为3-14个字符</p>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label"><span class="required">*</span>商品封面：</label>
+		<div class="layui-input-block">
+			<div class="upload-img-block">
+				<div class="upload-img-box">
+					<div class="ns-upload-default">
+						<img src="SHOP_IMG/upload_img.png" />
+						<p>选择商品</p>
+					</div>
+				</div>
+				<p id="ImgUpload" class="no-replace">替换</p>
+				<input type="hidden" name="goods_pic" value="" lay-verify="goodsPic"/>
+				<i class="del">x</i>
+			</div>
+		</div>
+		<div class="ns-word-aux">
+			<p>建议尺寸：200像素 * 200像素，图片大小不得超过80K</p>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label"><span class="required">*</span>价格形式：</label>
+		<div class="layui-input-block">
+			<div class="layui-input-inline">
+				<input type="radio" name="price_type" value="1" title="一口价" checked>
+			</div>
+			<div class="layui-input-inline price-wrap">	
+				<span>价格</span>
+				<input class="layui-input ns-len-short ns-input-num" type="number" min="0" name="price" value="0.00" lay-verify="required|flnum"> 
+				<span>元</span>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label"></label>
+		<div class="layui-input-block">
+			<div class="layui-input-inline">
+				<input type="radio" name="price_type" value="2" title="价格区间">
+			</div>
+			<div class="layui-input-inline price-wrap">	
+				<span>价格</span>
+				<input class="layui-input ns-len-short ns-input-num" type="number" min="0" name="price" value="0.00" lay-verify="required|flnum"> 
+				<span>元</span>
+				<span class="sepa">-</span>
+				<input class="layui-input ns-len-short ns-input-num" type="number" min="0" name="price2" value="0.00" lay-verify="required|flnum"> 
+				<span>元</span>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label"></label>
+		<div class="layui-input-block">
+			<div class="layui-input-inline">
+				<input type="radio" name="price_type" value="3" title="显示折扣价">
+			</div>
+			<div class="layui-input-inline price-wrap">	
+				<span>原价</span>
+				<input class="layui-input ns-len-short ns-input-num" type="number" min="0" name="price" value="0.00" lay-verify="required|flnum"> 
+				<span>元</span>
+				<span class="sepa"></span>
+				<span>现价</span>
+				<input class="layui-input ns-len-short ns-input-num" type="number" min="0" name="price2" value="0.00" lay-verify="required|flnum"> 
+				<span>元</span>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label"><span class="required">*</span>商品链接：</label>
+		<div class="layui-input-block">
+			<input type="text" name="url" lay-verify="required" class="layui-input ns-len-mid" autocomplete="off">
+		</div>
+		<div class="ns-word-aux">
+			<p>请确保小程序页面路径可被访问，例如：pages/goods/detail/detail?sku_id=sku_id</p>
+		</div>
+	</div>
+
+	<div class="ns-form-row">
+		<button class="layui-btn ns-bg-color" lay-submit lay-filter="save">添加</button>
+		<button class="layui-btn layui-btn-primary" onclick="back()">返回</button>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+	var form;
+	layui.use(['form'], function() {
+		form = layui.form;
+
+		form.render();
+
+		var upload = new Upload({
+			elem: '#ImgUpload'
+		});
+
+		/**
+		 * 表单验证
+		 */
+		form.verify({
+			name: function(value){
+				if (value.length < 3 || value.length > 14) {
+					return '商品名称必须为3-14个字符';
+				}
+			},
+			goodsPic: function(value){
+				var patt  = /[\S]+/;
+				if (!patt.test(value)) {
+					return '请上传商品封面!';
+				}
+			},
+		});
+
+		form.on('submit(save)', function(data){
+			if (repeat_flag) return;
+			repeat_flag = true;
+
+			if (data.field.price_type == 1) {
+				data.field.price = parseFloat($('[name="price_type"][value="1"]').parents('.layui-input-block').find('[name="price"]').val());
+				data.field.price2 = 0;
+				if (data.field.price <= 0) {
+					layer.msg('请输入商品价格', {icon: 5, shift: 6});
+					return;
+				}
+			} else if (data.field.price_type == 2) {
+				data.field.price = parseFloat($('[name="price_type"][value="2"]').parents('.layui-input-block').find('[name="price"]').val());
+				data.field.price2 = parseFloat($('[name="price_type"][value="2"]').parents('.layui-input-block').find('[name="price2"]').val());
+				if (data.field.price <= 0 || data.field.price2 <= 0) {
+					layer.msg('请输入商品价格', {icon: 5, shift: 6});
+					return;
+				}
+			} else if (data.field.price_type == 3) {
+				data.field.price = parseFloat($('[name="price_type"][value="3"]').parents('.layui-input-block').find('[name="price"]').val());
+				data.field.price2 = parseFloat($('[name="price_type"][value="3"]').parents('.layui-input-block').find('[name="price2"]').val());
+				if (data.field.price <= 0) {
+					layer.msg('请输入原价', {icon: 5, shift: 6});
+					return;
+				}
+				if (data.field.price2 <= 0) {
+					layer.msg('请输入现价', {icon: 5, shift: 6});
+					return;
+				}
+				if (data.field.price2 >= data.field.price) {
+					layer.msg('现价不能小于或等于原价', {icon: 5, shift: 6});
+					return;
+				}
+			}
+
+			$.ajax({
+				type: 'POST',
+				url: ns.url("live://shop/goods/add"),
+				data: data.field,
+				dataType: 'JSON',
+				success: function(res) {
+					layer.msg(res.message);
+					repeat_flag = false;
+					if (res.code == 0) {
+						location.href = ns.url("live://shop/goods/index");
+					}
+				}
+			});
+		});
+	});
+
+	function back() {
+		location.href = ns.url("live://shop/goods/index");
+	}
+
+	 /**
+     * 添加商品
+     */
+    function addGoods(){
+        goodsSelect(function (res) {
+        	if (res[0] != undefined) {
+        		var data = res[0],
+        			sku_id = data.sku_list[0].sku_id,
+        			images = data.goods_image.split(',');
+
+				$('[name="name"]').val(data.goods_name);
+				if (images[0] != undefined) {
+					$("input[name='goods_pic']").val(imgHandle(images[0]));
+					$("#ImgUpload").html("<img src=" + ns.img(images[0]) + " >");
+				}
+				$('[name="url"]').val('pages/goods/detail/detail?sku_id=' + sku_id);
+				$('[name="price_type"][value="1"]').prop('checked', true);
+				$('[name="price_type"][value="1"]').parents('.layui-input-block').find('[name="price"]').val(data.price);
+				form.render();
+        	}
+        }, [], {mode: "spu", min_num: 1, max_num: 1, promotion: []});
+    }
+
+    function imgHandle(src){
+    	var arr = src.split("."),
+			suffix = arr[arr.length - 1];
+			arr.pop();
+			arr[arr.length - 1] = arr[arr.length - 1] + "_SMALL"
+			arr.push(suffix);
+			src = arr.join(".");
+    	return src;
+    }
+</script>
+{/block}

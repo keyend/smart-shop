@@ -1,0 +1,132 @@
+{extend name="base"/}
+{block name="resources"}
+<style>
+    .ns-card-common:first-of-type{margin-top: 0;}
+    .layui-card-body{display: flex;padding-bottom: 0 !important;padding-right: 50px !important;padding-left: 50px !important;flex-wrap: wrap;}
+    .layui-card-body .content{width: 33.3%;display: flex;flex-direction: column;margin-bottom: 30px;justify-content: center;}
+    .layui-card-body .money{font-size: 20px;color: #666;font-weight: bold;margin-top: 10px;max-width: 250px;}
+    .layui-card-body .subhead{font-size: 12px;margin-left: 3px;cursor: pointer;}
+    .ns-single-filter-box {justify-content: left;line-height: 34px}
+    .ns-single-filter-box a{cursor:pointer;margin-left: 10px}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">会员导入</h2>
+	</div>
+</div>
+<div class="ns-single-filter-box">
+    <button class="layui-btn ns-bg-color" id="member_file">导入会员</button>
+    <a class="layui-btn layui-btn-primary" onclick="downloadMemberFile()">点击下载模板</a>
+</div>
+
+<!-- 列表 -->
+<table id="member_import_log_list" lay-filter="member_import_log_list"></table>
+
+{/block}
+
+{block name="script"}
+<script>
+    var table,upload,repeat_flag = false;
+    layui.use(['form', 'laydate','laytpl', 'upload'], function() {
+        var form = layui.form,
+            laydate = layui.laydate,
+            currentDate = new Date(),
+            laytpl = layui.laytpl,
+            minDate = "";
+            upload = layui.upload;
+        form.render();
+        /**
+         * 表格加载
+         */
+        table = new Table({
+            elem: '#member_import_log_list',
+            url: ns.url("shop/member/memberImport"),
+            cols: [
+                [{
+					field: 'username',
+					title: '用户名',
+                    width: '8%',
+					unresize: 'false',
+				}, {
+					field: 'mobile',
+					title: '手机号',
+					width: '8%',
+					unresize: 'false',
+				}, {
+					field: 'nickname',
+					title: '昵称',
+					width: '15%',
+					unresize: 'false',
+				}, {
+                    field: 'wx_openid',
+                    title: '微信公众号openid',
+					width: '20%',
+                    unresize: 'false',
+                }, {
+                    field: 'weapp_openid',
+                    title: '小程序openid',
+					width: '20%',
+                    unresize: 'false',
+                }, {
+                    field: 'password',
+                    title: '密码',
+                    width: '8%',
+                    unresize: 'false',
+                }, {
+                    field: 'content',
+                    title: '内容',
+                    width: '21%',
+                    unresize: 'false',
+                }]
+            ]
+        });
+        //允许上传的文件后缀
+        upload.render({
+            elem: '#member_file'
+            ,url: ns.url("shop/member/file"),
+            accept: 'file',
+            exts: 'xlsx',
+            done: function(res){
+                if (res.code >= 0) {
+                    member_import(1, res.data.name, res.data.path);
+                    repeat_flag = false;
+                }else{
+                    layer.msg(res.message);
+                }
+            }
+        });
+    });
+
+    function member_import(index, name, path){
+        $.ajax({
+            url: ns.url("shop/member/import"),
+            data: {
+                filename: name,
+                path: path,
+                index: index
+            },
+            dataType: 'JSON',
+            type: 'POST',
+            success: function (res) {
+                index ++;
+                if(res.code == 0){
+
+                    if(res.data.num < res.data.allRow){
+                        member_import(index, res.data.name, res.data.path);
+                    }else{
+                        table.reload();
+                    }
+                }
+                layer.msg(res.message);
+            }
+        });
+    }
+
+    function downloadMemberFile(){
+        location.href = ns.url("shop/member/downloadMemberFile");
+        return false;
+    }
+</script>
+{/block}

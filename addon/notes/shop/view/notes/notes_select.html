@@ -1,0 +1,283 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.notes-list-layer {padding: 20px;}
+</style>
+{/block}
+{block name="body"}
+<div class="notes-list-layer">
+	<div class="ns-screen layui-collapse" lay-filter="selection_panel">
+		<div class="layui-colla-item">
+			<form class="layui-colla-content layui-form layui-show">
+				<div class="layui-form-item">
+
+					<div class="layui-inline">
+						<label class="layui-form-label">笔记名称：</label>
+						<div class="layui-input-inline">
+							<input type="text" name="note_name" placeholder="请输入笔记名称" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-inline">
+						<label class="layui-form-label">笔记类型：</label>
+						<div class="layui-input-inline">
+							<select name="note_type" lay-filter="status">
+								<option value="">全部</option>
+								{foreach $note_type as $v}
+								<option value="{$v['type']}">{$v['name']}</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+
+					<div class="layui-inline">
+						<label class="layui-form-label">笔记分组：</label>
+						<div class="layui-input-inline">
+							<select name="group_id" lay-filter="status">
+								<option value="">全部</option>
+								{foreach $group_list as $v}
+								<option value="{$v['group_id']}">{$v['group_name']}</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">发布时间：</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" name="start_time"  id="start_time" autocomplete="off" placeholder="开始时间" readonly>
+							<i class="ns-calendar"></i>
+						</div>
+						<div class="layui-form-mid">-</div>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" name="end_time" id="end_time" autocomplete="off" placeholder="结束时间" readonly>
+							<i class="ns-calendar"></i>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="ns-form-row">
+					<button class="layui-btn ns-bg-color" lay-submit lay-filter="search">筛选</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<table id="notes_list" lay-filter="notes_list"></table>
+</div>
+{/block}
+{block name="script"}
+<script type="text/html" id="checkbox">
+	{{# if($.inArray(d.note_id.toString(), selected_id_arr) != -1){ }}
+		<input type="checkbox" data-note-id="{{d.note_id}}" name="notes_checkbox" lay-skin="primary" lay-filter="notes_checkbox" checked>
+	{{# }else{ }}
+		<input type="checkbox" data-note-id="{{d.note_id}}" name="notes_checkbox" lay-skin="primary" lay-filter="notes_checkbox">
+	{{# } }}
+	<input type="hidden" data-note-id="{{d.note_id}}" name="notes_json" value='{{ JSON.stringify(d) }}' />
+</script>
+
+<!-- 排序 -->
+<script type="text/html" id="editSort">
+	<input name="sort" type="number" onchange="editSort({{d.note_id}},this)" value="{{d.sort}}" placeholder="请输入排序" class="layui-input edit-sort ns-len-short">
+</script>
+
+<script>
+	var laytpl, table, form, laydate, repeat_flag,
+		select_id = "{$select_id}", //选中商品id
+		max_num = "{$max_num}", //最大商品数量
+		min_num = "{$min_num}", //最小商品数量
+		selected_id_arr = select_id.length ? select_id.split(',') : [],
+		select_list = [], //选中商品所有数据
+		notesIdArr = selected_id_arr;
+	layui.use(['form', 'element', 'laydate', 'laytpl'], function() {
+		form = layui.form;
+		laytpl = layui.laytpl;
+		laydate = layui.laydate;
+		repeat_flag = false; //防重复标识
+	
+		form.render();
+	
+	    //渲染时间
+	    laydate.render({
+	        elem: '#start_time',
+	        type: 'datetime'
+	    });
+	
+	    laydate.render({
+	        elem: '#end_time',
+	        type: 'datetime'
+	    });
+	
+		table = new Table({
+			elem: '#notes_list',
+			url: ns.url("notes://shop/notes/notesSelect"),
+			where:{
+				status:1
+			},
+			cols: [
+				[{
+					unresize: 'false',
+					width: '5%',
+					templet: '#checkbox'
+				}, {
+			    	field:'note_title',
+					title: '笔记标题',
+					unresize: 'false',
+					width: '20%'
+				}, {
+					field: 'group_name',
+					title: '所属分组',
+					unresize: 'false',
+					width: '15%'
+				}, {
+					field: 'read_num',
+					title: '阅读次数',
+					unresize: 'false',
+					width: '10%'
+				}, {
+					field: 'dianzan_num',
+					title: '点赞次数',
+					unresize: 'false',
+					width: '10%'
+				}, {
+	                title: '排序',
+	                unresize: 'false',
+	                align: 'left',
+	                templet:'#editSort',
+					width: '20%'
+	            }, {
+			    	title: '发布时间',
+	                unresize: 'false',
+					templet:function(data){
+						return ns.time_to_date(data.create_time);
+					},
+					width: '20%'
+	            }]
+			],
+			callback: function(res) {
+				// 更新复选框状态
+				for (var i=0;i<notesIdArr.length;i++) {
+					var selected_notes = $("input[name='notes_checkbox'][data-note-id='" + notesIdArr[i] + "']");
+					if (selected_notes.length) {
+						$("input[name='notes_checkbox'][data-note-id='" + notesIdArr[i] + "']").prop("checked", true);
+					}
+				}
+				
+				initData();
+				form.render();
+			}
+		});
+	
+		/**
+		 * 搜索功能
+		 */
+		form.on('submit(search)', function(data) {
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: data.field
+			});
+	        return false;
+		});
+		
+		// 勾选商品
+		form.on('checkbox(notes_checkbox)', function(data) {
+			var note_id = $(data.elem).attr("data-note-id"),
+				json = {};
+		
+			var dataLen = $("input[name='notes_checkbox'][data-note-id="+ note_id +"]:checked").length;
+		
+			if (dataLen){
+				json = JSON.parse($("input[name='notes_json'][data-note-id="+ note_id +"]").val());
+				delete json.LAY_INDEX;
+				delete json.LAY_TABLE_INDEX;
+				delete json.create_time;
+				select_list.push(json);
+				notesIdArr.push(note_id);
+			} else {
+				var temp = "";
+				$.each(select_list, function(index, item) {
+					if (note_id == item.note_id) {
+						temp = index;
+					}
+				})
+				select_list.splice(temp);
+				notesIdArr.splice(temp);
+			}
+		});
+		
+		//初始化数据
+		function initData(){
+			var dataLen = $("input[name='notes_checkbox'][data-note-id]:checked").length;
+		
+			//父级
+			for (var i = 0; i < dataLen; i++){
+				var noteId = $("input[name='notes_checkbox'][data-note-id]:checked").eq(i).attr("data-note-id");
+				var ident = false;
+				for (var k = 0; k < select_list.length; k++){
+					if(select_list[k].note_id == noteId){
+						ident = true;
+						break;
+					}
+				}
+		
+				if (ident) return;
+		
+				json = JSON.parse($("input[name='notes_json'][data-note-id="+ noteId +"]").val());
+				delete json.LAY_INDEX;
+				delete json.LAY_TABLE_INDEX;
+				delete json.create_time;
+				select_list.push(json);
+			}
+		}
+	});
+	
+	// 监听单元格编辑
+	function editSort(id, event) {
+	    var data = $(event).val();
+	    if (!new RegExp("^-?[1-9]\\d*$").test(data)) {
+	        layer.msg("排序号只能是整数");
+	        return;
+	    }
+	    if(data<0){
+	        layer.msg("排序号必须大于0");
+	        return ;
+	    }
+	    $.ajax({
+	        type: 'POST',
+	        url: ns.url("notes://shop/notes/modifySort"),
+	        data: {
+	            sort: data,
+	            note_id: id
+	        },
+	        dataType: 'JSON',
+	        success: function(res) {
+	            layer.msg(res.message);
+	            if (res.code == 0) {
+	                table.reload();
+	            }
+	        }
+	    });
+	}
+	
+	function selectNotes(callback) {
+		var res = select_list;
+		var num = 0;
+		
+		num = notesIdArr.length;
+		res = notesIdArr;
+	
+		if (min_num && min_num > 0 && num < min_num) {
+			layer.msg("所选商品数量最少不能少于" + min_num + '件');
+			return;
+		}
+		callback(res);
+	}
+</script>
+{/block}

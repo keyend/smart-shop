@@ -1,0 +1,257 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+    .layui-card-body{display: flex;justify-content: space-around;}
+    .layui-card-body .money{font-size: 20px;color: #666;font-weight: bold;margin-top: 10px;text-align: center;max-width: 250px;}
+    .layui-card-body .subhead{font-size: 12px;margin-left: 3px;cursor: pointer;}
+    .ns-shop-account{display: flex;align-items: center;position: relative;padding: 15px;box-sizing: border-box;}
+    .ns-shop-detail p{display: inline-block;width: 300px;line-height: 30px;}
+    .ns-shop-account>a{position: absolute;right: 15px;bottom: 15px;cursor: pointer;}
+    .ns-item-block-parent{justify-content: flex-start; margin-top: 10px;}
+
+	.ns-card-brief:nth-child(1){
+			margin-top: 0;
+	}
+	.layui-card-body{
+			display: flex;
+			flex-wrap: wrap;
+			padding-bottom: 0 !important;
+			padding-left: 50px !important;
+			padding-right: 50px !important;
+	}
+	.layui-card-body .content{
+			width: 25%;
+			margin-bottom: 30px;
+			/* display: flex; */
+			flex-wrap: wrap;
+			flex-direction: column;
+			justify-content: center;
+	}
+	.layui-card-body .money{
+			font-size: 20px;
+			color: #000;
+			font-weight: bold;
+			margin-top: 10px;
+			max-width: 250px;
+	}
+	.layui-card-body .subhead{
+			font-size: 12px;
+			margin-left: 3px;
+			cursor: pointer;
+	}
+	.ns-member-panel {width: 58px;height: 58px;line-height: 58px;text-align: center;border-radius: 50%;display: inline-block;}
+	.ns-member-iconb {width: 32px}
+	.ns-member-left {margin-right: 20px;display: flex;align-items: center;float: left;}	
+    .layui-input-inline .inner {
+        display: inline-block;
+        height: 34px;
+        line-height: 34px;
+        padding: 0 10px 0 0;
+        box-sizing: border-box;
+        font-size: 14px;
+        color: #454545 !important;
+        margin-left: -8px;
+    }
+</style>
+{/block}
+{block name="main"}
+<div class="layui-card ns-card-common ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">结算流水记录</h2>
+	</div>	
+</div>
+
+<!-- 筛选面板 -->
+<div class="ns-single-filter-box">
+    <div class="layui-labels">
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 100px;"><strong>代理补贴：</strong></label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <span class="inner" id="lb-subsidy">--.--</span>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: auto; text-align: left"><strong>区域分红：</strong></label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <span class="inner" id="lb-bonus">--.--</span>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+				<input type="text" class="layui-input" name="start_time" id="start_time" autocomplete="off" placeholder="开始时间" readonly>
+                <i class="ns-calendar"></i>
+            </div>
+            <div class="layui-input-inline end-time">
+                <input type="text" class="layui-input" name="end_time" id="end_time" placeholder="结束时间" autocomplete="off" readonly>
+                <i class="ns-calendar"></i>
+            </div>
+            <input id="settlement_id" value="{$settlement_id}" type="hidden" />
+            <div class="layui-btn-group">
+                <button class="layui-btn layui-btn-primary" lay-submit lay-filter="search">
+                    <i class="layui-icon layui-icon-search"></i>
+                    搜索
+                </button>
+                <button class="layui-btn" lay-submit lay-filter="export">
+                    <i class="layui-icon layui-icon-export"></i>
+                    导出
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-tab ns-table-tab" lay-filter="status" style="margin-top: -1rem;">
+    <ul class="layui-tab-title" style="display: none;">
+        <li class="layui-this" lay-id="">全部</li>
+        <li lay-id="1">收入</li>
+        <li lay-id="2">支出</li>
+    </ul>
+
+    <div class="layui-tab-content">
+        <!-- 列表 -->
+        <table id="renewal_list" lay-filter="renewal_list"></table>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    var table, form, laytpl, laydate, element, settlement_id = $("#settlement_id").val(), start_time, end_time, loader;
+    layui.use(['form', 'laytpl', 'laydate'], function() {
+        form = layui.form;
+        laytpl = layui.laytpl;
+        laydate = layui.laydate;
+        element = layui.element;
+        form.render();
+
+        //监听Tab切换
+        element.on('tab(status)', function(data) {
+            var status = $(this).attr("lay-id");
+            table.reload( {
+                page: {
+                    curr: 1
+                },
+                where: {
+                    'status': status
+                }
+            });
+        });
+
+        //开始时间
+        laydate.render({
+            elem: '#start_time', //指定元素
+            done: function(value, date, endDate){
+                start_time = ns.date_to_time(value);
+            }
+        });
+        //结束时间
+        laydate.render({
+            elem: '#end_time', //指定元素
+            done: function(value, date, endDate){
+                end_time = ns.date_to_time(value);
+            }
+        });
+
+        /**
+         * 搜索功能
+         */
+		form.on('submit(search)', function (data) {
+			if (start_time) {
+				data.field.start_time = start_time;
+			}
+			if (end_time) {
+				data.field.end_time = end_time;
+			}
+			
+			table.reload({
+				page: {
+					curr: 1
+				},
+				where: data.field
+			});
+		}),
+
+        // 导出
+		form.on('submit(export)', function (data) {
+            location.href = ns.url("agencyteam://shop/settlement/detail") + '?filt=obj.export&start_time=' + $('#start_time').val() + '&end_time=' + $('#end_time').val()
+        }),
+
+        // 加载状态
+        loader = layer.load(1),
+        /**
+         * 加载表格
+         */
+        table = new Table({
+            elem: '#renewal_list',
+            url: ns.url("agencyteam://shop/settlement/detail"),
+            where: {'settlement_id': settlement_id},
+            cols: [
+                [{
+                    type:'numbers',
+                    title: '#',
+                    width:'5%',
+                    align: 'center'
+                },{
+                    field: 'trade_no',
+                    title: '流水号',
+                    unresize: 'false',
+                    width:'12%',
+                }, {
+                    title: '订单号',
+                    unresize: 'false',
+                    width:'12%',
+                    templet: function(data) {
+                        return '<a href="' + ns.url('shop/order/list') + '#!order_label=order_no&search=' + data.order_no + '&page=1' + '">' + data.order_no + '</a>'
+                    }
+                }, {
+                    field: 'accept_user',
+                    title: '用户',
+                    unresize: 'false',
+                    width:'12%',
+                }, {
+                    field: 'order_address',
+                    title: '订单地址',
+                    unresize: 'false',
+                    width:'16%',
+                }, {
+                    field: 'value',
+                    title: '金额（元）',
+                    unresize: 'false',
+                    width:'10%',
+                }, {
+                    field: 'settlement_title',
+                    title: '结算奖励',
+                    unresize: 'false',
+                    width:'10%',
+                }, {
+                    field: 'account_title',
+                    title: '金额类型',
+                    unresize: 'false',
+                    width:'10%',
+                }, {
+                    field: 'create_time',
+                    title: '创建时间',
+                    unresize: 'false',
+                    templet: function(data) {
+                        if(data.create_time == 0){
+                            return '--';
+                        }else{
+                            return ns.time_to_date(data.create_time)
+                        }
+                    },
+                }]
+            ],
+            callback: function(res) {
+                $.getJSON(ns.url("agencyteam://shop/settlement/detail") + '?filt=obj.complex', function(xhr) {
+                    $('#lb-subsidy').text(xhr.data.subsidy),
+                    $('#lb-bonus').text(xhr.data.bonus),
+                    layer.close(loader)
+                });
+            }
+        });
+
+    });
+
+</script>
+{/block}

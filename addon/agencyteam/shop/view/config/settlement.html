@@ -1,0 +1,84 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+    .ns-form {margin-top: 0;}
+</style>
+{/block}
+{block name="main"}
+<div class="ns-card-brief">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">结算设置</h2>
+	</div>
+</div>
+<div class="layui-form ns-form">   
+    <div class="layui-card ns-card-common ns-card-brief">
+            
+            <div class="layui-form-item">
+                <label class="layui-form-label">结算方式：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="radio" name="settlement[type]" value="0" lay-filter="type" title="手动" {if $settlement.type == 0} checked {/if}/>
+                        <input type="radio" name="settlement[type]" value="1" lay-filter="type" title="自动" {if $settlement.type > 0} checked {/if}/>
+                    </div>
+                    <div class="layui-form-mid"></div>
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label class="layui-form-label">结算周期：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="number" name="settlement[cycle_mix]" lay-verify="required" value="{$settlement.cycle_mix}" autocomplete="off" class="layui-input ns-len-short">
+                    </div>
+                    <div class="layui-form-mid">天</div>
+                </div>
+                <div class="ns-word-aux">结算完后，须在周期天数以后才能再次结算</div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label class="layui-form-label">加入账户：</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <input type="radio" name="settlement[add_balance]" value="0" lay-filter="add_balance" title="不加入" {if $settlement.add_balance == 0} checked {/if}/>
+                        <input type="radio" name="settlement[add_balance]" value="1" lay-filter="add_balance" title="自动加入" {if $settlement.add_balance > 0} checked {/if}/>
+                    </div>
+                    <div class="layui-form-mid"></div>
+                </div>
+                <div class="ns-word-aux">结算完后，结算金额加入到会员账户余额</div>
+            </div>
+            
+            <div class="ns-form-row">
+                <button class="layui-btn ns-bg-color" lay-submit lay-filter="save">保存</button>
+            </div>
+    </div>
+
+</div>
+{/block}
+{block name="script"}
+<script>
+	layui.use(['form'], function() {
+		var form = layui.form,
+			repeat_flag = false; //防重复标识
+   
+		form.on('submit(save)', function(data) {
+			if (repeat_flag) return;
+			repeat_flag = true;
+			
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				url: ns.url("agencyteam://shop/config/settlement"),
+				data: data.field,
+				success: function(res) {
+					layer.msg(res.message);
+					repeat_flag = false;
+					if (res.code == 0) {
+						location.reload();
+					}
+				}
+			});
+		}),
+        form.render();
+	});
+</script>
+{/block}

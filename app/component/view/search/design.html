@@ -1,0 +1,47 @@
+<nc-component v-bind:data="data[index]" class="top-search" v-bind:style="{background: nc.backgroundColor}">
+
+	<!-- 预览 -->
+	<template slot="preview">
+
+		<!--<div class="left-img"><img v-bind:src="nc.left_img_url ? changeImgUrl(nc.left_img_url) : '{$resource_path}/search/img/category.png'" class="self-adaption"/></div>-->
+		<div class="top-search-form" v-bind:style="{background: nc.backgroundColor}">
+			<div class="top-search-box" v-bind:class="{'border-circle': nc.borderType == 2}" v-bind:style="{background: nc.bgColor, textAlign: nc.textAlign}">
+				<span class="top-search-intro" v-bind:style="{color: nc.textColor?nc.textColor:'rgba(0,0,0,0)'}">{{ nc.title }}</span>
+				<span class="top-search-icon"><i class="iconfont iconsousuo" v-bind:style="{color: nc.textColor?nc.textColor:'rgba(0,0,0,0)'}"></i></span>
+			</div>
+		</div>
+		<!--<div class="right-img"><img v-bind:src="nc.right_img_url ? changeImgUrl(nc.right_img_url) : '{$resource_path}/search/img/user.png'" class="self-adaption"/></div>-->
+
+	</template>
+
+	<!-- 编辑 -->
+	<template slot="edit">
+		<div class="layui-form-item">
+			<label class="layui-form-label sm">文本内容</label>
+			<div class="layui-input-block">
+				<input type="text" v-model="nc.title" v-bind:id="'title_'+index" placeholder="请输入搜索内容" class="layui-input">
+			</div>
+		</div>
+		
+		<color v-bind:data="{ 'defaultcolor': '#999999' }"></color>
+		<color v-bind:data="{ field : 'backgroundColor', 'label' : '背景颜色' }"></color>
+		<color v-bind:data="{ field : 'bgColor', 'label' : '框体颜色' }"></color>
+		
+		<template v-if="nc.lazyLoad">
+			<!-- <top-search></top-search> -->
+			<goods-search></goods-search>
+			<search-border></search-border>
+		</template>
+		
+	</template>
+	
+	<!-- 资源 -->
+	<template slot="resource">
+
+		<css src="{$resource_path}/search/css/design.css"></css>
+		<css src="{$resource_path}/search/css/iconfont.css"></css>
+		<js src="{$resource_path}/search/js/design.js"></js>
+		
+	</template>
+
+</nc-component>

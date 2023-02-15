@@ -1,0 +1,8 @@
+.env
+.htaccess
+/config/
+/runtime/
+/upload/
+/public/
+/h5/
+/.well-known/

@@ -1,0 +1,56 @@
+{extend name="app/shop/view/base.html"/}
+{block name="resources"}
+<style>
+	.layui-form-switch{margin-top: 0;}
+	.layui-card-body{display: flex;justify-content: space-between;align-items: center;}
+	.layui-card-body p{color: #666666;}
+	.ns-btn-box{flex-shrink: 0;margin-left: 20px;}
+	.ns-btn-box a{cursor: pointer;}
+	.ns-card-common:first-child{margin-top: 0;}
+	.ns-card-common{border: 1px solid #f1f1f1;}
+
+	.ns-wechat-circle {width: 100%;}
+	.ns-wechat-wrap {width: 100%;}
+	.ns-wechat-circle-wrap {width: 1000px; margin: 50px auto; display: flex; justify-content: center; align-items: center;}
+	.ns-wechat-circle-wrap>div:first-child {margin-right: 50px;}
+	.ns-wechat-circle-intro {width: 360px;}
+	.ns-wechat-circle-intro h1 {font-size: 26px; font-weight: 600; color: #333333; line-height: 40px;}
+	.ns-wechat-circle-intro p {font-size: 16px; color: #858585; line-height: 28px; margin-top: 20px;}
+	.ns-wechat-circle-img {width: 360px;}
+	.ns-wechat-circle-img img {width: 100%;}
+</style>
+{/block}
+{block name="main"}
+<div class="layui-form">
+	<div class="layui-card ns-card-common">
+		<div class="layui-card-header">
+			<span class="ns-card-title">好物圈</span>
+			<input type="checkbox" name="isUse" lay-skin="switch" {if $config.is_use == 1} checked {/if}  lay-filter="isUse"/>
+		</div>
+		<div class="layui-card-body">
+			<p>启用后，将同步商品和已支付的订单到微信圈子。</p>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script>
+	layui.use(['form'], function() {
+		var form = layui.form;
+
+		form.on('switch(isUse)', function(data){
+		  	$.ajax({
+				type: 'POST',
+				url: ns.url("goodscircle://shop/config/index"),
+				data: {
+					is_use: $('[name="isUse"]').is(':checked') ? 1 : 0
+				},
+				dataType: 'JSON',
+				success: function (res) {
+					layer.msg(res.message);
+				}
+			});
+		});  		
+	});
+</script>
+{/block}

@@ -1,0 +1,148 @@
+{extend name="base"/}
+{block name="resources"}
+{/block}
+{block name="main"}
+<div class="ns-card-brief ns-tips">
+	<div class="ns-form-content">
+		<h2 class="ns-form-title ns-card-title">店铺公告</h2>
+		<ul class="layui-colla-content layui-show">
+			<li>公告显示在网站的首页</li>
+			<li>公告可进行置顶</li>
+		</ul>		
+	</div>
+</div>
+
+<!-- 搜索框 -->
+<div class="ns-single-filter-box">
+	<button class="layui-btn ns-bg-color" onclick="add()">添加公告</button>
+</div>
+
+<!-- 列表 -->
+<table id="notice_list" lay-filter="notice_list"></table>
+
+<!-- 操作 -->
+<script type="text/html" id="operation">
+	<div class="ns-table-btn">
+		<a class="layui-btn" lay-event="basic">查看</a>
+		<a class="layui-btn" lay-event="edit">编辑</a>
+		{{# if(!d.is_top){ }}
+			<a class="layui-btn" lay-event="setTop">置顶</a>
+		{{# } }}
+		<a class="layui-btn" lay-event="del">删除</a>
+	</div>
+</script>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+	var repeat_flag = false; //防重复标识
+	layui.use('form', function() {
+		var table,
+			form = layui.form;
+		form.render();
+
+		table = new Table({
+			elem: '#notice_list',
+			url: ns.url("shop/notice/index"),
+			cols: [
+				[{
+					width: '55%',
+					title: '公告标题',
+					unresize: 'false',
+					templet: function(data) {
+						var html = data.is_top ? '<span class="required">[ 置顶 ] </span>' : '';
+						html += data.title;
+						return html;
+					}
+				},
+				// 	{
+				// 	field:'receiving_name',
+				// 	width: '20%',
+				// 	title: '接收范围',
+				// 	unresize: 'false',
+				// },
+					{
+					width: '25%',
+					title: '创建时间',
+					unresize: 'false',
+					templet: function(data) {
+						return ns.time_to_date(data.create_time);
+					}
+				}, {
+					title: '操作',
+					width: '20%',
+					unresize: 'false',
+					templet: '#operation',
+				}
+			]]
+		});
+
+		table.tool(function(obj) {
+			var data = obj.data;
+			var event = obj.event;
+			if (event === 'edit') {
+				location.href = ns.url('shop/notice/editNotice', {
+					"id": data.id
+				});
+			} else if (event === 'del') {
+				deleteNotice(data.id);
+			} else if (event === 'setTop') {
+				modifySiteNoticeTop(data.id);
+			} else if (event === 'basic') {
+				location.href = ns.url("shop/notice/detail?id=" + data.id);
+			}
+		});
+		
+		function deleteNotice(id) {
+			if (repeat_flag) return;
+			repeat_flag = true;
+			layer.confirm('确定要删除该公告吗?', function() {
+				$.ajax({
+					type: "post",
+					async: false,
+					url: ns.url("shop/notice/deleteNotice"),
+					data: {
+						'id': id
+					},
+					dataType: "JSON",
+					success: function(res) {
+						layer.msg(res.message);
+						repeat_flag = false;
+
+						if (res.code == 0) {
+							table.reload();
+						}
+					}
+				});
+			}, function() {
+					repeat_flag = false;
+					layer.close();
+				}
+			);
+		}
+
+		function modifySiteNoticeTop(id) {
+			if (repeat_flag) return;
+			repeat_flag = true;
+			
+			$.ajax({
+				type: "POST",
+				dataType: "JSON",
+				async: false,
+				url: ns.url("shop/notice/modifyNoticeTop"),
+				data: {id},
+				success: function(res) {
+					layer.msg(res.message);
+					repeat_flag = false;
+					if (res.code == 0) {
+						table.reload();
+					}
+				}
+			});
+		}
+	});
+	
+	function add() {
+		location.href = ns.url("shop/notice/addNotice");
+	}
+</script>
+{/block}

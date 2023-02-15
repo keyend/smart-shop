@@ -1,0 +1,396 @@
+{extend name="base"/}
+{block name="resources"}
+<link rel="stylesheet" href="SHOP_CSS/index.css">
+{/block}
+{block name="main"}
+<div class="ns-survey">
+	<div class="ns-survey-left">
+		<div class="ns-survey-item">
+			<!-- 概况 -->
+			<div class="layui-card ns-survey-info ns-card-common">
+				<div class="layui-card-header">
+					<div>
+						<span class="ns-card-title">实时概况</span>
+						<span class="ns-card-sub">更新时间：{$today}</span>
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<div class="ns-survey-detail-con" style="background-color: #009afe;">
+						<p class="ns-survey-detail-aco">今日订单数</p>
+						<p class="ns-survey-detail-num ns-text-color">{$stat_day.order_pay_count}</p>
+						<div class="ns-survey-detail-rate">
+							{php}
+								$t = $stat_day['order_pay_count'];
+								$y = $stat_yesterday['order_pay_count'];
+							{/php}
+							<div>日同比 <span>{$t > $y ? '+' : ''}{$day_rate.order_pay_count}</span><i class="layui-icon layui-icon-triangle-d {$t > $y ? 'layui-icon-increase ns-text-color' : $t == $y ? 'is-null' : ''}"></i></div>
+							<div>昨日订单数 <span>{$stat_yesterday.order_pay_count} </span></div>
+						</div>
+						<div class="ns-survey-detail-split"></div>
+						<div class="ns-survey-detail-total">
+							<span>订单总数</span>
+							<span>{$shop_stat_sum.order_pay_count}</span>
+						</div>
+						<div class="title ns-prompt-block">
+							<div class="ns-prompt">
+								<button class="layui-btn layui-btn-primary ns-text-color ns-border-color ns-survey-yesterday-btn" style="color: #009afe !important;">昨日</button>
+								<div class="ns-prompt-box">
+									<div class="ns-prompt-con">
+										订单数：{$stat_yesterday.order_pay_count}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ns-survey-detail-con" style="background-color: #ff547b;">
+						<p class="ns-survey-detail-aco">今日销售额(元)</p>
+						<p class="ns-survey-detail-num ns-text-color">{if isset($stat_day.order_total)}{$stat_day.order_total}{else /} 0.00 {/if}</p>
+						<div class="ns-survey-detail-rate">
+							{php}
+								$t = $stat_day['order_total'];
+								$y = $stat_yesterday['order_total'];
+							{/php}
+							<div>日同比 <span>{$t > $y ? '+' : ''}{$day_rate.order_total}</span><i class="layui-icon layui-icon-triangle-d {$t > $y ? 'layui-icon-increase ns-text-color' : $t == $y ? 'is-null' : ''}"></i></div>
+							<div>昨日销售额(元) <span>{$stat_yesterday.order_total} </span>
+							</div>
+						</div>
+						<div class="ns-survey-detail-split"></div>
+						<div class="ns-survey-detail-total">
+							<span>销售总额</span>
+							<span>{$shop_stat_sum.order_total}</span>
+						</div>
+						<div class="title ns-prompt-block">
+							<div class="ns-prompt">
+								<button class="layui-btn layui-btn-primary ns-text-color ns-border-color ns-survey-yesterday-btn" style="color: #ff547b !important;">昨日</button>
+								<div class="ns-prompt-box">
+									<div class="ns-prompt-con">
+										销售额：{if isset($stat_yesterday.order_total)}{$stat_yesterday.order_total}{else /} 0.00 {/if}元
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ns-survey-detail-con" style="background-color: #11cd6e;">
+						<p class="ns-survey-detail-aco">今日商品收藏数</p>
+						<p class="ns-survey-detail-num ns-text-color">{$stat_day.collect_goods}</p>
+						<div class="ns-survey-detail-rate">
+							{php}
+								$t = $stat_day['collect_goods'];
+								$y = $stat_yesterday['collect_goods'];
+							{/php}
+							<div>日同比 <span>{$t > $y ? '+' : ''}{$day_rate.collect_goods}</span><i class="layui-icon layui-icon-triangle-d {$t > $y ? 'layui-icon-increase ns-text-color' : $t == $y ? 'is-null' : ''}"></i></div>
+							<div>昨日商品收藏数 <span>{$stat_yesterday.collect_goods} </span></div>
+						</div>
+						<div class="ns-survey-detail-split"></div>
+						<div class="ns-survey-detail-total">
+							<span>商品收藏总数</span>
+							<span>{$shop_stat_sum.collect_goods}</span>
+						</div>
+						<div class="title ns-prompt-block">
+							<div class="ns-prompt">
+								<button class="layui-btn layui-btn-primary ns-text-color ns-border-color ns-survey-yesterday-btn" style="color: #11cd6e !important;">昨日</button>
+								<div class="ns-prompt-box">
+									<div class="ns-prompt-con">
+										商品收藏数：{if isset($stat_yesterday.collect_goods)}{$stat_yesterday.collect_goods}{else /} 0 {/if}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ns-survey-detail-con" style="background-color: #feb822;">
+						<p class="ns-survey-detail-aco">今日浏览量</p>
+						<p class="ns-survey-detail-num ns-text-color">{$stat_day.visit_count}</p>
+						<div class="ns-survey-detail-rate">
+							{php}
+								$t = $stat_day['visit_count'];
+								$y = $stat_yesterday['visit_count'];
+							{/php}
+							<div>日同比 <span>{$t > $y ? '+' : ''}{$day_rate.visit_count}</span><i class="layui-icon layui-icon-triangle-d {$t > $y ? 'layui-icon-increase ns-text-color' : $t == $y ? 'is-null' : ''}"></i></div>
+							<div>昨日浏览量 <span>{$stat_yesterday.visit_count}</span>
+							</div>
+						</div>
+						<div class="ns-survey-detail-split"></div>
+						<div class="ns-survey-detail-total">
+							<span>总浏览量</span>
+							<span>{$shop_stat_sum.visit_count}</span>
+						</div>
+						<div class="title ns-prompt-block">
+							<div class="ns-prompt">
+								<button class="layui-btn layui-btn-primary ns-text-color ns-border-color ns-survey-yesterday-btn" style="color: #feb822 !important;">昨日</button>
+								<div class="ns-prompt-box">
+									<div class="ns-prompt-con">
+										浏览量：{if isset($stat_yesterday.visit_count)}{$stat_yesterday.visit_count}{else /} 0 {/if}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="echarts-wrap">
+			<div class="echarts-order">
+				<h5>近十天订单数(个)</h5>
+				<div id="order" style="width: 100%; height: 400px;"></div>
+			</div>
+			
+			<div class="echarts-money">
+				<h5>销售额(元)</h5>
+				<div id="money" style="width: 100%; height: 400px;"></div>
+			</div>
+		</div>
+
+		<!-- 常用功能 -->
+		<div class="layui-card ns-card-common">
+			<div class="layui-card-header">
+				<div>
+					<span class="ns-card-title"><strong>常用功能</strong></span>
+				</div>
+			</div>
+
+			<div class="layui-card-body">
+				<div class="ns-item-block-parent">
+					<a class="ns-item-block ns-item-block-hover-a" href="{:url('shop/goods/addgoods')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/issue_good.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">发布商品</div>
+								<p class="ns-item-content-desc">发布实物商品</p>
+							</div>
+						</div>
+					</a>
+					<a class="ns-item-block ns-item-block-hover-a" href="{:url('shop/diy/index')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/page_decoration.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">店铺装修</div>
+								<p class="ns-item-content-desc">主页面进行装修</p>
+							</div>
+						</div>
+					</a>
+					<a class="ns-item-block ns-item-block-hover-a" href="{:url('shop/shop/config')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/shop_settings.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">店铺设置</div>
+								<p class="ns-item-content-desc">修改店铺信息</p>
+							</div>
+						</div>
+					</a>
+					<a class="ns-item-block ns-item-block-hover-a" href="{:url('shop/order/lists')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/order_select.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">订单查询</div>
+								<p class="ns-item-content-desc">查询系统普通订单</p>
+							</div>
+						</div>
+					</a>
+
+					<a class="ns-item-block ns-item-block-hover-a" href="{:url('shop/member/index')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/member_manage.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">会员管理</div>
+								<p class="ns-item-content-desc">店铺会员管理</p>
+							</div>
+						</div>
+					</a>
+					<a class="ns-item-block ns-item-block-hover-a" href="{:url('shop/memberwithdraw/lists')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/member_withdraw.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">会员提现</div>
+								<p class="ns-item-content-desc">店铺会员提现</p>
+							</div>
+						</div>
+					</a>
+
+					{if $is_fenxiao == 1}
+					<a class="ns-item-block ns-item-block-hover-a" href="{:addon_url('fenxiao://shop/order/lists')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/fenxiao_order.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">分销订单</div>
+								<p class="ns-item-content-desc">店铺分销订单</p>
+							</div>
+						</div>
+					</a>
+					<a class="ns-item-block ns-item-block-hover-a" href="{:addon_url('fenxiao://shop/fenxiao/index')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/fenxiao_config.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">分销管理</div>
+								<p class="ns-item-content-desc">店铺分销管理</p>
+							</div>
+						</div>
+					</a>
+
+					{/if}
+					<a class="ns-item-block ns-item-block-hover-a" href="{:addon_url('printer://shop/printer/lists')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/shop_printer.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">小票打印</div>
+								<p class="ns-item-content-desc">订单快速打印</p>
+							</div>
+						</div>
+					</a>
+					<a class="ns-item-block ns-item-block-hover-a" href="{:addon_url('electronicsheet://shop/config/config')}">
+						<div class="ns-item-block-wrap">
+							<div class="ns-item-pic">
+								<img src="SHOP_IMG/menu_icon/shop_electronicsheet.png">
+							</div>
+							<div class="ns-item-con">
+								<div class="ns-item-content-title">电子面单</div>
+								<p class="ns-item-content-desc">物流电子面单打印</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script src="SHOP_JS/echarts.min.js"></script>
+<script>
+    $(function () {
+        $("body").on("click", ".ns-shop-state button", function () {
+            location.href = ns.url("shop/index/renewExpireTime");
+        });
+    });
+</script>
+<script>
+	var ten_day_json = {:json_encode($ten_day, JSON_UNESCAPED_UNICODE)} ;
+
+	$(function() {
+		
+	});
+	
+	function getDay(day){
+	    var today = new Date();
+	    var targetday_milliseconds = today.getTime() + 1000 * 60 * 60 * 24 * day;
+	    today.setTime(targetday_milliseconds); //注意，这行是关键代码
+	    var tYear = today.getFullYear();
+	    var tMonth = today.getMonth();
+	    var tDate = today.getDate();
+	    tMonth = doHandleMonth(tMonth + 1);
+	    tDate = doHandleMonth(tDate);
+	    return tMonth + "-" + tDate;
+	}
+	
+	function doHandleMonth(month){
+	    var m = month;
+	    if(month.toString().length == 1){
+	     m = "0" + month;
+	    }
+	    return m;
+	}
+	
+	var data = [getDay(-9), getDay(-8), getDay(-7), getDay(-6), getDay(-5), getDay(-4), getDay(-3), getDay(-2), getDay(-1), getDay(0)];
+	// 基于准备好的dom，初始化echarts实例
+	var myChart = echarts.init(document.getElementById('order'));
+	
+	// 指定图表的配置项和数据
+	option = {
+		xAxis: {
+			type: 'category',
+			data: data
+		},
+		yAxis: {
+			type: 'value'
+		},
+		tooltip: {
+			formatter: function(params, ticket, callback) {
+				return "日期：" + data[params.dataIndex] + '<br />' + params.seriesName + "：" + params.value;
+			},
+			backgroundColor: 'rgba(0, 0, 0, 0.5)',
+			padding: [5, 10],
+			textStyle: {
+				color: '#fff',
+				lineHeight: 30,
+			}
+		},
+		series: [{
+			name: ['订单数'],
+			data: ten_day_json.order_pay_count,
+			type: 'bar',
+			showBackground: true,
+			barCategoryGap: '50%',
+			itemStyle: {
+				color: new echarts.graphic.LinearGradient(
+					0, 0, 0, 1,
+					[
+						{offset: 0, color: '#0e73e8'},
+						{offset: 1, color: '#19b4f1'}
+					]
+				)
+			}
+		}]
+	};
+
+	// 使用刚指定的配置项和数据显示图表。
+	myChart.setOption(option);
+	
+	// 基于准备好的dom，初始化echarts实例
+	var moneyChart = echarts.init(document.getElementById('money'));
+	
+	// 指定图表的配置项和数据
+	moneyOption = {
+		xAxis: {
+			type: 'category',
+			data: data
+		},
+		yAxis: {
+			type: 'value'
+		},
+		tooltip: {
+			trigger: 'axis',
+			showContent: true,
+			backgroundColor: 'rgba(0, 0, 0, 0.5)',
+			padding: [5, 10],
+			textStyle: {
+				color: '#fff',
+				lineHeight: 30,
+			},
+			formatter: function(params, ticket, callback) {
+				return "日期：" + params[0].axisValue + '<br />' + params[0].seriesName + "：" + params[0].value + "元";
+			},
+		},
+		series: [{
+			name: ['销售额'],
+			data: ten_day_json.order_total,
+			type: 'line',
+			smooth: true,
+			itemStyle: {
+				color: '#2d8cf0'
+			}
+		}]
+	};
+
+	// 使用刚指定的配置项和数据显示图表。
+	moneyChart.setOption(moneyOption);
+</script>
+{/block}
+{/block}

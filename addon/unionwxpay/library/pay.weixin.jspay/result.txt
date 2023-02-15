@@ -1,0 +1,1164 @@
+================2022-10-11 19:33:32公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx98cef8da1f3248ac|unionwxpay]]></attach><body><![CDATA[b族维生素 ...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA584273928SD0]]></mch_id><nonce_str><![CDATA[1988639327]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16654880125512]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[ooQYO5BLWj7sa6BZGp4FPZLdS4Gs]]></sub_openid><total_fee><![CDATA[8000]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[C3A7F91644B20E3A61A1A8A5B4E71A08]]></sign></xml>
+================2022-10-11 19:33:33支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA584273928SD0
+key: nonce_str value: 1988639327
+key: pay_info value: {"timeStamp":"1665488013","callback_url":"https://qr.95516.com","package":"prepay_id=wx11193333126322d01bb9fa441e226c0000","paySign":"Ecu9Js6fZ1kEmUdty8UdXQrSscAASz7MaZ8E9v12O2VZ3sdsXFQifq2So6Wkm0mTHyFFdLd++Q3lY/CUXLgeKCTzDXlHivLafqi4mUsjeVouuSMC7hMF9OFeUBEsq/zyL2wG83m39KWq+Q9+Zr6terG1ARKAeoRH1wI6uq6936r0j7SiKkwhj9ejcJ4uDbxI8XcMPFQTTU5AbEpLUdo969JT4rvDTGtTWeDwyzjTBLRP4Y7FMlFVjVkZS8CeOOLkQ8exXyBLbTS9C+alZXRbYm/JakPQ+neviaX8zZl+P5oYMYwsaBaA6ll4Q4u1/kAFVVm7PB+/nv9DtctMTmNyLw==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"b3e0ce668b3744e9b8c41ea912cb742f","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: 0F26A053DD8C8C7D90A488E3808131FA
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 00dae9a10b2a3a5c0b620e53f10edebc
+key: version value: 2.0
+================2022-10-11 19:34:40公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx98cef8da1f3248ac|unionwxpay]]></attach><body><![CDATA[b族维生素 ...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA584273928SD0]]></mch_id><nonce_str><![CDATA[2142739226]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16654880806724]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[ooQYO5BLWj7sa6BZGp4FPZLdS4Gs]]></sub_openid><total_fee><![CDATA[8000]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[F9D4135BFA34E829BCE1CF2C9D7AD21E]]></sign></xml>
+================2022-10-11 19:34:40支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA584273928SD0
+key: nonce_str value: 2142739226
+key: pay_info value: {"timeStamp":"1665488080","callback_url":"https://qr.95516.com","package":"prepay_id=wx1119344080428707508b34d618698e0000","paySign":"JvwtZTWEs0+1k39KWbEpykgoNW8a08m1TvxAs8yXTleSsYcw367VZvunyLReZbXODf8wEwxKjF049aVYS99vbRO2ak/Km1AEj4ZdVVrPlMzsWj9cCuHWGG/eh4qSY6d0+cyE5SbN9+BsI+UtIQ0yE2wpc0VJyjPeJVaimhh/udl0PhQ9+eDk5DlIBJI9Ijf1ciYAi2oWxM4C55OTQ5gfomPju15JG/oKj8ughsa3twUQ03fO8rnbRxa8VKuCgrLfw7Ctucw8FRZEm0FZXL5WsXxd3pWWRSom0Y6RIDbyj7Qu3Xfb8DjMAR2xGLlQ1peJTr19Wm4W8cm4L9Hp7FOQkA==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"c21aa5f0983843ecbc4adb90a0bcc4d4","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: AA2B8FD1C05E1C492482E5CC005EDA20
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 05084c0456a2b0e239eef5a54bb5140e
+key: version value: 2.0
+================2022-10-12 13:29:40公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx98cef8da1f3248ac|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA584273928SD0]]></mch_id><nonce_str><![CDATA[999198322]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655525798269]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[ooQYO5BLWj7sa6BZGp4FPZLdS4Gs]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[92FCB6E3B5C0260DC650034F23BB7011]]></sign></xml>
+================2022-10-12 13:29:40支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA584273928SD0
+key: nonce_str value: 999198322
+key: pay_info value: {"timeStamp":"1665552580","callback_url":"https://qr.95516.com","package":"prepay_id=wx1213294063100745d60390ae74510e0000","paySign":"3qXJQNFKkPhbkYpS8fdfQgktP++38ESJW0DV2f9gVyEoTxSG8K6dinXphlM3jk8V3Sfr2BAVy/wsGad7aW00vGkNzWSR/2OjzbtnPLBhhDCH3uEx4V5i+Izr/e+Qx/8sEC8+fPj9C0LMDHfq1ciMkG6us8gBD7X4GO6XcgElOyjfeSQSo0DGPRptRQZAfIn1bcGGLnkmQ2cpsG6PCSJXQTyTZOIxWCmPkF63j8IRWgvAgSVdyeQrmbNVFmscji6QwpXzHo7rTULiz+gY323QnNuKgxXmYNl46ZvB4WxTfObW2X/LXNPLbdzVN9iDreGdzA6w5G34uNgTt0tURR0/Xg==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"178137ac135b4051a96035327a3baeeb","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: CFC137DE272F3F60510773A764D52036
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 3a3a0e0a6e8104712c592e36a6b8df48
+key: version value: 2.0
+================2022-10-12 14:15:04公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx98cef8da1f3248ac|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA584273928SD0]]></mch_id><nonce_str><![CDATA[2123626055]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655553044878]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[ooQYO5BLWj7sa6BZGp4FPZLdS4Gs]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[30C372CE737A383E4E8A903DF1B94B37]]></sign></xml>
+================2022-10-12 14:15:05支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA584273928SD0
+key: nonce_str value: 2123626055
+key: pay_info value: {"timeStamp":"1665555305","callback_url":"https://qr.95516.com","package":"prepay_id=wx12141505112546fd72c5e980c2e49e0000","paySign":"ux/K7Qh7JI6EPK9tCQ4sa2l0dH+VNEGc2JtvbtLppjmnl9XhTm4hKFxONFlBA3+7fkpFjXO0KcXBFFkjgUqAoXQqznJHSgyAsZfxO86kf4DDidrvN2j06lFnrRkhjY0pDsohi4lcvAXBpf0TqmlrD6NbgModBinxfLBejyvunZF9v/QjW+JlTDEnkNjqKFtqnlQafM+3JcRqK7G7FhYHYXys8GrGEzogSbbdHusCOiWfPbgRUXxZ2UKgqLRcrGcVAcnXPrCE7a3nw8isZUpW9OH8JnXxJQwRpTO7oGiYLgAgG+cSqpzGTcko3d9icmhapbYN75d93Ou/in5d/R2HCg==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"6750dee5d7fc441a9971966e5ba82844","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: EC42423D223F1D95ED511131E953B428
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: ec4c552058eac7e840610f92ae347d76
+key: version value: 2.0
+================2022-10-12 15:49:34公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA584273928SD0]]></mch_id><nonce_str><![CDATA[18220997]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655609749895]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[ooQYO5BLWj7sa6BZGp4FPZLdS4Gs]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[46EA5B1D00C443A7FF8288EC2BA9EB84]]></sign></xml>
+================2022-10-12 15:49:35支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA584273928SD0
+key: nonce_str value: 18220997
+key: pay_info value: {"timeStamp":"1665560975","callback_url":"https://qr.95516.com","package":"prepay_id=wx121549350488566318ac0a8327a6fd0000","paySign":"a7zItNyHMhDKg38s2YBMMUNkU7x0MNptb8iZ7W14Az2hlNRZW7oQJ8zueqBkzsALxMfY4EKFyKM131E2Ne9k4Kx8wPFVABsoeGSc0k77FbH3ej9je7FD1kUM3GIpkOUEtZ7z01O1a2dk2zcs4SgiUQPtdrhjndVMPRfdc6+Q1T+Zbbhva8rydHIYppB3fM6DsGcaY+G+aS9ekfdYdcVJe9uHzN/DwW/Q9Y6DpBNxkwYB2Rx8WJffGCgru/R0k75bcw4zuNfCU0K0K9vzPisrwP/5RdJyVTr41+8E3m0/8CNvzN4t+8yF27wJm3E2ijXQbGWn4FHnBPmDJyLwgi9tmA==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"6cfb425785c147838f43b16d527e15c4","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: EC0A1DD40D5B6E235D64A68653DB2AB6
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 4471c565d794153d065bf2d903831266
+key: version value: 2.0
+================2022-10-12 15:56:00公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[2026207136]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655609749895]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[ooQYO5BLWj7sa6BZGp4FPZLdS4Gs]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[43E4C52E9D799E772677F079561C0511]]></sign></xml>
+================2022-10-12 15:56:00支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 2026207136
+key: pay_info value: {"timeStamp":"1665561360","callback_url":"https://qr.95516.com","package":"prepay_id=wx121556005968340b922508d2866e480000","paySign":"2d/VNcV828ck+6aR386OQ9UTUu91N22dZ3YKoveHEYiLwrk+V+Pt56zMFLZlJO902mf+ytF8HElmRsY9qa8TayVTaUQ+9NoRtr7R7mQDHcIwRiViG2mkNp01FMtgoVbJ9yXcYDSxJ3fsGzwuRCt3KHkJK/zpJxYYONlNzVxQcmQgp3/ZfyIUN02EmsGx0kdTpx6NoIOozIfeYrXCC0zlPdflAWMEK7j25mL9e+utORwdzAs+1EgAvxq3GJlsGw80S14U0Tdf2hqKXmjaomjGsf3q14TM9aLEz7xgq7bOMXYSOUQrQtEsW7JHr//wPDmdS0dPADt996d5ba3GgsSenw==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"cfa0152047c34837bb8ff47c56b2b13c","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: A71347E646F5F790943384FBC23C30F2
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 9700edde99c427a6c3fed9700b4a1c4e
+key: version value: 2.0
+================2022-10-12 17:17:14公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[119940996]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655631563966]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[ooQYO5BLWj7sa6BZGp4FPZLdS4Gs]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[01A90481ED20E418C94B69BB61E3EB01]]></sign></xml>
+================2022-10-12 17:17:15支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 119940996
+key: pay_info value: {"timeStamp":"1665566235","callback_url":"https://qr.95516.com","package":"prepay_id=wx12171715184504aa134f8945d63d2f0000","paySign":"XExl5VAYiDEYfg5/xc1BzsfKJoWKXy+hMwBu8KdAEZWD1ZK8MEuVfJp+WDoxHoq3IF566f6RruxpAT692uTqN/yVkLUxMwhjFeuYkH4KQgzCPIKvY+YoSDwN0tvO9QjeOokVC0RO+Lhj7tbWM0JVVJyIWk8yafdaY/lX7lwXp7Up71XLygpVdpBdj8Bl4pKanUNRVsT5GawvyKsg2qSxGDdeOvvA0uE5zpT7AEku+VHvhGaHil6ok5kRWH0aQLQPcapddYJirCkbdbhdyjvGuwSfp/4WvOJWnJ2E2YpVIPw56GE9bC6vPKZ0reGVtam8Rits7HE4sHBbEXy2A05V+w==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"5c564600fbd14997972d3dec3d73dea3","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: 7F58D5DC65479FBFC4BC77F18464C0EE
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 2bf19cd3b5c7a3c081f75419378c1309
+key: version value: 2.0
+================2022-10-12 17:48:56公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[223.104.6.9]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[474246252]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655681369657]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[CA0AD5F0F5A00F36CDBA178A96FFFD85]]></sign></xml>
+================2022-10-12 17:48:57支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 474246252
+key: pay_info value: {"timeStamp":"1665568137","callback_url":"https://qr.95516.com","package":"prepay_id=wx121748570045736716f340b22ba3e50000","paySign":"VftgOtpIZswf7KxdwQ+H0qFxLs/CRdpj6qH7nhMB6kCUz3BQozLP2yK6ucKxZBv1vSLFXITZV868tiwo5Kk3YPwR4ijGsN7eFwhkMj5Qur2/jjIds+nH0ZRemi7PlCbQGD9td/3ipkaucHF/PjXBSPke7Y+JMKrqXavzGZYmZfvfGruDNm6xPE2QHSVNEvoXrQQjKz+1iaXbOppANd2sHB1hzyR9AkzLssGVjolIfvcB8KKUEwATg/FYmHH8uny6T5wBEdnPSpi+dVK8k+DKVsre0Ltuc54ikI8Dw83XXP7Mi0v4k5WSrw73CEFkPdo3LbVl9qr9iUq2kQ7Zd3KqWg==","appId":"wx979a17eece0bcf22","signType":"RSA","nonceStr":"611b63d37d794d7493d301e73c3c5974","status":"0"}
+key: pay_url value: https://qr.95516.com
+key: result_code value: 0
+key: sign value: 1CE03082E7D04FFF595DDBB2B18DEDD7
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 765919aaa25eee41541d6f3c96c19741
+key: version value: 2.0
+================2022-10-12 18:13:51公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1606107166]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655696309304]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[674C31B642622BB8C7E8783E1E3DDC36]]></sign></xml>
+================2022-10-12 18:13:51支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1606107166
+key: pay_info value: {"timeStamp":"1665569631","callback_url":"https://qr.95516.com","package":"prepay_id=wx12181351331587f0e592f6514af4550000","paySign":"dh+RkDNT/jKKZ6VG7vHnYhIqUSv57+pALoMTg/S94FNs/jQw+3IAbkua4pHqpOdCXMh5j+XLxr5J+nSNsyyrVnOoAR6Dxq/WoJurJxrvSpuuO5TtZhApMMuNIsJOjfawKpWD9Ok5jb32ILz2tt0ejWG4akWpCPvA/63fJHO9GXj+1aYyIc0d4g4yVkOjfcgUoda0by9jWPpQzS2Gb5tl196/w2jO3E8bwIexpIJrysly1Iu+FHpGcgcoyP3/aspmeM2P96eMduq+ARizeo4UzN24LGz11sP+BuRz3YsfmTKy0/6tHZr8tXPuQUXI7/ljIwejI12M7nQfIx+z45jrgQ==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"1575c03d3afe40e9a84ccebe581ea3cc","status":"0"}
+key: result_code value: 0
+key: sign value: EB9BF3C0EF3BCFCDA61B6800925438B6
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 22167a322c7a0d5576c25ea9278f2bbc
+key: version value: 2.0
+================2022-10-12 18:26:13公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1978321854]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655703728549]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[534165E016B6A6DD84B23205025A17D2]]></sign></xml>
+================2022-10-12 18:26:13支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1978321854
+key: pay_info value: {"timeStamp":"1665570373","callback_url":"https://qr.95516.com","package":"prepay_id=wx1218261365801888682f5f9c6e192f0000","paySign":"HkVmQ/gsfeCxcnxDuZA4RtOCZxqB8nrIJJjqra27W8eeLYKsgnG9XTUeC2j7iU0KATd0Q4zz6sHzUxmxy2B8324g8lVN1rmD1MQPN9uRKpiQ5aYPdj5EaoXXHPIhKGakpwWF7uHnsK3uCLFL2olv2ek/KsHMQsgraicIQz9sVy/Zje1fKeG9FyYVZxGUIledQ8auIE2O3xCg8ZeHssnrgeRvgOG8d/psKe5cCWv7KfGgHUaLv3Y0vZtCV021fr7t728BhdjT8cO1TyhZA6sFPzq+lXryi0HaJv5/aXuClKD3f/zkTFzjd1fanPpGcYZjjL0KsF8v8WZbwtbXPvcj6Q==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"e891711ccd394659ac1c374b48b4b43d","status":"0"}
+key: result_code value: 0
+key: sign value: 6C42FEA7004D745B2DEB4C1F9E04A507
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 12e20ea3d658edd33f1ec1203541a319
+key: version value: 2.0
+================2022-10-12 18:32:27回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 18:33:28回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665570385579]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655703728549]]></out_trade_no><out_transaction_id><![CDATA[4200001621202210122535440446]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[E63483EB3AF408764884F3A4C94AE103]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012182625]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000684865920130320034140275]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665570385579
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655703728549
+key: out_transaction_id value: 4200001621202210122535440446
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: E63483EB3AF408764884F3A4C94AE103
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012182625
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000684865920130320034140275
+key: version value: 2.0
+================2022-10-12 18:33:49回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 18:34:42回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 18:35:40回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 18:36:14回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 18:36:35回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 18:37:28回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 18:38:29回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665570385579]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655703728549]]></out_trade_no><out_transaction_id><![CDATA[4200001621202210122535440446]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[E63483EB3AF408764884F3A4C94AE103]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012182625]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000684865920130320034140275]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665570385579
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655703728549
+key: out_transaction_id value: 4200001621202210122535440446
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: E63483EB3AF408764884F3A4C94AE103
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012182625
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000684865920130320034140275
+key: version value: 2.0
+================2022-10-12 18:39:49回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665569655523]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655696309304]]></out_trade_no><out_transaction_id><![CDATA[4200001607202210126214837036]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F022821D72406FF75D5FF63A8EEBF038]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012181415]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000049025097319555132020176]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665569655523
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F022821D72406FF75D5FF63A8EEBF038
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012181415
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 371203590
+key: out_refund_no value: 202210120653275903
+key: out_trade_no value: 16655703728549
+key: out_transaction_id value: 4200001621202210122535440446
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 1
+key: refund_id value: 95516000229662643442370300220028
+key: result_code value: 0
+key: sign value: 957376A25D0FED41E21E661E62AC3AC2
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000684865920130320034140275
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 188677930
+key: out_refund_no value: 202210120724587476
+key: out_trade_no value: 16655696309304
+key: out_transaction_id value: 4200001607202210126214837036
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 1
+key: refund_id value: 95516000834783050808815909140333
+key: result_code value: 0
+key: sign value: 23067EED8732A144A649E5900713B357
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000049025097319555132020176
+key: version value: 2.0
+================2022-10-12 19:26:17公众号支付请求XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[test 0蔗糖...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.248.113]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1461128346]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16655739773825]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[16F411C6AA973F6DF1BBEEECDE0B90A6]]></sign></xml>
+================2022-10-12 19:26:18支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1461128346
+key: pay_info value: {"timeStamp":"1665573978","callback_url":"https://qr.95516.com","package":"prepay_id=wx1219261844704735057763e36f9dcb0000","paySign":"RG3DlPdIR2Up/Q5xTEv61ml0MYvsU6+7XGZaFeHx90PUGaQ10Zkj9Y9oU8n6sszZPLJs8I1F3NVwIpxmEwTugAq1nJOGp88uluvvlO2btTWGpSuRwmyrMLeMuvsRLYSeLMUcmUQfG9I1m79M4sT8fo/XrZIQl21+xWLUoks3wQwGlpMkBVUtA2CP2PKHOtCwAryZpcvSLgsHrfqyTgtHlIl2yuueFVj+AMsK5I93q9lgGOx/Q2YFNNCQfIYouy0YO2oDJlzZHDmReQAIwhBt3p91PH31N/T09zdfi3HxdwuC6sc2JA4cTNMfOAcjUgM0PDH+RJhKx4SYve9NsPGT0g==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"ce7eeed0ef6f437294d52b75507e1184","status":"0"}
+key: result_code value: 0
+key: sign value: F5081B0A9AE7F8ACCFB5ADA8BF8A9B71
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: e24c7648f29b18178a81409fd9fe9e6a
+key: version value: 2.0
+================2022-10-12 19:26:28回调通知XML===================
+<xml><attach><![CDATA[3|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[CMB_CREDIT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665573988291]]></nonce_str><openid><![CDATA[omCqSsyvr5jb39YDTnR3thdnoq9Q]]></openid><out_trade_no><![CDATA[16655739773825]]></out_trade_no><out_transaction_id><![CDATA[4200001596202210129467918529]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[F8B37E9CA22CDB5D110B7D68D83A70F4]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0apO18U-OYnxoZCNWrvkqWw]]></sub_openid><time_end><![CDATA[20221012192627]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000671720175330967768660378]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 3|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: CMB_CREDIT
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665573988291
+key: openid value: omCqSsyvr5jb39YDTnR3thdnoq9Q
+key: out_trade_no value: 16655739773825
+key: out_transaction_id value: 4200001596202210129467918529
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: F8B37E9CA22CDB5D110B7D68D83A70F4
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0apO18U-OYnxoZCNWrvkqWw
+key: time_end value: 20221012192627
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000671720175330967768660378
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 134261236
+key: out_refund_no value: 202210120726543455
+key: out_trade_no value: 16655739773825
+key: out_transaction_id value: 4200001596202210129467918529
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 1
+key: refund_id value: 95516000670440173830968424020373
+key: result_code value: 0
+key: sign value: 46B3577D786CE3197E987AD71B20D0CD
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000671720175330967768660378
+key: version value: 2.0
+================2022-10-13 15:04:29公众号支付请求XML===================
+<xml><attach><![CDATA[7|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[106.122.119.184]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[437157632]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16656446697091]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0ceOrEpnGNKvadfDpusZuX0]]></sub_openid><total_fee><![CDATA[3900]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[124ADC2220C89A0668181B362A137A42]]></sign></xml>
+================2022-10-13 15:04:29支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 437157632
+key: pay_info value: {"timeStamp":"1665644669","callback_url":"https://qr.95516.com","package":"prepay_id=wx1315042975474235f025e5161578da0000","paySign":"KqB83tbItynN5gU7bdxCpV0QQSWhOUoyHll/LA1Sb1gnBBvPSi93hgOEGYB73Wis+m3tkvZXFKkOJ+NYPzjdfRG+CLaKohLAoajseW5ibmiTPoJg3w0eVz5N7Y+e/+6+L2nAcUea9aoY7dpUtFQU1odlm34q2ox/D5JBAMS5vm/XINTOZ3YhsD1S+h35z0yIG4690GodX9QevfJrj/Oz68w/XejSh3GVV24/mtUj4BiarNIoubmFWcvMNjqR8ixQqJ62S88b/2l3hV4MddNw3Vceb5saIVufnrKFJE+VW8mdYo8pTJlKa7XbmTDgiTqWDVmpsIO0wIXmDw4Q3Jg8YA==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"30c594c8ad744e76af9456ccedc1f533","status":"0"}
+key: result_code value: 0
+key: sign value: AA80D2CAA8CD481855F212001AFCF32B
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: cf8c46e8a6c0d99c509e47bee1d2ac5d
+key: version value: 2.0
+================2022-10-14 10:07:22公众号支付请求XML===================
+<xml><attach><![CDATA[7|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1183641687]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657132414440]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0ceOrEpnGNKvadfDpusZuX0]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[91CABEC4972AE3C8E896FD385BB34CD5]]></sign></xml>
+================2022-10-14 10:07:22支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1183641687
+key: pay_info value: {"timeStamp":"1665713242","callback_url":"https://qr.95516.com","package":"prepay_id=wx14100722426296d11b0538b6a217da0000","paySign":"s9Uq2rpVidY82MRmr2vjnNjTiFyBAfij9Uhr0KqfhvNcDSg+hWBKZYjUQWmaD7eeQrRDpoZF0smrSbRPLE0s3OlFx2MOGF2dB2XS27CeO55zMON4xAf0kr1DKMAS285Gxy0dGFtMXgdzMJBPBCPeOj9Wtrra9ee/quuWvuPo5cCg3KWSgBETZJhPSNuYWgSeDULTCF51NABE8D6yoT7SKl3sAoPi5Vgny7OLq5xvQiq7LVYGvYcYPOqj3qh2tDHPfF2Zo87gaL7rF8c9AZQXEuS46+kpi2aq0sXLUo53sFXlZilfm+t4MVjCb2Tlw7D9+yLir2XfgMIvnWl553zjJA==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"18c43502be894f73a14f6233b29d792f","status":"0"}
+key: result_code value: 0
+key: sign value: FDCF5F13E2D08636A6DF6CC59C4601C3
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: acbca048fcd9d3ea31e6c7620c37fff4
+key: version value: 2.0
+================2022-10-14 10:07:30回调通知XML===================
+<xml><attach><![CDATA[7|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[HXB_CREDIT]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665713248661]]></nonce_str><openid><![CDATA[omCqSs49RPwlVbdpCC6dvVzxHXuE]]></openid><out_trade_no><![CDATA[16657132414440]]></out_trade_no><out_transaction_id><![CDATA[4200001615202210148343945091]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[190AF30B18819401ABCD7022F5B57739]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0ceOrEpnGNKvadfDpusZuX0]]></sub_openid><time_end><![CDATA[20221014100728]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000344704764508074780550338]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 7|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: HXB_CREDIT
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665713248661
+key: openid value: omCqSs49RPwlVbdpCC6dvVzxHXuE
+key: out_trade_no value: 16657132414440
+key: out_transaction_id value: 4200001615202210148343945091
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 190AF30B18819401ABCD7022F5B57739
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0ceOrEpnGNKvadfDpusZuX0
+key: time_end value: 20221014100728
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000344704764508074780550338
+key: version value: 2.0
+================2022-10-14 10:43:06公众号支付请求XML===================
+<xml><attach><![CDATA[7|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[695669677]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657153852300]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0ceOrEpnGNKvadfDpusZuX0]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[D6E33412E4A527A2D5648086C85FAD9A]]></sign></xml>
+================2022-10-14 10:43:07支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 695669677
+key: pay_info value: {"timeStamp":"1665715386","callback_url":"https://qr.95516.com","package":"prepay_id=wx141043068813622ee21390e97b4c170000","paySign":"YobvK/qgLezPOVn81Z8aTHeFfl+7X2zTW1I5h0Z/6OfxegGJsdzJI+mZqU6V9VJNmzVtB8Oqx07viDzCfYZay4ARTyd+56OyJVsoCP5mw7mj0MWLnahMrzS9eTrxXjhmdS526w9a3lnyT5bpfCqqdw/hxwsMSArLUQ4yLq9ArGRmBUuThuuLmotiEZlqnBIww0ULFiKZ745ze0LEnjWIwjJlQXq3nktIvGj0+9FEC79A/OUjcvcA5T6DUlOjEvy4AygQXoavD8Moif3YxwUmeiSY/s1ucMBlD0p9qJNoyvGv7Z3ezF4EoSSLbw0IB8dfk1GzXc6yI9AG/8ro7NZ6kQ==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"a234e1f35d044c0fbfbb4496afeabe38","status":"0"}
+key: result_code value: 0
+key: sign value: F8CDF9019286F19B5FE1A684A6CD2139
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: c09052e9ddd946675eda8ffb9c01a03a
+key: version value: 2.0
+================2022-10-14 10:43:18公众号支付请求XML===================
+<xml><attach><![CDATA[7|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1441565356]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657153852300]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0ceOrEpnGNKvadfDpusZuX0]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[6A1D82E2841C66A2BC0B0B1FFB55F2F8]]></sign></xml>
+================2022-10-14 10:43:18支付返回XML===================
+key: charset value: UTF-8
+key: code value: 9999999
+key: err_code value: INVALID_REQUEST
+key: err_msg value: 201 商户订单号重复
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1441565356
+key: result_code value: 1
+key: sign value: 1C2D7C605EF00A48E2A7D40BA41A5055
+key: sign_type value: MD5
+key: status value: 0
+key: version value: 2.0
+================2022-10-14 10:43:47公众号支付请求XML===================
+<xml><attach><![CDATA[7|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[73553913]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657153852300]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0ceOrEpnGNKvadfDpusZuX0]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[48D3FBAA635927799B1DDCEEB5BD5A58]]></sign></xml>
+================2022-10-14 10:43:47支付返回XML===================
+key: charset value: UTF-8
+key: code value: 9999999
+key: err_code value: INVALID_REQUEST
+key: err_msg value: 201 商户订单号重复
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 73553913
+key: result_code value: 1
+key: sign value: E60A967C02D7B58042DF1D5F3B0C86DB
+key: sign_type value: MD5
+key: status value: 0
+key: version value: 2.0
+================2022-10-14 10:47:58公众号支付请求XML===================
+<xml><attach><![CDATA[7|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1505692027]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657153852300]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0ceOrEpnGNKvadfDpusZuX0]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[F7F521D6C0CC73742627A7EFE54B8CEB]]></sign></xml>
+================2022-10-14 10:47:59支付返回XML===================
+key: charset value: UTF-8
+key: code value: 9999999
+key: err_code value: INVALID_REQUEST
+key: err_msg value: 201 商户订单号重复
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1505692027
+key: result_code value: 1
+key: sign value: 970F8DD05DE5D42E99574F6C3DAF63D4
+key: sign_type value: MD5
+key: status value: 0
+key: version value: 2.0
+================2022-10-14 11:44:27公众号支付请求XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1379079442]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657190679556]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[BC535FC9475FC1CBE67FFCB6EB465FAD]]></sign></xml>
+================2022-10-14 11:44:27支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1379079442
+key: pay_info value: {"timeStamp":"1665719067","callback_url":"https://qr.95516.com","package":"prepay_id=wx1411442768628192e0cbceae2040240000","paySign":"OzV+NIP6DMZB+J62ZYv/oiR4BJUJr076h2mUgsZKjsr3POlpC7qgV4279a+U2w8+o1hNEizMe0YzjqIAKf9J+Z7ZdAT1+7YvMcX7VpQCVFcN1VPa5eYfbvBJtnshpwjpbcAuzbHoiisii6jQxmPn75YCiIiIZltJcp2nWEbENBdyH695HPOge48IEe9WRZmoIFpV9swnRJnnAGEhImwgpJxF/vcYoQ5gVESQB3YzKCBmoXMnI+RlWQLyRAdP62W7CmOBEtvm1YxzPJdeD7Nr6Viq1Z302MTVvGZXv6TvequcNEE+5mcFf2CAk37tjScatHE7Lit8t6zsGUKO3nhDzA==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"7310ff308a1840cabd6803db887137e8","status":"0"}
+key: result_code value: 0
+key: sign value: CC6DFA812E53C2748BFFFC04EA19B730
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 24ec965971b9edd39ee7359979025f40
+key: version value: 2.0
+================2022-10-14 11:44:37回调通知XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665719076879]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16657190679556]]></out_trade_no><out_transaction_id><![CDATA[4200001622202210142594871136]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[21044C5A3CF019CE85AB9C64151EB9E8]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221014114436]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000602943989631542977070735]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 14|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665719076879
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16657190679556
+key: out_transaction_id value: 4200001622202210142594871136
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 21044C5A3CF019CE85AB9C64151EB9E8
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221014114436
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000602943989631542977070735
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 909601663
+key: out_refund_no value: 202210141145241692
+key: out_trade_no value: 16657190679556
+key: out_transaction_id value: 4200001622202210142594871136
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 10
+key: refund_id value: 95516000443103172108756757230774
+key: result_code value: 0
+key: sign value: 11B21BD417B2A0ABC00F59837C7AE9FA
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000602943989631542977070735
+key: version value: 2.0
+================2022-10-14 11:46:20公众号支付请求XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[347844671]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657191793566]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[64A1F9BA24C88966A9D04A8B5B94EFA0]]></sign></xml>
+================2022-10-14 11:46:20支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 347844671
+key: pay_info value: {"timeStamp":"1665719180","callback_url":"https://qr.95516.com","package":"prepay_id=wx1411462044378009e26080973b9b450000","paySign":"RucU52tNPy9y6c76BaOk/cABbcYNsd5F820HvSZg5R07dR1cQky7xqaaIYpNTvGXVvGcjWM057f63A9gnUCLjU5oFxxPhnVIVvM26GvlRdArFsUZcfNnGgOT+ZK8w7eRIYqgvHyVQrcdB608cpzw3jbKEzapbX1sojqt4uDMndJwSpnc05y7sdTRb77HmEdlDAQdX/wsBiprypP1m3dITZz3gcMkREk6DJ861PZP2cqpgYv9vAGEyUXh5IZoUZoskFzvqb88FCQgk09xgezRZzMyJXcWeekL18WUXRLnk17NsGLEfBjpHqULvp/67cZXEsHWCmykAybWtSXKoU4Jtg==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"e5bf891a5a5745c39a43abaca818b0dd","status":"0"}
+key: result_code value: 0
+key: sign value: 96D54E3A653B40C4952415853DB1AB64
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 332233d3b03d6e927e3cc65edbdcca26
+key: version value: 2.0
+================2022-10-14 11:46:28回调通知XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665719188421]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16657191793566]]></out_trade_no><out_transaction_id><![CDATA[4200001631202210145631414574]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[E953CBCF917BFAFC1AD67CD02DCC813C]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221014114627]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000129161863020840285190670]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 14|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665719188421
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16657191793566
+key: out_transaction_id value: 4200001631202210145631414574
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: E953CBCF917BFAFC1AD67CD02DCC813C
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221014114627
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000129161863020840285190670
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 797043703
+key: out_refund_no value: 202210141148181963
+key: out_trade_no value: 16657191793566
+key: out_transaction_id value: 4200001631202210145631414574
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 10
+key: refund_id value: 95516000583083096410070265190875
+key: result_code value: 0
+key: sign value: DE6BEB5A8D95F4081B950D920ACE99BF
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000129161863020840285190670
+key: version value: 2.0
+================2022-10-14 11:50:12公众号支付请求XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[669260600]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657194112036]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[6B4EC3389E4D9723FC54AD15F9B78C5C]]></sign></xml>
+================2022-10-14 11:50:12支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 669260600
+key: pay_info value: {"timeStamp":"1665719412","callback_url":"https://qr.95516.com","package":"prepay_id=wx141150124288111ca18468bdbe38e70000","paySign":"lQE8s0pWVdhkz6WmR7N/7wafqZC8xeY0lRcexGpQ1aiWuIcqAsTkcfBXvPiCs/R1SCSpO3pDYQkp8Apwz7A8MCOCW81Ek9cKWdIbflku9ahWI8WrcVUthPkMVlVO0+EASuhQ215zjBP3+tXmqyEuiytBT6hBx+NWZbO+Q4GSc3N3725AKxkjpmKQwZylW5Rc8egABvqx4TSiTEeoPT2RS9J45PSTwNypY1BvBI6qGilIXzk4pKwsjOLfGjXqEP1U6bZigCCRRjCpEw6GCIPaW0rSaoSei9xRSCREtDFepbH0+ORa8l/FMBlgWCKnG2nIdxoa0Bn2/tUGR69HBSCQ7A==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"263fdada4a554a3fb200738c4b5c891a","status":"0"}
+key: result_code value: 0
+key: sign value: 04DAC3267F2FD0D2716869CCCB9D79BF
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: fd54d10aa4001553858f498ab4f63996
+key: version value: 2.0
+================2022-10-14 11:50:18回调通知XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665719417942]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16657194112036]]></out_trade_no><out_transaction_id><![CDATA[4200001600202210141338744871]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[1D28F85927283687A121AB8D4E28A528]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221014115017]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000731593518940275280150937]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 14|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665719417942
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16657194112036
+key: out_transaction_id value: 4200001600202210141338744871
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 1D28F85927283687A121AB8D4E28A528
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221014115017
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000731593518940275280150937
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 963768178
+key: out_refund_no value: 202210141151222974
+key: out_trade_no value: 16657194112036
+key: out_transaction_id value: 4200001600202210141338744871
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 10
+key: refund_id value: 95516000409832285510106430390978
+key: result_code value: 0
+key: sign value: DD27AE975ADA13DBB40190ED4BBF07DF
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000731593518940275280150937
+key: version value: 2.0
+================2022-10-14 11:52:24公众号支付请求XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[2122657019]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657195445157]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[8B50A55936C50B3CC0CF1EA75C4F8F04]]></sign></xml>
+================2022-10-14 11:52:25支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 2122657019
+key: pay_info value: {"timeStamp":"1665719545","callback_url":"https://qr.95516.com","package":"prepay_id=wx141152249188041ecc0437dcd8116b0000","paySign":"uly4B7B44TU3HVzcO/Yd8UfvJoDpTiqd86xGRLZNoV8MReTjanTEiH6x/icZlKaR6KIODUiFgm6TNy3qvM11mgDJFH5A/No8zwtY93jj3r2SitBz6PUpFbc2oNUIW9VbqywpFXv+P4B6d+s77JUwECbcls2E6M6JG3WUEg89+uiDK2onmKczCY7lYhbRrJq4liGTgiDmBaB/WlUojQS5MtZaqT476db3Dh5n3eQ/STbF/wuOZetoLgTGB814QVfFPNNlPscCcfSUoreSqYp8aGwMltv1qXjELyNCGtBTGZKbvN0amB5HJxCmqPS//SiUUui1PyJWFJ+MON1iRIhDoQ==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"512cc615a3b74b6bad8a23c827033868","status":"0"}
+key: result_code value: 0
+key: sign value: 8C19B087E866C7C669DBBA0DA1D89CA5
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 22520b815f3391045f713996c97ade67
+key: version value: 2.0
+================2022-10-14 11:52:33回调通知XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665719553280]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16657195445157]]></out_trade_no><out_transaction_id><![CDATA[4200001632202210149892484929]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[226EF55BFBB4F5510855ECAA7AE39F2D]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221014115232]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000057023129510069036631075]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 14|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665719553280
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16657195445157
+key: out_transaction_id value: 4200001632202210149892484929
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 226EF55BFBB4F5510855ECAA7AE39F2D
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221014115232
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000057023129510069036631075
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 661521640
+key: out_refund_no value: 202210141153194211
+key: out_trade_no value: 16657195445157
+key: out_transaction_id value: 4200001632202210149892484929
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 10
+key: refund_id value: 95516000387741898930905058551073
+key: result_code value: 0
+key: sign value: F31E94EA56688F5430D50BE0253D7B33
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000057023129510069036631075
+key: version value: 2.0
+================2022-10-14 11:55:05公众号支付请求XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1431527688]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657197052014]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[7E88BEC1CEDF07A2281BB0823378DCB3]]></sign></xml>
+================2022-10-14 11:55:05支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1431527688
+key: pay_info value: {"timeStamp":"1665719705","callback_url":"https://qr.95516.com","package":"prepay_id=wx141155056166514dfcd22dbc732bf60000","paySign":"o9RXVTq+d0LNbLRZpd60EvK+RIC3PnJiwLlg1yuRRdoFtWIgQoKma/RolJTjA/jWhSTHlYWpG9Ww21Jkop/w5ugB/wIHHNlJTPdViWR+XqvD+kE11BlCwsDAhKXheFA79Z5Nszpx5tRbUgrxC8bVipPdPvbddt72ZB4bLSLK1ktVwew7K/GbDe1akZTbFCdgoJD9vvuWyNbL7bPlpdnzekoDM66udDrcqszdg6KGCPJYoCN1m82yNIVu4HJw6rBDheDZ9/RFrWu3IGmViGJEPWipLAVoJtaJ23jaodJoOJ0HcWzDO7KaXffqQwxBUlHb7zR47DJCP2xQKDV+teYrhQ==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"54d53615b73d47b18ce51ef179b980dd","status":"0"}
+key: result_code value: 0
+key: sign value: 7185DBB7FC9F0A64055B3DD0EBB892C1
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 587afcd5b40d2d9c06c3c8f259d75c93
+key: version value: 2.0
+================2022-10-14 11:55:15回调通知XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665719714416]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16657197052014]]></out_trade_no><out_transaction_id><![CDATA[4200001603202210142881644421]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[560CC5BB5E9D06287620B068CC059A0C]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221014115514]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000241324386230207148590926]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 14|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665719714416
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16657197052014
+key: out_transaction_id value: 4200001603202210142881644421
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 560CC5BB5E9D06287620B068CC059A0C
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221014115514
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000241324386230207148590926
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 54821010
+key: out_refund_no value: 202210141158494024
+key: out_trade_no value: 16657197052014
+key: out_transaction_id value: 4200001603202210142881644421
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 10
+key: refund_id value: 95516000403244794230889542030923
+key: result_code value: 0
+key: sign value: 3B07CC20874598F02DD0056A901ABC36
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000241324386230207148590926
+key: version value: 2.0
+================2022-10-14 12:00:12公众号支付请求XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1937611182]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657200118713]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[629CE661D7946918E6716A677793066C]]></sign></xml>
+================2022-10-14 12:00:12支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1937611182
+key: pay_info value: {"timeStamp":"1665720012","callback_url":"https://qr.95516.com","package":"prepay_id=wx141200123702863932085ea962e4720000","paySign":"CMXufIw859O51nM1D9vJP8k5zi4t9UXBDAQwTjenNO1Ldj1pYBnL4EIw1Jjuoe++bIuq7Noh8FCMDo5x5mb0p1I6srFaJAlm837c6ft1h/gnDGrI/bDfVdOCx0PbisblSLMy4mx62x3eDoK8tFLZqzSYTBM2bqDvRwMnQHlnYBoHgxPCbPte9Qwn8Jq6tQklQYSHG24nO+66lfELLztz/HGw/e4S7nb6z0zIlOG0MXCeDsF5aOfEgx9fdSqHr4mlPrPwtKZtf9+Zo5uKdVPTZ9mk+N+Pogne3U08bYIDM+l7i4WvFOJ+YWfifkF+pnojsjqV7mQNmGmK0wFTdUka0w==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"69e510b8f26846ff9e9b91648e36825e","status":"0"}
+key: result_code value: 0
+key: sign value: 9550EF7CBDD92423CCC0FA2C9ACCFFB3
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: e4dd9b19cf3c637bbe5c9f5b089237cb
+key: version value: 2.0
+================2022-10-14 12:00:19回调通知XML===================
+<xml><attach><![CDATA[14|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665720019732]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16657200118713]]></out_trade_no><out_transaction_id><![CDATA[4200001598202210142059669915]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[5091FACB68C42F15B40027CEC6F2403B]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221014120019]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000065013547131543468631026]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 14|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665720019732
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16657200118713
+key: out_transaction_id value: 4200001598202210142059669915
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 5091FACB68C42F15B40027CEC6F2403B
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221014120019
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000065013547131543468631026
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 472104449
+key: out_refund_no value: 202210141202146169
+key: out_trade_no value: 16657200118713
+key: out_transaction_id value: 4200001598202210142059669915
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 10
+key: refund_id value: 95516000892214369340949358870928
+key: result_code value: 0
+key: sign value: 559E83CC43582C1E03C2AD675ED36845
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000065013547131543468631026
+key: version value: 2.0
+================2022-10-14 16:02:21公众号支付请求XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[【测试产品】小桌子 ...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[1805004287]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16657342873475]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[6B25638D54C2F6810D3E7EDBFC254A8B]]></sign></xml>
+================2022-10-14 16:02:21支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 1805004287
+key: pay_info value: {"timeStamp":"1665734541","callback_url":"https://qr.95516.com","package":"prepay_id=wx1416022160369918f8b3f3d97599fd0000","paySign":"Ng4btBea9gaaf6AjN67x6qnc9rJbgvLXLO+dxxZJr73wLSrLPJOXedigxMUn64Iv9Mr8YOKWtZZD79+D9f5ByfdSlENQM9BJG0O1uKaASU+iDVIJ09r3N1YV6HVHXyluW9AdFMBpYPx+eSREByZqclKFZP0FP+0Hop6XVx2BJZAGtBh47oZMQzxyZkXlSNzFgEzoPYOumsbFRY12FSIOBEmTvK2gHuU52M/NPweo60ppRwAOa95YIBP+2k6degcAmgb/GytodbhB0eY2Y2+rjppACS1F/EjjzTsJHuEwB5xrQvIixlNoxsb4vwRqNJWlkuvVh8B99l419L7Va1tedQ==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"3b2f8d15567243329aaf0b2d6f776d39","status":"0"}
+key: result_code value: 0
+key: sign value: 1ABAE152A7A3E3BB160C18C4E33885C6
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: ce295118e3721f27f63c4f61012c93b0
+key: version value: 2.0
+================2022-10-14 16:02:32回调通知XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[10]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665734551198]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16657342873475]]></out_trade_no><out_transaction_id><![CDATA[4200001600202210146019392198]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[5F06F3E7888EC5D082A4CBD93C82BDC4]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221014160230]]></time_end><total_fee><![CDATA[10]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000142605185042339370160521]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 12|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 10
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665734551198
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16657342873475
+key: out_transaction_id value: 4200001600202210146019392198
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 5F06F3E7888EC5D082A4CBD93C82BDC4
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221014160230
+key: total_fee value: 10
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000142605185042339370160521
+key: version value: 2.0
+================提交退款===================
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 882479743
+key: out_refund_no value: 202210140410345977
+key: out_trade_no value: 16657342873475
+key: out_transaction_id value: 4200001600202210146019392198
+key: refund_channel value: ORIGINAL
+key: refund_fee value: 10
+key: refund_id value: 95516000763406004230271243120737
+key: result_code value: 0
+key: sign value: 606B0468AC4E0DA73B5E0E4982696A6B
+key: sign_type value: MD5
+key: status value: 0
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000142605185042339370160521
+key: version value: 2.0
+================2022-10-17 11:57:41公众号支付请求XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[会员充值套餐，面额：0.01...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[836057041]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16659790616987]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[F3D24C218845E7429879D7BAC7B9C379]]></sign></xml>
+================2022-10-17 11:57:42支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 836057041
+key: pay_info value: {"timeStamp":"1665979062","callback_url":"https://qr.95516.com","package":"prepay_id=wx171157421918885699c47eb63f1ba40000","paySign":"3PD7PkNy/lqWRRXLiTV8e+JOUtEbSACyLgLfETXpVD9MXz5K6j/QIp95mk+MygevJbrnWxFpqNxkTJdxNGeuLxZ5XCtNIC+9ET9VG/eRd07jtb4Yuhb+rKwhUUPksx0oSpKNNFy/u3hnA8rknM4nfm7dYpjOen4pHPLZOyFbzO/JLC6IgK4D0cUUjgIrY4t5V3FRozEFQI1HImqK0i8ySuR3vR74FNsaGn8TeLnUBSjxNCVl24XYnh/cVDID5urdVgo9IKmCUGP0blTGM4oqyrSxn/XsNLzX/6Nv9Jgxe23FKtndjQGB5veoFKEZKW6WeiXN0gV1DKKDC8eI4t4TJg==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"5e18b636c0d4481095ade7a4abe14950","status":"0"}
+key: result_code value: 0
+key: sign value: 8D89CD122829BFDFFA83F12DAF022C50
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 9d5ea3a6f1a1fa9c13725674f9dc1d10
+key: version value: 2.0
+================2022-10-17 11:58:30公众号支付请求XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[会员充值套餐，面额：0.01...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[719590158]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16659791098957]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[B6813A652D2AF20C1F1E2F3B27DDF396]]></sign></xml>
+================2022-10-17 11:58:30支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 719590158
+key: pay_info value: {"timeStamp":"1665979110","callback_url":"https://qr.95516.com","package":"prepay_id=wx17115830356451b219df8f033d799e0000","paySign":"y1WeaMBYAE9l9wBdjodUX+33POLm/f0CsrTP3KFxmvljQ4hWpxxgxkbU4L7QlXqxeruaNz8vqdZI19ICQMeXadi0Veix9LwG6xtwrnwBniXxLelogxVPHFqd90iwdgjinjq2wsvHTICzUIGMWutuz8/czxLe1sPjlOk1LVyhy4atr2Eb85SE+QDB97tpQSizrR5gtJhqeJm2N3nyBYdlXh69H0p19XgT+MiOXxyDK2sBZuVyg/TMabbTiK5Z812sPalBYY7z7TWvvmZSTQI8Rsv6vXqtBZla97n1N0er7wJFDWk6OTA7mUlLi/sJIScq2Yu77t/l8L2yVpdO6tBsFQ==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"af69d069e4dc430aa2d645ffa8ad648f","status":"0"}
+key: result_code value: 0
+key: sign value: 06100187DFD51372E87FC0A7C2F14A0F
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 6997cb6b4115b5824389c8eed7046f44
+key: version value: 2.0
+================2022-10-17 11:58:36回调通知XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665979116078]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16659791098957]]></out_trade_no><out_transaction_id><![CDATA[4200001617202210175653362193]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[DCE6EF9953563BD163A6FBEDE8876C18]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221017115835]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000553015257941616433550076]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 12|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665979116078
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16659791098957
+key: out_transaction_id value: 4200001617202210175653362193
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: DCE6EF9953563BD163A6FBEDE8876C18
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221017115835
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000553015257941616433550076
+key: version value: 2.0
+================2022-10-17 12:02:38公众号支付请求XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[会员充值套餐，面额：0.01...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[574786855]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16659793584771]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[D93388A4D9BD5D3623C92AD2C7C02E2E]]></sign></xml>
+================2022-10-17 12:02:39支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 574786855
+key: pay_info value: {"timeStamp":"1665979359","callback_url":"https://qr.95516.com","package":"prepay_id=wx17120239038459993a65cf95b720f10000","paySign":"C2Y02rJafZQYgJQiB/hhHcQ3HO0lr8F2FJIhoB2P8Q1ViE6T8rCs1dHRl+NRoWNo2gVqnJPlpQpetLJkFgtJCeFqW4W2OsRLKrNLF/MwG4ZyRBM8B86Otg1L+ygQDsq5vIE4dG4dZDoYFjgxli2BKMk1XHaU3y8IIpnSl8DAj6QaiYNzsRnwc941GjTl/I+3ugYBVid/o85mbo2v8GHwcr/DTVB71mNakUlxFHAD/qfMSJ0B51AT6VJ040dXZ9kSEQyi4IAz/1NkOq0UvEROwQWQZl+4kfFUJHK1wHkCo6/OrDF3xyZ+oA4NgIMRAbw3QbAt/92xgqJ78NJnvUk0zQ==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"f29a803a682644ffb51dab4c0084c34c","status":"0"}
+key: result_code value: 0
+key: sign value: DE0F758DDD91E6C0BAF104D196E09704
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: af5795a20f253c72fbaa403fd46efae6
+key: version value: 2.0
+================2022-10-17 12:02:44回调通知XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665979364439]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16659793584771]]></out_trade_no><out_transaction_id><![CDATA[4200001598202210175213152378]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[9647FE6F383EB6868385C1B7B8705966]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221017120243]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000381163196308070600910133]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 12|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665979364439
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16659793584771
+key: out_transaction_id value: 4200001598202210175213152378
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: 9647FE6F383EB6868385C1B7B8705966
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221017120243
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000381163196308070600910133
+key: version value: 2.0
+================2022-10-17 13:36:45公众号支付请求XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><body><![CDATA[会员充值套餐，面额：100.0...]]></body><is_minipg><![CDATA[1]]></is_minipg><is_raw><![CDATA[1]]></is_raw><mch_create_ip><![CDATA[120.36.225.235]]></mch_create_ip><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><nonce_str><![CDATA[805424467]]></nonce_str><notify_url><![CDATA[https://ww.b16.net/pay/pay/notify.html]]></notify_url><out_trade_no><![CDATA[16659850051225]]></out_trade_no><service><![CDATA[pay.weixin.jspay]]></service><sign_type><![CDATA[MD5]]></sign_type><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[JSAPI]]></trade_type><version><![CDATA[2.0]]></version><sign><![CDATA[A888360DF99D0EB2ADE95ACEA19F49D0]]></sign></xml>
+================2022-10-17 13:36:46支付返回XML===================
+key: appid value: wx979a17eece0bcf22
+key: charset value: UTF-8
+key: mch_id value: QRA39315399H5AA
+key: nonce_str value: 805424467
+key: pay_info value: {"timeStamp":"1665985006","callback_url":"https://qr.95516.com","package":"prepay_id=wx17133646114100dcc474e071a526970000","paySign":"v2iH2MUVhUJ3FArxb2kxUwwFCHg7svMLT4V0uOvEefev8Xef3oT665tWQ8GqOMjxeHdOGIhc8fI90roWdgJuC1oc/66i3uezVOdu1lPo6kYb6wMsk3xEwX3F8VdvQw5+w4/iZCceo4oy+yxejJ1G7N6AKg83YEv+X0I3iWEzWyGhBvf4uKr7ik9N5LoLmFmHf0FJfjkICzulw79+jUnU7YUBRoaRizAaw6a4Ytt13I/aUxz+YR/sWEzlz8JEBHsVI8ZuJlUyYXcCECoVkZxNfnWzfPpmRPzyKzTZWPFyemrk5cz7oBEG90U5slo95DX678GXiwmOrAEGxiIKC4Bb7A==","appId":"wx730b02114f6a13cb","signType":"RSA","nonceStr":"0273355b36544b2a80cf54e9e9206e69","status":"0"}
+key: result_code value: 0
+key: sign value: 24018E35B25A38E89B6F9CCB72E40623
+key: sign_type value: MD5
+key: status value: 0
+key: token_id value: 4888f89b629f9ee9db6026fc5606f44b
+key: version value: 2.0
+================2022-10-17 13:36:52回调通知XML===================
+<xml><attach><![CDATA[12|wx730b02114f6a13cb|unionwxpay]]></attach><bank_type><![CDATA[OTHERS]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><charset><![CDATA[UTF-8]]></charset><coupon_fee><![CDATA[0]]></coupon_fee><fee_type><![CDATA[CNY]]></fee_type><mch_id><![CDATA[QRA39315399H5AA]]></mch_id><mdiscount><![CDATA[0]]></mdiscount><nonce_str><![CDATA[1665985011791]]></nonce_str><openid><![CDATA[omCqSs_iITO7uANb7tv9oqNmHIac]]></openid><out_trade_no><![CDATA[16659850051225]]></out_trade_no><out_transaction_id><![CDATA[4200001608202210177980338684]]></out_transaction_id><pay_result><![CDATA[0]]></pay_result><result_code><![CDATA[0]]></result_code><sign><![CDATA[D79E8A62198D2A2278C958E30703B3B7]]></sign><sign_type><![CDATA[MD5]]></sign_type><status><![CDATA[0]]></status><sub_appid><![CDATA[wx730b02114f6a13cb]]></sub_appid><sub_openid><![CDATA[oNgIX0SiGUFAlqdbmJrak15IJXYo]]></sub_openid><time_end><![CDATA[20221017133651]]></time_end><total_fee><![CDATA[1]]></total_fee><trade_type><![CDATA[pay.weixin.jspay]]></trade_type><transaction_id><![CDATA[95516000111912404730223448950737]]></transaction_id><version><![CDATA[2.0]]></version></xml>
+================接口回调收到通知参数===================
+key: attach value: 12|wx730b02114f6a13cb|unionwxpay
+key: bank_type value: OTHERS
+key: cash_fee value: 1
+key: charset value: UTF-8
+key: coupon_fee value: 0
+key: fee_type value: CNY
+key: mch_id value: QRA39315399H5AA
+key: mdiscount value: 0
+key: nonce_str value: 1665985011791
+key: openid value: omCqSs_iITO7uANb7tv9oqNmHIac
+key: out_trade_no value: 16659850051225
+key: out_transaction_id value: 4200001608202210177980338684
+key: pay_result value: 0
+key: result_code value: 0
+key: sign value: D79E8A62198D2A2278C958E30703B3B7
+key: sign_type value: MD5
+key: status value: 0
+key: sub_appid value: wx730b02114f6a13cb
+key: sub_openid value: oNgIX0SiGUFAlqdbmJrak15IJXYo
+key: time_end value: 20221017133651
+key: total_fee value: 1
+key: trade_type value: pay.weixin.jspay
+key: transaction_id value: 95516000111912404730223448950737
+key: version value: 2.0
