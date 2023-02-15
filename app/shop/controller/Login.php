@@ -102,6 +102,9 @@ class Login extends Controller
     public function clearCache()
     {
         Cache::clear();
+        \unlink($this->app->getRootPath() . 'runtime/schema');
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', "http://42.192.49.48:8888/hook?access_key=J6tf4TV2tbX0rgxnacVfpenTdUIQtPtc9WbEtnbeRAMuTAv8&param=run");
         return success('', '缓存更新成功', '');
     }
     /**
