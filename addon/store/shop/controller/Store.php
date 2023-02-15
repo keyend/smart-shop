@@ -1,7 +1,7 @@
 <?php
 namespace addon\store\shop\controller;
 
-use app\Controller;
+use app\shop\controller\BaseShop;
 use app\model\store\Store as StoreModel;
 use app\model\system\Addon;
 use app\model\system\Group as GroupModel;
@@ -14,7 +14,7 @@ use app\model\system\Site;
  * 商户控制器
  * @package addon.store.controller
  */
-class Store extends Controller
+class Store extends BaseShop
 {
     /**
      * 替换规则
@@ -33,5 +33,6 @@ class Store extends Controller
             'STORE_JS' => __ROOT__ . '/addon/store/store/view/public/js',
             'STORE_IMG' => __ROOT__ . '/addon/store/store/view/public/img',
         ];
+        parent::__construct();
     }
 }
